@@ -21,8 +21,8 @@ const Knob = ({
   indicatorAngle: controlledAngle,
   onChange,
   sensitivity = 1,
-  minAngle = -180,
-  maxAngle = 180,
+  minAngle = -135,
+  maxAngle = 135,
   className = '', 
   style = {},
   ...props 

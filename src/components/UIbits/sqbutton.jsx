@@ -13,6 +13,7 @@ import './sqbutton.css';
  * @param {string} props.text - Text to display on button
  * @param {string} props.image - Image URL to display on button
  * @param {string} props.imageAlt - Alt text for image
+ * @param {string} props.variant - Button variant: 'default' or 'orange' (default: 'default')
  */
 const SquareButton = ({ 
   onClick,
@@ -23,6 +24,7 @@ const SquareButton = ({
   text,
   image,
   imageAlt = '',
+  variant = 'default',
   ...props 
 }) => {
   // Base dimensions
@@ -51,7 +53,7 @@ const SquareButton = ({
 
   return (
     <button 
-      className={`sq-button ${className}`}
+      className={`sq-button ${variant === 'orange' ? 'sq-button--orange' : ''} ${className}`}
       onClick={onClick}
       style={buttonStyle}
       {...props}

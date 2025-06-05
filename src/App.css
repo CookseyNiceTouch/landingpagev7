@@ -12,7 +12,7 @@ html, body {
 
 .app {
   height: 100vh;
-  background-color: #f3f5ef;
+  background-color: hsl(var(--page-hue, 60), 15%, 94%); /* Use hue from knob, default to original color */
   position: relative;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   overflow: hidden;
@@ -73,6 +73,7 @@ html, body {
   text-align: left;
   gap: 1rem;
   flex-shrink: 0;
+  margin-left: 0.5rem;
 }
 
 .main-title {
@@ -109,10 +110,10 @@ html, body {
 .device-container {
   flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   height: 100%;
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 0;
 }
 
 /* Device Interface */

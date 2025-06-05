@@ -179,3 +179,39 @@
   }
 }
 
+/* ===== ORANGE VARIANT ===== */
+.sq-button--orange .sq-button-base {
+  background: linear-gradient(135deg, #ffb366 0%, #ff8c42 50%, #e67e22 100%);
+}
+
+.sq-button--orange .sq-button-base::before {
+  background: linear-gradient(135deg, #ff9f4a 0%, #ff7b1a 50%, #d35400 100%);
+}
+
+.sq-button--orange .sq-button-circle {
+  background: linear-gradient(135deg, #ffb366 0%, #ff8c42 50%, #e67e22 100%);
+  box-shadow: 
+    4px 4px 7.6px -2px rgba(0, 0, 0, 0.47),
+    -2px -2px 4px 0px rgba(255, 216, 166, 0.9),
+    inset 6px 7px 8.6px -7px rgba(255, 255, 255, 0.44),
+    inset 6px 7px 8.6px -1px rgba(220, 220, 220, 0.33);
+}
+
+.sq-button--orange .sq-button-circle::before {
+  background: linear-gradient(135deg, #ff9f4a 0%, #ff7b1a 50%, #d35400 100%);
+}
+
+.sq-button--orange .sq-button-text {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Orange variant hover states */
+.sq-button--orange:hover .sq-button-base::before {
+  background: linear-gradient(135deg, #ffad5c 0%, #ff8530 50%, #cc5500 100%);
+}
+
+.sq-button--orange:hover .sq-button-circle::before {
+  background: linear-gradient(135deg, #ffad5c 0%, #ff8530 50%, #cc5500 100%);
+}
+

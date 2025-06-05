@@ -3,18 +3,37 @@ import SquareButton from './UIbits/sqbutton';
 import Speaker from './UIbits/speaker';
 import Screen from './UIbits/screen';
 import Knob from './UIbits/Knob';
+import SignupModal from './SignupModal';
 import './device.css';
 
 const Device = () => {
   const [selectedButton, setSelectedButton] = useState(1); // Track which selector button is active
+  const [knobAngle, setKnobAngle] = useState(0); // Track knob rotation
+  const [isSignupModalOpen, setIsSignupModalOpen] = useState(false); // Track signup modal state
 
   const handleButtonClick = (buttonId) => {
-    console.log(`Button ${buttonId} clicked`);
+    if (buttonId === 'signup') {
+      setIsSignupModalOpen(true);
+    } else {
+      console.log(`Button ${buttonId} clicked`);
+    }
   };
 
   const handleSelectorClick = (buttonNumber) => {
     setSelectedButton(buttonNumber);
     console.log(`Selector button ${buttonNumber} selected`);
+  };
+
+  const handleDiscordClick = () => {
+    window.open('https://discord.com/invite/jpp3mQUCYN', '_blank');
+  };
+
+  const handleKnobChange = (angle) => {
+    setKnobAngle(angle);
+    // Map angle (-180 to 180) to hue (0 to 360)
+    const hue = ((angle + 180) / 360) * 360;
+    // Set CSS custom property on document root
+    document.documentElement.style.setProperty('--page-hue', hue);
   };
 
   return (
@@ -70,6 +89,8 @@ const Device = () => {
               widthMultiplier={1}
               heightMultiplier={1}
               className="device-main-knob"
+              indicatorAngle={knobAngle}
+              onChange={handleKnobChange}
             />
             
             <SquareButton 
@@ -80,7 +101,7 @@ const Device = () => {
             />
             
             <SquareButton 
-              onClick={() => handleButtonClick('discord')}
+              onClick={() => handleDiscordClick()}
               image="discord-logo.png"
               widthMultiplier={2}
               className="device-discord-button"
@@ -89,6 +110,7 @@ const Device = () => {
             <SquareButton 
               onClick={() => handleButtonClick('signup')}
               text="Sign Up"
+              variant="orange"
               widthMultiplier={2}
               className="device-signup-button"
             />
@@ -97,6 +119,12 @@ const Device = () => {
         </div>
 
       </div>
+      
+      {/* Signup Modal */}
+      <SignupModal 
+        isOpen={isSignupModalOpen}
+        onClose={() => setIsSignupModalOpen(false)}
+      />
     </div>
   );
 };
