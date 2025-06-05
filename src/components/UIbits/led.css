@@ -1,0 +1,74 @@
+/* ===== UI BITS COMPONENTS STYLES ===== */
+/* Reusable UI components with Figma-accurate styling */
+
+/* ===== LED COMPONENT ===== */
+.ui-led {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .ui-led-circle {
+    width: 100%;
+    height: 100%;
+    background: var(--led-base-color, hsl(156, 100%, 50%)); /* Default green fallback */
+    border-radius: 50%;
+    position: relative;
+    
+    /* Enhanced multi-layer LED glow effect using CSS custom properties and brightness control */
+    box-shadow: 
+      /* Inner bright core - very minimal white, just for tiny highlight */
+      inset 0 0 2px rgba(255, 255, 255, calc(0.1 * var(--led-brightness, 1))),
+      /* Inner depth shadow */
+      inset 2px 2px 4px rgba(0, 0, 0, 0.15),
+      /* Tight inner glow */
+      0 0 calc(3px * var(--led-brightness, 1)) var(--led-glow-color, hsl(156, 100%, 50%)),
+      /* Close glow - brightness controlled */
+      0 0 calc(8px * var(--led-brightness, 1)) var(--led-glow-color, hsl(156, 100%, 50%)),
+      /* Medium glow - brightness controlled */
+      0 0 calc(15px * var(--led-brightness, 1)) rgba(var(--led-glow-rgb, 0, 255, 136), calc(0.9 * var(--led-brightness, 1))),
+      /* Outer glow - brightness controlled */
+      0 0 calc(25px * var(--led-brightness, 1)) rgba(var(--led-glow-rgb, 0, 255, 136), calc(0.8 * var(--led-brightness, 1))),
+      /* Far glow - brightness controlled */
+      0 0 calc(40px * var(--led-brightness, 1)) rgba(var(--led-glow-rgb, 0, 255, 136), calc(0.6 * var(--led-brightness, 1))),
+      /* Ambient light - brightness controlled */
+      0 0 calc(60px * var(--led-brightness, 1)) rgba(var(--led-glow-rgb, 0, 255, 136), calc(0.3 * var(--led-brightness, 1)));
+  }
+  
+  .ui-led-circle::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: radial-gradient(circle at 25% 25%, 
+      rgba(255, 255, 255, calc(0.08 * var(--led-brightness, 1))) 0%, 
+      transparent 50%
+    );
+    border-radius: 50%;
+  }
+  
+  /* ===== MODIFIERS ===== */
+  
+  /* Pulsing animation */
+  .ui-led--pulsing .ui-led-circle {
+    animation: ledPulse 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes ledPulse {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.05);
+    }
+  }
+  
+  /* Size variants */
+  .ui-led--small {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .ui-led--large {
+    width: 16px;
+    height: 16px;
+  }
+  
