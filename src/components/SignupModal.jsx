@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import MailerLiteModalForm from './mailerlite/MailerLiteModalForm';
+import MailerLiteForm from './mailerlite/MailerLiteForm';
 import './SignupModal.css';
 
 const SignupModal = ({ isOpen, onClose }) => {
@@ -19,6 +19,30 @@ const SignupModal = ({ isOpen, onClose }) => {
     }
   }, [isOpen, isVisible]);
 
+  useEffect(() => {
+    // Override the MailerLite success callback when modal is open
+    if (isOpen) {
+      const originalCallback = window.ml_webform_success_24164656;
+      
+      window.ml_webform_success_24164656 = function() {
+        // Call original callback first
+        if (originalCallback) {
+          originalCallback();
+        }
+        
+        // Then handle modal-specific success
+        setTimeout(() => {
+          handleClose();
+        }, 2000);
+      };
+
+      return () => {
+        // Restore original callback when modal closes
+        window.ml_webform_success_24164656 = originalCallback;
+      };
+    }
+  }, [isOpen]);
+
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
       handleClose();
@@ -32,22 +56,12 @@ const SignupModal = ({ isOpen, onClose }) => {
     }, 400); // Match animation duration
   };
 
-  const handleSuccess = () => {
-    // Close modal after showing success message
-    setTimeout(() => {
-      handleClose();
-    }, 2000);
-  };
-
   if (!isVisible) return null;
 
   return (
     <div className={`signup-modal-overlay ${isAnimating ? 'open' : ''}`} onClick={handleOverlayClick}>
-      <div className="signup-modal">
-        <MailerLiteModalForm 
-          onClose={handleClose}
-          onSuccess={handleSuccess}
-        />
+      <div className="signup-modal minimal-mailer-form">
+        <MailerLiteForm />
       </div>
     </div>
   );

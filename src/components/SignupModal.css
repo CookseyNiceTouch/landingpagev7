@@ -41,8 +41,8 @@
   opacity: 0;
 }
 
-/* Minimal form container */
-.minimal-form-container {
+/* Minimal styling overrides for original MailerLiteForm */
+.minimal-mailer-form {
   width: 100%;
   max-width: 400px;
   display: flex;
@@ -51,96 +51,133 @@
   justify-content: center;
 }
 
-.minimal-form {
-  width: 100%;
+/* Hide Discord button and wrapper in modal */
+.minimal-mailer-form .discord-wrapper {
+  display: none !important;
+}
+
+/* Container overrides */
+.minimal-mailer-form .signup-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  width: 100%;
 }
 
-.minimal-form-content {
+.minimal-mailer-form .email-form-wrapper {
+  width: 100%;
+  max-width: 320px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
-  width: 100%;
-  max-width: 320px;
 }
 
-/* Minimal email input */
-.minimal-email-input {
-  width: 100%;
-  padding: 1rem 0;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  font-family: Inter, sans-serif;
-  font-size: 1rem;
-  font-weight: 300;
-  text-align: center;
-  outline: none;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  letter-spacing: 0.5px;
+/* Form structure overrides */
+.minimal-mailer-form .ml-form-embedContainer {
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
-.minimal-email-input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-  font-weight: 300;
-  letter-spacing: 0.5px;
+.minimal-mailer-form .ml-form-horizontalRow {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 1.5rem !important;
+  width: 100% !important;
 }
 
-.minimal-email-input:focus {
-  border-bottom-color: rgba(255, 255, 255, 0.8);
-  color: rgba(255, 255, 255, 0.95);
-  transform: translateY(-2px);
+/* Email input styling - override original styles */
+.minimal-mailer-form .ml-form-horizontalRow input {
+  width: 100% !important;
+  padding: 1rem 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 300 !important;
+  text-align: center !important;
+  outline: none !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  letter-spacing: 0.5px !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  min-width: auto !important;
 }
 
-/* Minimal submit button */
-.minimal-submit-button {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: rgba(255, 255, 255, 0.8);
-  padding: 0.75rem 2rem;
-  font-family: Inter, sans-serif;
-  font-size: 0.9rem;
-  font-weight: 300;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  border-radius: 0;
-  text-transform: lowercase;
-  outline: none;
+.minimal-mailer-form .ml-form-horizontalRow input::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-weight: 300 !important;
+  letter-spacing: 0.5px !important;
+  text-transform: lowercase !important;
 }
 
-.minimal-submit-button:hover {
-  border-color: rgba(255, 255, 255, 0.8);
-  color: white;
-  background: rgba(255, 255, 255, 0.05);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+.minimal-mailer-form .ml-form-horizontalRow input:focus {
+  border-bottom-color: rgba(255, 255, 255, 0.8) !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: none !important;
 }
 
-.minimal-submit-button:active {
-  transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.1);
+/* Button styling - override original styles */
+.minimal-mailer-form .app-button {
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  padding: 0.75rem 2rem !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 0.9rem !important;
+  font-weight: 300 !important;
+  letter-spacing: 1px !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  border-radius: 0 !important;
+  text-transform: lowercase !important;
+  outline: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  text-align: center !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: auto !important;
+  height: auto !important;
 }
 
-/* Success message */
-.minimal-success-message {
-  text-align: center;
-  animation: fadeInUp 0.6s ease-out;
+.minimal-mailer-form .app-button:hover {
+  border-color: rgba(255, 255, 255, 0.8) !important;
+  color: white !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1) !important;
 }
 
-.minimal-success-message p {
-  color: rgba(255, 255, 255, 0.9);
-  font-family: Inter, sans-serif;
-  font-size: 1.1rem;
-  font-weight: 300;
-  letter-spacing: 1px;
-  margin: 0;
-  text-transform: lowercase;
+.minimal-mailer-form .app-button:active {
+  transform: translateY(-1px) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Success message styling */
+.minimal-mailer-form .row-success {
+  text-align: center !important;
+  animation: fadeInUp 0.6s ease-out !important;
+  padding: 1rem 0 !important;
+}
+
+.minimal-mailer-form .row-success h4 {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 1.1rem !important;
+  font-weight: 300 !important;
+  letter-spacing: 1px !important;
+  margin: 0 !important;
+  text-transform: lowercase !important;
+}
+
+.minimal-mailer-form .row-success p {
+  display: none !important;
 }
 
 @keyframes fadeInUp {
@@ -156,17 +193,20 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .minimal-form-content {
+  .minimal-mailer-form .email-form-wrapper {
     max-width: 280px;
-    gap: 1.25rem;
   }
   
-  .minimal-email-input {
-    font-size: 0.9rem;
+  .minimal-mailer-form .ml-form-horizontalRow {
+    gap: 1.25rem !important;
   }
   
-  .minimal-submit-button {
-    padding: 0.7rem 1.5rem;
-    font-size: 0.85rem;
+  .minimal-mailer-form .ml-form-horizontalRow input {
+    font-size: 0.9rem !important;
+  }
+  
+  .minimal-mailer-form .app-button {
+    padding: 0.7rem 1.5rem !important;
+    font-size: 0.85rem !important;
   }
 } 
