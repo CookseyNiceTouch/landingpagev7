@@ -29,9 +29,9 @@ const SquareButton = ({
   const baseWidth = 5; // 5rem
   const baseHeight = 5; // 5rem
   
-  // Calculate actual dimensions
-  const buttonWidth = baseWidth * widthMultiplier;
-  const buttonHeight = baseHeight * heightMultiplier;
+  // Calculate actual dimensions accounting for 4px gaps between units
+  const buttonWidth = baseWidth * widthMultiplier + (widthMultiplier - 1) * 0.25; // 0.25rem = 4px
+  const buttonHeight = baseHeight * heightMultiplier + (heightMultiplier - 1) * 0.25;
   
   // Fixed padding around circle - consistent on all sides
   const circlePadding = 0.5; // Always 0.5rem padding around circle on all sides

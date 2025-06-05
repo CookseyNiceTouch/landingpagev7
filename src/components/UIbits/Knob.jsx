@@ -2,10 +2,11 @@ import React, { useState, useCallback, useRef } from 'react';
 import './knob.css';
 
 /**
- * Knob Component - Figma-accurate 3D knob control with interactive rotation
+ * Knob Component - Knob control with same base as buttons/speakers
  * 
  * @param {Object} props - Component props
- * @param {number} props.size - Size of the knob in pixels (default: 90)
+ * @param {number} props.widthMultiplier - Width multiplier (default: 1)
+ * @param {number} props.heightMultiplier - Height multiplier (default: 1)
  * @param {number} props.indicatorAngle - Controlled angle of the indicator in degrees (default: 0, top position)
  * @param {function} props.onChange - Callback when angle changes (angle) => void
  * @param {number} props.sensitivity - Drag sensitivity multiplier (default: 1)
@@ -15,7 +16,8 @@ import './knob.css';
  * @param {Object} props.style - Additional inline styles
  */
 const Knob = ({ 
-  size = 90, 
+  widthMultiplier = 1,
+  heightMultiplier = 1,
   indicatorAngle: controlledAngle,
   onChange,
   sensitivity = 1,
@@ -25,6 +27,14 @@ const Knob = ({
   style = {},
   ...props 
 }) => {
+  // Base dimensions
+  const baseWidth = 5; // 5rem
+  const baseHeight = 5; // 5rem
+  
+  // Calculate actual dimensions accounting for 4px gaps between units
+  const knobWidth = baseWidth * widthMultiplier + (widthMultiplier - 1) * 0.25; // 0.25rem = 4px
+  const knobHeight = baseHeight * heightMultiplier + (heightMultiplier - 1) * 0.25;
+
   // Internal state for uncontrolled mode
   const [internalAngle, setInternalAngle] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -76,41 +86,28 @@ const Knob = ({
     document.addEventListener('mouseup', handleMouseUp);
   }, [currentAngle, sensitivity, clampAngle, controlledAngle, onChange, isDragging]);
 
-  const knobStyle = {
-    width: `${size}px`,
-    height: `${size}px`,
+  const knobContainerStyle = {
+    '--knob-width': `${knobWidth}rem`,
+    '--knob-height': `${knobHeight}rem`,
+    '--knob-angle': `${currentAngle}deg`,
     cursor: isDragging ? 'grabbing' : 'grab',
     userSelect: 'none',
     ...style
   };
 
-  // Calculate indicator position based on current angle
-  // Always use calculated positioning for consistency
-  const knobRadius = size / 2;
-  const indicatorDistance = knobRadius - 18; // Distance from center to indicator
-  const angleInRadians = (currentAngle - 90) * (Math.PI / 180); // -90 to start from top
-  
-  const indicatorX = knobRadius + indicatorDistance * Math.cos(angleInRadians) - 1.84; // Half indicator width
-  const indicatorY = knobRadius + indicatorDistance * Math.sin(angleInRadians) - 4.21; // Half indicator height
-  
-  const indicatorStyle = {
-    left: `${indicatorX}px`,
-    top: `${indicatorY}px`,
-    transform: `rotate(${currentAngle}deg)` // Rotate indicator to point outward
-  };
-
   return (
     <div 
-      className={`ui-knob ${isDragging ? 'ui-knob--dragging' : ''} ${className}`} 
-      style={knobStyle}
+      className={`knob-container ${isDragging ? 'knob-container--dragging' : ''} ${className}`} 
+      style={knobContainerStyle}
       onMouseDown={handleMouseDown}
       {...props}
     >
-      <div className="ui-knob-base">
-        <div 
-          className="ui-knob-indicator" 
-          style={indicatorStyle}
-        />
+      <div className="knob-base">
+        <div className="knob-control">
+          <div className="knob-control-base">
+            <div className="knob-control-indicator" />
+          </div>
+        </div>
       </div>
     </div>
   );
