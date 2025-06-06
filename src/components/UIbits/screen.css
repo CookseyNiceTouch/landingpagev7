@@ -2,8 +2,9 @@
 /* Display screen with border and black background */
 
 .screen {
-  width: var(--screen-width, 5rem);
-  height: var(--screen-height, 5rem);
+  /* Default size - overridden by device sizing classes */
+  width: 8.75rem; /* 140px - 1 device unit */
+  height: 8.75rem; /* 140px - 1 device unit */
   flex-shrink: 0;
   position: relative;
 }

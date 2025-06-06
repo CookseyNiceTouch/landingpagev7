@@ -15,31 +15,17 @@ import './screen.css';
 const Screen = ({ 
   className = '',
   style = {},
-  widthMultiplier = 1,
-  heightMultiplier = 1,
   image,
   imageAlt = '',
   children,
   ...props 
 }) => {
-  // Base dimensions
-  const baseWidth = 5; // 5rem
-  const baseHeight = 5; // 5rem
-  
-  // Calculate actual dimensions accounting for 4px gaps between units
-  const screenWidth = baseWidth * widthMultiplier + (widthMultiplier - 1) * 0.25; // 0.25rem = 4px
-  const screenHeight = baseHeight * heightMultiplier + (heightMultiplier - 1) * 0.25;
-  
-  const screenStyle = {
-    '--screen-width': `${screenWidth}rem`,
-    '--screen-height': `${screenHeight}rem`,
-    ...style
-  };
+  // No JavaScript sizing - all handled by CSS classes now
 
   return (
     <div 
       className={`screen ${className}`}
-      style={screenStyle}
+      style={style}
       {...props}
     >
       <div className="screen-border">

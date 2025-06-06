@@ -218,8 +218,6 @@ const Device = ({ onFeatureChange }) => {
           {/* Left section: Speaker grille */}
           <div className="device-left-section">
             <Speaker 
-              widthMultiplier={1}
-              heightMultiplier={4}
               columns={4}
               rows={16}
               className="device-speaker-main"
@@ -234,7 +232,7 @@ const Device = ({ onFeatureChange }) => {
                   key={num}
                   onClick={() => handleSelectorClick(num)}
                   text={num.toString()}
-                  className={`device-selector-button ${selectedButton === num ? 'active' : ''}`}
+                  className={`device-selector-button device-button-single ${selectedButton === num ? 'active' : ''}`}
                 />
               ))}
             </div>
@@ -243,9 +241,7 @@ const Device = ({ onFeatureChange }) => {
           {/* Center-right section: Main screen */}
           <div className="device-screen-section">
             <Screen 
-              widthMultiplier={4}
-              heightMultiplier={4}
-              className={`device-main-screen ${isAnimationFading ? 'animation-fading' : ''}`}
+              className={`device-screen-main ${isAnimationFading ? 'animation-fading' : ''}`}
             >
               <RiveAnimation 
                 key={currentFeature.artboard} // Force re-mount when artboard changes
@@ -263,9 +259,7 @@ const Device = ({ onFeatureChange }) => {
           <div className="device-bottom-row">
             
             <Knob 
-              widthMultiplier={1}
-              heightMultiplier={1}
-              className="device-main-knob"
+              className="device-knob-main"
               indicatorAngle={knobAngle}
               onChange={handleKnobChange}
             />
@@ -273,23 +267,20 @@ const Device = ({ onFeatureChange }) => {
             <SquareButton 
               onClick={() => handleButtonClick('info')}
               text="info"
-              widthMultiplier={2}
-              className="device-info-button"
+              className="device-info-button device-button-wide"
             />
             
             <SquareButton 
               onClick={() => handleDiscordClick()}
               image="discord-logo.png"
-              widthMultiplier={2}
-              className="device-discord-button"
+              className="device-discord-button device-button-wide"
             />
             
             <SquareButton 
               onClick={() => handleButtonClick('signup')}
               text="Sign Up"
               variant="orange"
-              widthMultiplier={2}
-              className="device-signup-button"
+              className="device-signup-button device-button-wide"
             />
             
           </div>

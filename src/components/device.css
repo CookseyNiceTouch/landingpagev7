@@ -151,6 +151,72 @@
 
 /* Responsive adjustments */
 
+/* ===== DEVICE SIZING SYSTEM ===== */
+/* Base unit: 140px with 4px gaps between elements */
+/* Formula: width = (baseUnit * multiplier) + (gap * (multiplier - 1)) */
+
+/* Base unit conversion: 140px = 8.75rem (assuming 16px base font) */
+:root {
+  --device-base-unit: 8.75rem; /* 140px */
+  --device-gap: 0.25rem; /* 4px */
+}
+
+/* Width classes */
+.device-width-1 { width: var(--device-base-unit); } /* 140px */
+.device-width-2 { width: calc(var(--device-base-unit) * 2 + var(--device-gap)); } /* 284px */
+.device-width-4 { width: calc(var(--device-base-unit) * 4 + var(--device-gap) * 3); } /* 572px */
+
+/* Height classes */
+.device-height-1 { height: var(--device-base-unit); } /* 140px */
+.device-height-4 { height: calc(var(--device-base-unit) * 4 + var(--device-gap) * 3); } /* 572px */
+
+/* Combined size classes for common components */
+.device-button-single {
+  width: var(--device-base-unit);
+  height: var(--device-base-unit);
+}
+
+.device-button-wide {
+  width: calc(var(--device-base-unit) * 2 + var(--device-gap));
+  height: var(--device-base-unit);
+}
+
+.device-speaker-main {
+  width: var(--device-base-unit);
+  height: calc(var(--device-base-unit) * 4 + var(--device-gap) * 3);
+}
+
+.device-screen-main {
+  width: calc(var(--device-base-unit) * 4 + var(--device-gap) * 3);
+  height: calc(var(--device-base-unit) * 4 + var(--device-gap) * 3);
+}
+
+.device-knob-main {
+  width: var(--device-base-unit);
+  height: var(--device-base-unit);
+}
+
+/* Override any existing CSS custom properties set by JavaScript */
+.device-width-1,
+.device-width-2,
+.device-width-4,
+.device-height-1,
+.device-height-4,
+.device-button-single,
+.device-button-wide,
+.device-speaker-main,
+.device-screen-main,
+.device-knob-main {
+  --button-width: unset;
+  --button-height: unset;
+  --screen-width: unset;
+  --screen-height: unset;
+  --speaker-width: unset;
+  --speaker-height: unset;
+  --knob-width: unset;
+  --knob-height: unset;
+}
+
 
 
 

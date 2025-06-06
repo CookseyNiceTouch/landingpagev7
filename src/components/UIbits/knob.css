@@ -2,8 +2,9 @@
 /* Knob with same base as buttons/speakers */
 
 .knob-container {
-  width: var(--knob-width, 5rem);
-  height: var(--knob-height, 5rem);
+  /* Default size - overridden by device sizing classes */
+  width: 8.75rem; /* 140px - 1 device unit */
+  height: 8.75rem; /* 140px - 1 device unit */
   flex-shrink: 0;
   position: relative;
   cursor: grab;
@@ -48,8 +49,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 3.5rem; /* Reduced from 5.625rem to fit better */
-  height: 3.5rem;
+  width: 6rem; /* Reduced from 5.625rem to fit better */
+  height: 6rem;
   z-index: 1;
 }
 
@@ -86,7 +87,7 @@
   top: 4px; /* Adjusted for smaller knob */
   left: 50%;
   transform: translateX(-50%) rotate(var(--knob-angle, 0deg));
-  transform-origin: 50% calc(3.5rem / 2 - 4px); /* Adjusted transform origin */
+  transform-origin: 50% calc(3rem - 4px); /* Updated for 6rem knob size: 6rem/2 - 4px */
   width: 3px; /* Slightly smaller indicator */
   height: 6px;
   background: #383838;

@@ -16,8 +16,6 @@ import './knob.css';
  * @param {Object} props.style - Additional inline styles
  */
 const Knob = ({ 
-  widthMultiplier = 1,
-  heightMultiplier = 1,
   indicatorAngle: controlledAngle,
   onChange,
   sensitivity = 1,
@@ -27,13 +25,7 @@ const Knob = ({
   style = {},
   ...props 
 }) => {
-  // Base dimensions
-  const baseWidth = 5; // 5rem
-  const baseHeight = 5; // 5rem
-  
-  // Calculate actual dimensions accounting for 4px gaps between units
-  const knobWidth = baseWidth * widthMultiplier + (widthMultiplier - 1) * 0.25; // 0.25rem = 4px
-  const knobHeight = baseHeight * heightMultiplier + (heightMultiplier - 1) * 0.25;
+  // No JavaScript sizing - all handled by CSS classes now
 
   // Internal state for uncontrolled mode
   const [internalAngle, setInternalAngle] = useState(0);
@@ -87,8 +79,6 @@ const Knob = ({
   }, [currentAngle, sensitivity, clampAngle, controlledAngle, onChange, isDragging]);
 
   const knobContainerStyle = {
-    '--knob-width': `${knobWidth}rem`,
-    '--knob-height': `${knobHeight}rem`,
     '--knob-angle': `${currentAngle}deg`,
     cursor: isDragging ? 'grabbing' : 'grab',
     userSelect: 'none',

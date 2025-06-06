@@ -2,8 +2,9 @@
 /* Multi-layered speaker with base and grille holes */
 
 .speaker {
-  width: var(--speaker-width, 5rem);
-  height: var(--speaker-height, 5rem);
+  /* Default size - overridden by device sizing classes */
+  width: 8.75rem; /* 140px - 1 device unit */
+  height: 8.75rem; /* 140px - 1 device unit */
   flex-shrink: 0;
   position: relative;
 }
@@ -26,7 +27,7 @@
   grid-template-columns: repeat(var(--columns, 4), 1fr);
   grid-template-rows: repeat(var(--rows, 4), 1fr);
   gap: 0.4rem;
-  padding: var(--hole-padding, 0.5rem);
+  padding: 1rem;
   align-items: center;
   justify-items: center;
 }
@@ -40,7 +41,6 @@
   right: 1px;
   bottom: 1px;
   background: linear-gradient(135deg, #e6e6e6 0%, #cfcfcf 100%);
-  padding: 0.5rem;
   border-radius: 4px;
   z-index: 0;
 }

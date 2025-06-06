@@ -19,43 +19,19 @@ const SquareButton = ({
   onClick,
   className = '',
   style = {},
-  widthMultiplier = 1,
-  heightMultiplier = 1,
   text,
   image,
   imageAlt = '',
   variant = 'default',
   ...props 
 }) => {
-  // Base dimensions
-  const baseWidth = 5; // 5rem
-  const baseHeight = 5; // 5rem
-  
-  // Calculate actual dimensions accounting for 4px gaps between units
-  const buttonWidth = baseWidth * widthMultiplier + (widthMultiplier - 1) * 0.25; // 0.25rem = 4px
-  const buttonHeight = baseHeight * heightMultiplier + (heightMultiplier - 1) * 0.25;
-  
-  // Fixed padding around circle - consistent on all sides
-  const circlePadding = 0.5; // Always 0.5rem padding around circle on all sides
-  
-  // Circle dimensions - fills button minus padding
-  const circleWidth = buttonWidth - (circlePadding * 2);
-  const circleHeight = buttonHeight - (circlePadding * 2);
-  
-  const buttonStyle = {
-    '--button-width': `${buttonWidth}rem`,
-    '--button-height': `${buttonHeight}rem`,
-    '--circle-width': `${circleWidth}rem`,
-    '--circle-height': `${circleHeight}rem`,
-    '--circle-padding': `${circlePadding}rem`,
-    ...style
-  };
+  // No JavaScript sizing - all handled by CSS classes now
 
   return (
     <button 
       className={`sq-button ${variant === 'orange' ? 'sq-button--orange' : ''} ${className}`}
       onClick={onClick}
-      style={buttonStyle}
+      style={style}
       {...props}
     >
       

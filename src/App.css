@@ -77,9 +77,9 @@ html, body {
   flex-direction: column;
   align-items: flex-start;
   gap: 4rem;
-  max-width: 1200px;
-  width: 100%;
-  padding: 2rem;
+  width: fit-content;
+  height: 100vh;
+  padding: 0 2rem;
 }
 
 /* Header section */
@@ -120,6 +120,7 @@ html, body {
   gap: 4rem;
   align-items: center;
   flex-wrap: nowrap;
+  width: fit-content;
 }
 
 /* Device container */
@@ -128,7 +129,8 @@ html, body {
   justify-content: left;
   align-items: center;
   height: auto;
-  flex-shrink: 0;
+  /* Default scale for very large screens */
+  width: 100%;
 }
 
 /* Device Interface */
@@ -191,7 +193,13 @@ html, body {
     gap: 3rem;
   }
   
- 
+  .device-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 2rem;
+  }
+  
   
   .feature-container {
     max-width: none;
@@ -201,6 +209,38 @@ html, body {
   .main-content {
     max-width: none;
     padding: 0 1rem;
+  }
+}
+
+/* Device scaling breakpoints - using transform scale but contained */
+@media (max-width: 1279px) {
+  .device-container {
+    transform: scale(0.5);
+    transform-origin: center;
+    width: 50%; /* Adjust layout width to match visual scale */
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1919px) {
+  .device-container {
+    transform: scale(0.65);
+    transform-origin: center;
+    width: 65%;
+  }
+}
+
+@media (min-width: 1920px) and (max-width: 2559px) {
+  .device-container {
+    transform: scale(0.85);
+    transform-origin: center;
+    width: 85%;
+  }
+}
+
+@media (min-width: 2560px) {
+  .device-container {
+    transform: scale(1);
+    width: 100%;
   }
 }
 

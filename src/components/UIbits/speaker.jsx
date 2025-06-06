@@ -15,27 +15,12 @@ import './speaker.css';
 const Speaker = ({ 
   className = '',
   style = {},
-  widthMultiplier = 1,
-  heightMultiplier = 1,
   columns = 4,
   rows = 4,
   ...props 
 }) => {
-  // Base dimensions
-  const baseWidth = 5; // 5rem
-  const baseHeight = 5; // 5rem
-  
-  // Calculate actual dimensions accounting for 4px gaps between units
-  const speakerWidth = baseWidth * widthMultiplier + (widthMultiplier - 1) * 0.25; // 0.25rem = 4px
-  const speakerHeight = baseHeight * heightMultiplier + (heightMultiplier - 1) * 0.25;
-  
-  // Fixed padding around holes - consistent on all sides
-  const holePadding = 1; // Always 0.5rem padding around hole area on all sides
-  
+  // Grid variables for CSS
   const speakerStyle = {
-    '--speaker-width': `${speakerWidth}rem`,
-    '--speaker-height': `${speakerHeight}rem`,
-    '--hole-padding': `${holePadding}rem`,
     '--columns': columns,
     '--rows': rows,
     ...style
