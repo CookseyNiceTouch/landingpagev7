@@ -21,7 +21,6 @@
   position: relative;
   margin: 0; /* Remove auto centering to align with title */
   box-sizing: border-box;
-  transform: scale(clamp(0.7, 1.2vw + 0.3, 1.4)); /* Scale the entire device */
   transform-origin: left center; /* Scale from left to maintain alignment */
   /* Removed overflow: hidden to allow shadows to render */
 }
@@ -30,10 +29,10 @@
 .device-casing::before {
   content: '';
   position: absolute;
-  top: clamp(0.5rem, 1vw, 1rem); /* Responsive border width */
-  left: clamp(0.5rem, 1vw, 1rem);
-  right: clamp(0.5rem, 1vw, 1rem);
-  bottom: clamp(0.5rem, 1vw, 1rem);
+  top: 14px; /* Responsive border width */
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
   background: linear-gradient(135deg, 
     #353535 0%, 
     #353535 25%, 
@@ -53,12 +52,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: clamp(0.5rem, 1vw, 1.25rem); /* Responsive padding */
+  padding: 16px; /* Responsive padding */
   color: #cccccc;
   font-family: Inter, sans-serif;
   font-size: 1rem;
   font-weight: normal;
-  overflow: hidden; /* Only clip content inside the device, not the shadows */
   position: relative;
   z-index: 1; /* Place above the dark background */
   gap: 4px;
@@ -152,42 +150,7 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 1200px) {
-  .device-casing {
-    transform: scale(clamp(0.6, 1vw + 0.2, 1.2)); /* Slightly smaller scaling range for medium screens */
-  }
-  
-  .button-section {
-    gap: 0.75rem;
-  }
-  
-  .button-row {
-    gap: 0.75rem;
-  }
-}
 
-@media (max-width: 900px) {
-  .device-casing {
-    transform: scale(clamp(0.8, 1.5vw + 0.2, 1.1)); /* Better scaling for tablet/mobile */
-    transform-origin: center center; /* Center scaling on smaller screens */
-  }
-}
 
-@media (max-width: 768px) {
-  .device-casing {
-    transform: scale(clamp(0.7, 2vw + 0.1, 1)); /* Mobile-specific scaling */
-    max-height: calc(100% - 0.5rem); /* Adjust shadow space for mobile */
-  }
-  
-  .device-content {
-    font-size: 0.875rem;
-  }
-  
-  .button-section {
-    gap: 0.5rem;
-  }
-  
-  .button-row {
-    gap: 0.5rem;
-  }
-}
+
+

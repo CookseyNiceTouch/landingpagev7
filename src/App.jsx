@@ -35,29 +35,32 @@ function App() {
 
 
 
-      {/* Main content - vertical flexbox */}
-      <div className="main-content">
-        {/* Top section - title and subtitle */}
-        <section className="header-section">
-          <h1 className="main-title">You Create. We Automate</h1>
-          <h2 className="subtitle">Nice Touch, the OS for creators.</h2>
-        </section>
+      {/* Page wrapper for centering */}
+      <div className="page-wrapper">
+        {/* Main content - vertical flexbox */}
+        <div className="main-content">
+          {/* Top section - title and subtitle */}
+          <section className="header-section">
+            <h1 className="main-title">You Create. We Automate</h1>
+            <h2 className="subtitle">Nice Touch, the OS for creators.</h2>
+          </section>
 
-        {/* Bottom section - horizontal flexbox */}
-        <section className="content-section">
-          {/* Left section - device with proper casing */}
-          <div className="device-container">
-            <Device onFeatureChange={handleFeatureChange} />
-          </div>
+          {/* Bottom section - horizontal flexbox */}
+          <section className="content-section">
+            {/* Left section - device with proper casing */}
+            <div className="device-container">
+              <Device onFeatureChange={handleFeatureChange} />
+            </div>
 
-          {/* Right section - feature content */}
-          <div className={`feature-container ${isContentFading ? 'fading' : ''}`}>
-            <h3 className="feature-title">{currentFeature.title}</h3>
-            <p className="feature-description">
-              {currentFeature.description}
-            </p>
-          </div>
-        </section>
+            {/* Right section - feature content */}
+            <div className={`feature-container ${isContentFading ? 'fading' : ''}`}>
+              <h3 className="feature-title">{currentFeature.title}</h3>
+              <p className="feature-description">
+                {currentFeature.description}
+              </p>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   )

@@ -62,17 +62,24 @@ html, body {
 
 
 
+/* Page wrapper for centering */
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
 /* Main content - vertical flexbox */
 .main-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: 100%;
+  align-items: flex-start;
+  gap: 4rem;
+  max-width: 1200px;
   width: 100%;
-  padding: 8rem;
-  gap: 2rem;
-  max-width: 1800px;
-  margin: 0 auto;
+  padding: 2rem;
 }
 
 /* Header section */
@@ -82,6 +89,7 @@ html, body {
   align-items: left;
   text-align: left;
   gap: 1rem;
+  padding-top: 2rem;
   flex-shrink: 0;
   margin-left: 0.5rem;
 }
@@ -89,9 +97,8 @@ html, body {
 .main-title {
   font-family: Inter, sans-serif;
   font-weight: semi-bold;
-  font-size: clamp(2.5rem, 4vw, 5rem);
+  font-size: 4rem;
   line-height: 1.1;
-  letter-spacing: -0.05em;
   color: #A3A3A3;
   margin: 0;
 }
@@ -99,7 +106,7 @@ html, body {
 .subtitle {
   font-family: Inter, sans-serif;
   font-weight: normal;
-  font-size: clamp(1.8rem, 3vw, 3.5rem);
+  font-size: 2.5rem;
   line-height: 1.21;
   letter-spacing: -0.05em;
   color: #A3A3A3;
@@ -109,20 +116,19 @@ html, body {
 /* Content section - horizontal flexbox */
 .content-section {
   display: flex;
-  flex: 0 0 auto;
-  gap: clamp(2rem, 4vw, 6rem);
+  flex-direction: row;
+  gap: 4rem;
   align-items: center;
-  min-height: 0;
+  flex-wrap: nowrap;
 }
 
 /* Device container */
 .device-container {
-  flex: 0 0 auto;
   display: flex;
   justify-content: left;
   align-items: center;
   height: auto;
-  padding: clamp(0.5rem, 1vw, 2rem);
+  flex-shrink: 0;
 }
 
 /* Device Interface */
@@ -144,14 +150,12 @@ html, body {
 
 /* Feature container */
 .feature-container {
-  flex: 1 1 0;
-  min-width: 300px;
-  max-width: 500px;
   display: flex;
   flex-direction: column;
-  gap: clamp(1rem, 2vw, 3rem);
-  padding: clamp(1rem, 2vw, 3rem);
-  height: 100%;
+  gap: 1rem;
+  flex: 1;
+  min-width: 200px;
+  max-width: 500px;
   justify-content: center;
   opacity: 1;
   transition: opacity 0.1s ease-in-out;
@@ -164,9 +168,8 @@ html, body {
 .feature-title {
   font-family: Inter, sans-serif;
   font-weight: semi-bold;
-  font-size: clamp(1.5rem, 2vw, 2.5rem);
+  font-size: 2.5rem;
   line-height: 1.21;
-  letter-spacing: -0.05em;
   color: #A3A3A3;
   margin: 0;
 }
@@ -174,92 +177,30 @@ html, body {
 .feature-description {
   font-family: Inter, sans-serif;
   font-weight: normal;
-  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  font-size: 1.25rem;
   line-height: 1.21;
   letter-spacing: -0.05em;
   color: #A3A3A3;
   margin: 0;
 }
 
-/* Additional responsive breakpoints */
-@media (min-width: 1921px) {
-  /* Extra large screens */
-  .main-content {
-    max-width: 2200px;
-  }
-}
-
-@media (max-width: 1400px) {
-  .content-section {
-    gap: clamp(1.5rem, 3vw, 4rem);
-  }
-  
-  .feature-container {
-    max-width: 450px;
-  }
-  
-  .device-container {
-    max-width: 550px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .main-content {
-    padding: clamp(2rem, 3vw, 4rem) clamp(2rem, 6vw, 8rem) clamp(4rem, 8vw, 12rem) clamp(2rem, 4vw, 6rem);
-    gap: clamp(1.5rem, 3vw, 4rem);
-  }
-  
-  .content-section {
-    gap: clamp(1rem, 2.5vw, 3rem);
-  }
-  
-  .feature-container {
-    max-width: 400px;
-    min-width: 280px;
-  }
-  
-  .device-container {
-    max-width: 500px;
-    min-width: 350px;
-  }
-  
-  .button-grid {
-    gap: 0.75rem;
-    padding: 1.5rem;
-  }
-}
-
-@media (max-width: 900px) {
+/* Responsive breakpoints */
+@media (max-width: 950px) {
   .content-section {
     flex-direction: column;
-    gap: clamp(1rem, 3vw, 3rem);
+    gap: 3rem;
   }
   
-  .device-container {
-    min-width: auto;
-    order: 2;
-  }
+ 
   
   .feature-container {
-    max-width: 100%;
-    order: 1;
+    max-width: none;
     text-align: center;
+  }
+  
+  .main-content {
+    max-width: none;
+    padding: 0 1rem;
   }
 }
 
-@media (max-width: 768px) {
-  .main-content {
-    padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 4vw, 2rem) clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem);
-    gap: clamp(1rem, 3vw, 2rem);
-  }
-  
-  .header-section {
-    margin-left: 0;
-    text-align: center;
-  }
-  
-  .button-grid {
-    gap: 0.5rem;
-    padding: 1rem;
-  }
-}
