@@ -19,6 +19,7 @@ const Screen = ({
   heightMultiplier = 1,
   image,
   imageAlt = '',
+  children,
   ...props 
 }) => {
   // Base dimensions
@@ -43,13 +44,15 @@ const Screen = ({
     >
       <div className="screen-border">
         <div className="screen-display">
-          {image && (
+          {children ? (
+            children
+          ) : image ? (
             <img 
               src={image} 
               alt={imageAlt}
               className="screen-image"
             />
-          )}
+          ) : null}
         </div>
       </div>
     </div>

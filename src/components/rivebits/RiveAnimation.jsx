@@ -6,6 +6,11 @@ const RiveAnimation = ({ artboard, className, fallbackSrc }) => {
   const [hasError, setHasError] = useState(false);
   const riveRef = useRef(null);
 
+  // Debug logging
+  useEffect(() => {
+    console.log(`RiveAnimation: Rendering with artboard: ${artboard}`);
+  }, [artboard]);
+
   // Workaround for Rive animations getting stuck - based on community reports
   useEffect(() => {
     const interval = setInterval(() => {
@@ -39,6 +44,7 @@ const RiveAnimation = ({ artboard, className, fallbackSrc }) => {
     <div className={className ? `animation-container ${className}` : 'animation-container'}>
       {!hasError && (
         <Rive
+          key={artboard} // Force re-mount when artboard changes
           src="./web_page_current.riv"
           className="rive-animation"
           artboard={artboard}

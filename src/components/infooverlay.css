@@ -1,0 +1,115 @@
+/* Minimal Info Modal Styles */
+.info-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  backdrop-filter: blur(0px);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  pointer-events: none;
+}
+
+.info-modal-overlay.open {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.info-modal {
+  transform: translateY(40px) scale(0.9);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-delay: 0.1s;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 2rem;
+}
+
+.info-modal-overlay.open .info-modal {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* Closing animation - remove delay for faster exit */
+.info-modal-overlay:not(.open) .info-modal {
+  transition-delay: 0s;
+  transform: translateY(30px) scale(0.95);
+  opacity: 0;
+}
+
+/* Content styling */
+.info-content {
+  padding: 3rem 2.5rem;
+  text-align: center;
+}
+
+.info-title {
+  font-family: Inter, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 2rem 0;
+  text-transform: lowercase;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.info-text p {
+  font-family: Inter, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  text-align: left;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .info-modal {
+    max-width: 90%;
+    margin: 0 1rem;
+  }
+  
+  .info-content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .info-title {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .info-text p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .info-content {
+    padding: 1.5rem 1rem;
+  }
+  
+  .info-title {
+    font-size: 1.2rem;
+  }
+  
+  .info-text {
+    gap: 1.25rem;
+  }
+}

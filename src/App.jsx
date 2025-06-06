@@ -1,8 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
 import Device from './components/device'
 
 function App() {
+  // Default to first feature
+  const [currentFeature, setCurrentFeature] = useState({
+    title: "Chat with your AI edit assistant.",
+    description: "Tell it to organize your timeline, apply a rough grade, or build out a draft sequence, it responds instantly. Automate repetitive tasks",
+    artboard: "AI_edit_assistant"
+  });
+  
+  const [isContentFading, setIsContentFading] = useState(false);
+
+  const handleFeatureChange = (feature) => {
+    // Start fade out
+    setIsContentFading(true);
+    
+    // After fade out completes, update content and fade in
+    setTimeout(() => {
+      setCurrentFeature(feature);
+      setIsContentFading(false);
+    }, 100); // Match CSS transition duration
+  };
+
   return (
     <div className="app">
       {/* Corner screws */}
@@ -12,6 +32,8 @@ function App() {
         <img src="/Screw.png" alt="" className="screw bottom-left" />
         <img src="/Screw.png" alt="" className="screw bottom-right" />
       </div>
+
+
 
       {/* Main content - vertical flexbox */}
       <div className="main-content">
@@ -25,15 +47,14 @@ function App() {
         <section className="content-section">
           {/* Left section - device with proper casing */}
           <div className="device-container">
-            <Device />
+            <Device onFeatureChange={handleFeatureChange} />
           </div>
 
           {/* Right section - feature content */}
-          <div className="feature-container">
-            <h3 className="feature-title">Chat with your AI edit assistant.</h3>
+          <div className={`feature-container ${isContentFading ? 'fading' : ''}`}>
+            <h3 className="feature-title">{currentFeature.title}</h3>
             <p className="feature-description">
-              Tell it to organize your timeline, apply a rough grade, or build out a draft sequence, 
-              it responds instantly.
+              {currentFeature.description}
             </p>
           </div>
         </section>

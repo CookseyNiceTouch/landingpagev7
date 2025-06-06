@@ -8,6 +8,8 @@
 html, body {
   height: 100%;
   overflow: hidden;
+  /* Enable smooth scrolling behavior */
+  scroll-behavior: smooth;
 }
 
 .app {
@@ -16,6 +18,8 @@ html, body {
   position: relative;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   overflow: hidden;
+  /* Indicate scrollable content */
+  cursor: grab;
 }
 
 /* Corner screws */
@@ -56,13 +60,17 @@ html, body {
   right: 16px;
 }
 
+
+
 /* Main content - vertical flexbox */
 .main-content {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  padding: clamp(2rem, 4vw, 6rem) clamp(4rem, 12vw, 20rem) clamp(8rem, 16vw, 24rem) clamp(4rem, 8vw, 12rem);
-  gap: clamp(2rem, 4vw, 6rem);
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 8rem;
+  gap: 2rem;
   max-width: 1800px;
   margin: 0 auto;
 }
@@ -101,22 +109,20 @@ html, body {
 /* Content section - horizontal flexbox */
 .content-section {
   display: flex;
-  flex: 1;
-  gap: clamp(2rem, 6vw, 8rem);
+  flex: 0 0 auto;
+  gap: clamp(2rem, 4vw, 6rem);
   align-items: center;
-  justify-content: center;
-  padding: clamp(0.5rem, 2vw, 2rem);
+  min-height: 0;
 }
 
 /* Device container */
 .device-container {
-  flex: 1;
+  flex: 0 0 auto;
   display: flex;
   justify-content: left;
   align-items: center;
-  height: 100%;
+  height: auto;
   padding: clamp(0.5rem, 1vw, 2rem);
-  min-width: 400px;
 }
 
 /* Device Interface */
@@ -138,14 +144,21 @@ html, body {
 
 /* Feature container */
 .feature-container {
-  flex: 1;
-  max-width: 45%;
+  flex: 1 1 0;
+  min-width: 300px;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   gap: clamp(1rem, 2vw, 3rem);
   padding: clamp(1rem, 2vw, 3rem);
   height: 100%;
   justify-content: center;
+  opacity: 1;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.feature-container.fading {
+  opacity: 0;
 }
 
 .feature-title {
@@ -178,11 +191,15 @@ html, body {
 
 @media (max-width: 1400px) {
   .content-section {
-    gap: clamp(1.5rem, 4vw, 6rem);
+    gap: clamp(1.5rem, 3vw, 4rem);
   }
   
   .feature-container {
-    max-width: 50%;
+    max-width: 450px;
+  }
+  
+  .device-container {
+    max-width: 550px;
   }
 }
 
@@ -190,6 +207,20 @@ html, body {
   .main-content {
     padding: clamp(2rem, 3vw, 4rem) clamp(2rem, 6vw, 8rem) clamp(4rem, 8vw, 12rem) clamp(2rem, 4vw, 6rem);
     gap: clamp(1.5rem, 3vw, 4rem);
+  }
+  
+  .content-section {
+    gap: clamp(1rem, 2.5vw, 3rem);
+  }
+  
+  .feature-container {
+    max-width: 400px;
+    min-width: 280px;
+  }
+  
+  .device-container {
+    max-width: 500px;
+    min-width: 350px;
   }
   
   .button-grid {

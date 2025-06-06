@@ -36,6 +36,12 @@
   justify-content: center;
   overflow: hidden;
   position: relative;
+  transition: opacity 0.075s ease-in-out;
+}
+
+/* Animation fade effect */
+.screen.animation-fading .screen-display {
+  opacity: 0.3;
 }
 
 /* Screen image */
@@ -44,4 +50,28 @@
   max-height: 100%;
   object-fit: contain;
   display: block;
+}
+
+/* Rive animation styling inside screen */
+.screen-rive-animation {
+  width: 100%;
+  height: 100%;
+}
+
+.screen-rive-animation .animation-container {
+  width: 100%;
+  height: 100%;
+  background: transparent; /* Let screen background show through */
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.screen-rive-animation .rive-animation {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  object-fit: cover;
 }
