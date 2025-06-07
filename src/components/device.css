@@ -3,10 +3,10 @@
   display: flex;
   width: fit-content;
   height: fit-content;
-  padding: 4px; /* 4px - Inner padding for content */
+  padding: var(--device-gap); /* Responsive inner padding for content */
   flex-direction: column;
   align-items: center; /* Center content horizontally */
-  gap: 0.25rem; /* Exact gap for internal spacing */
+  gap: var(--device-gap); /* Responsive gap for internal spacing */
   border-radius: clamp(0.75rem, 1.5vw, 1.5rem); /* Responsive rounded corners */
   background: linear-gradient(135deg, 
     #cccccc 0%, 
@@ -29,10 +29,10 @@
 .device-casing::before {
   content: '';
   position: absolute;
-  top: 14px; /* Responsive border width */
-  left: 14px;
-  right: 14px;
-  bottom: 14px;
+  top: calc(var(--device-gap) * 3.5); /* Responsive border width */
+  left: calc(var(--device-gap) * 3.5);
+  right: calc(var(--device-gap) * 3.5);
+  bottom: calc(var(--device-gap) * 3.5);
   background: linear-gradient(135deg, 
     #353535 0%, 
     #353535 25%, 
@@ -52,21 +52,21 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 16px; /* Responsive padding */
+  padding: calc(var(--device-gap) * 4); /* Responsive padding - 4x the gap */
   color: #cccccc;
   font-family: Inter, sans-serif;
   font-size: 1rem;
   font-weight: normal;
   position: relative;
   z-index: 1; /* Place above the dark background */
-  gap: 4px;
+  gap: var(--device-gap);
 }
 
 /* Main layout container - horizontal layout for main sections */
 .device-main-layout {
   display: flex;
   flex-direction: row;
-  gap: 4px;
+  gap: var(--device-gap);
   align-items: flex-start;
   justify-content: center;
 }
@@ -88,7 +88,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  gap: 4px;
+  gap: var(--device-gap);
   align-items: center;
   justify-items: center;
 }
@@ -108,7 +108,7 @@
 
 .device-bottom-row {
   display: flex;
-  gap: 4px;
+  gap: var(--device-gap);
   align-items: center;
   justify-content: center;
 }
@@ -128,14 +128,14 @@
 .button-section {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: var(--device-gap);
   align-items: center;
   justify-content: center;
 }
 
 .button-row {
   display: flex;
-  gap: 0.2rem;
+  gap: var(--device-gap);
   align-items: center;
   justify-content: center;
 }
@@ -156,10 +156,7 @@
 /* Formula: width = (baseUnit * multiplier) + (gap * (multiplier - 1)) */
 
 /* Base unit conversion: 140px = 8.75rem (assuming 16px base font) */
-:root {
-  --device-base-unit: 8.75rem; /* 140px */
-  --device-gap: 0.25rem; /* 4px */
-}
+/* CSS custom properties are defined in App.css with responsive breakpoints */
 
 /* Width classes */
 .device-width-1 { width: var(--device-base-unit); } /* 140px */

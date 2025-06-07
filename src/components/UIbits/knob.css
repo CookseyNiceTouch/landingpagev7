@@ -2,13 +2,19 @@
 /* Knob with same base as buttons/speakers */
 
 .knob-container {
-  /* Default size - overridden by device sizing classes */
+  /* Default size - will be overridden by device sizing classes */
   width: 8.75rem; /* 140px - 1 device unit */
   height: 8.75rem; /* 140px - 1 device unit */
   flex-shrink: 0;
   position: relative;
   cursor: grab;
   user-select: none;
+}
+
+/* Ensure device sizing classes take precedence */
+.knob-container.device-knob-main {
+  width: var(--device-base-unit) !important;
+  height: var(--device-base-unit) !important;
 }
 
 .knob-container:active,
@@ -49,8 +55,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 6rem; /* Reduced from 5.625rem to fit better */
-  height: 6rem;
+  width: 75%; /* Reduced from 5.625rem to fit better */
+  height: 75%;
   z-index: 1;
 }
 

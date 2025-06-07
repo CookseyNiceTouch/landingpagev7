@@ -2,11 +2,17 @@
 /* Display screen with border and black background */
 
 .screen {
-  /* Default size - overridden by device sizing classes */
+  /* Default size - will be overridden by device sizing classes */
   width: 8.75rem; /* 140px - 1 device unit */
   height: 8.75rem; /* 140px - 1 device unit */
   flex-shrink: 0;
   position: relative;
+}
+
+/* Ensure device sizing classes take precedence */
+.screen.device-screen-main {
+  width: calc(var(--device-base-unit) * 4 + var(--device-gap) * 3) !important;
+  height: calc(var(--device-base-unit) * 4 + var(--device-gap) * 3) !important;
 }
 
 /* Screen border - outer frame */
