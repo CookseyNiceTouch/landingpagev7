@@ -40,10 +40,12 @@ const InfoOverlay = ({ isOpen, onClose }) => {
           <h3 className="info-title">Nice Touch</h3>
           <div className="info-text">
             <p>
-              Nice Touch is the operating system designed specifically for creators. We understand that your creative workflow is unique, complex, and constantly evolving—that's why we built an AI assistant that actually gets it.
+            Is an AI-powered creative operations assistant for professional video creators. Integrated directly into leading editing software, it automates repetitive and administrative tasks—giving creators back valuable time to focus on creativity and growth.
             </p>
             <p>
-              Instead of forcing you to learn new tools, Nice Touch integrates seamlessly with your existing setup. Whether you're editing in Premiere, DaVinci, or After Effects, our AI becomes your intelligent copilot, automating the tedious stuff so you can focus on what matters: creating.
+            We believe creators should spend their time creating, not managing assets or chasing feedback. Nice Touch blends seamlessly into existing workflows, empowering users to streamline operations, unlock productivity, and reclaim their creative freedom.
+            </p>
+            <p>Our mission is simple: help creators thrive by reducing complexity and friction in the creative process. By providing intelligent automation and intuitive tools, we aim to enable creators everywhere to scale their impact, profitability, and creative expression.
             </p>
           </div>
         </div>
