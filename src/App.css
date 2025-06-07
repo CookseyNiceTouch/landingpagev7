@@ -7,16 +7,16 @@
 
 /* Fluid device sizing system */
 /* Device total width calculation: 7 base units + 3 gaps = 7 × 8.75rem + 3 × 0.25rem = 62rem */
-/* Scale factor: base-unit = (container-width / 62) × 8.75rem */
+/* Optimized scaling: better minimum size, slower growth to prevent oversizing at medium widths */
 :root {
   --device-base-unit: clamp(
-    2.5rem,           /* Minimum: 50% scale */
-    min(8.75rem, calc(100vw / 16)),  /* Fluid: scale to fit viewport (62rem / 8.75rem = 7.08) */
+    2.5rem,             /* Higher minimum: ~46% scale for better small screen experience */
+    min(8.75rem, calc(100vw / 15)),   /* Slower scaling: prevents oversizing at 1200px, full size at ~2100px */
     8.75rem             /* Maximum: 100% scale */
   );
   --device-gap: clamp(
-    0.125rem,           /* Minimum: 50% scale */
-    min(0.25rem, calc(100vw / 248)),   /* Fluid: scale proportionally (62rem / 0.25rem = 248) */
+    0.18rem,          /* Proportional minimum to 4rem base */
+    min(0.25rem, calc(100vw / 240)),  /* Proportional scaling (15 * 16 = 240) */
     0.25rem             /* Maximum: 100% scale */
   );
 }
