@@ -28,6 +28,9 @@
   opacity: 0;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   transition-delay: 0.1s;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 2rem;
 }
 
 .signup-modal-overlay.open .signup-modal {
@@ -64,6 +67,7 @@
   align-items: center;
   gap: 2rem;
   width: 100%;
+  justify-content: center;
 }
 
 .minimal-mailer-form .email-form-wrapper {
@@ -72,6 +76,38 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* Additional centering for MailerLite nested containers */
+.minimal-mailer-form .ml-form-embedContainer {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.minimal-mailer-form .ml-form-align-center {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+.minimal-mailer-form .ml-form-embedWrapper {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+.minimal-mailer-form .ml-form-embedBody {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
 }
 
 /* Form structure overrides */

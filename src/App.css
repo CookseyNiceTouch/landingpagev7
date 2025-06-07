@@ -10,15 +10,31 @@
 /* Optimized scaling: better minimum size, slower growth to prevent oversizing at medium widths */
 :root {
   --device-base-unit: clamp(
-    2.5rem,             /* Higher minimum: ~46% scale for better small screen experience */
-    min(8.75rem, calc(100vw / 15)),   /* Slower scaling: prevents oversizing at 1200px, full size at ~2100px */
+    3.5rem,             /* Minimum for larger screens */
+    min(8.75rem, calc(100vw / 15)),   /* Slower scaling for larger screens */
     8.75rem             /* Maximum: 100% scale */
   );
   --device-gap: clamp(
-    0.18rem,          /* Proportional minimum to 4rem base */
+    0.18rem,          /* Proportional minimum */
     min(0.25rem, calc(100vw / 240)),  /* Proportional scaling (15 * 16 = 240) */
     0.25rem             /* Maximum: 100% scale */
   );
+}
+
+/* Mobile-specific scaling for better experience on small screens */
+@media (max-width: 580px) {
+  :root {
+    --device-base-unit: clamp(
+      2.5rem,           /* Higher minimum for mobile: ~40% scale */
+      min(8.75rem, calc(100vw / 9)),    /* More aggressive mobile scaling */
+      8.75rem           /* Maximum: 100% scale */
+    );
+    --device-gap: clamp(
+      0.22rem,          /* Proportional to mobile base unit */
+      min(0.25rem, calc(100vw / 144)),  /* Proportional mobile scaling (9 * 16 = 144) */
+      0.25rem           /* Maximum: 100% scale */
+    );
+  }
 }
 
 html, body {
