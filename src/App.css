@@ -274,6 +274,10 @@ html, body {
     text-align: center;
     width: 100%;
     padding: 0 1rem;
+    min-height: 200px; /* Fixed minimum height to prevent jumping */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content within fixed height */
   }
   
   .main-content {
@@ -346,12 +350,16 @@ html, body {
     align-items: center;
   }
   
-  .feature-container {
-    width: 100%;
-    max-width: 100%;
-    text-align: center;
-    padding: 0 1rem;
-  }
+     .feature-container {
+     width: 100%;
+     max-width: 100%;
+     text-align: center;
+     padding: 0 1rem;
+     min-height: 180px; /* Slightly smaller min-height for mobile */
+     display: flex;
+     flex-direction: column;
+     justify-content: center; /* Center content within fixed height */
+   }
   
   .feature-title {
     font-size: clamp(1.25rem, 6vw, 2rem);
