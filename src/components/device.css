@@ -1,3 +1,37 @@
+/* Device element staggered animations */
+@keyframes deviceFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes deviceFadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes deviceFadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 /* Device Casing - Outer shell styling */
 .device-casing {
   display: flex;
@@ -75,6 +109,7 @@
 .device-left-section {
   display: flex;
   flex-direction: column;
+  animation: deviceFadeInSlide 0.6s ease-out 1.8s both;
 }
 
 /* Center-left section - Selector buttons */
@@ -82,6 +117,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  /* Animation removed - individual buttons animate instead */
 }
 
 .selector-grid {
@@ -97,6 +133,7 @@
 .device-screen-section {
   display: flex;
   flex-direction: column;
+  animation: deviceFadeInScale 0.8s ease-out 1.4s both;
 }
 
 /* Bottom section - Control row */
@@ -104,6 +141,7 @@
   display: flex;
   width: 100%;
   justify-content: center;
+  /* Animation removed - individual controls animate instead */
 }
 
 .device-bottom-row {
@@ -112,6 +150,22 @@
   align-items: center;
   justify-content: center;
 }
+
+/* Individual selector button animations - staggered by position (reversed order) */
+.selector-grid .device-selector-button:nth-child(1) { animation: deviceFadeInScale 0.4s ease-out 1.65s both; }
+.selector-grid .device-selector-button:nth-child(2) { animation: deviceFadeInScale 0.4s ease-out 1.6s both; }
+.selector-grid .device-selector-button:nth-child(3) { animation: deviceFadeInScale 0.4s ease-out 1.55s both; }
+.selector-grid .device-selector-button:nth-child(4) { animation: deviceFadeInScale 0.4s ease-out 1.5s both; }
+.selector-grid .device-selector-button:nth-child(5) { animation: deviceFadeInScale 0.4s ease-out 1.45s both; }
+.selector-grid .device-selector-button:nth-child(6) { animation: deviceFadeInScale 0.4s ease-out 1.4s both; }
+.selector-grid .device-selector-button:nth-child(7) { animation: deviceFadeInScale 0.4s ease-out 1.35s both; }
+.selector-grid .device-selector-button:nth-child(8) { animation: deviceFadeInScale 0.4s ease-out 1.3s both; }
+
+/* Individual bottom row button animations - staggered right to left (reversed) */
+.device-bottom-row > *:nth-child(1) { animation: deviceFadeInUp 0.4s ease-out 1.15s both; } /* Knob */
+.device-bottom-row > *:nth-child(2) { animation: deviceFadeInUp 0.4s ease-out 1.1s both; } /* Info */
+.device-bottom-row > *:nth-child(3) { animation: deviceFadeInUp 0.4s ease-out 1.05s both; } /* Discord */
+.device-bottom-row > *:nth-child(4) { animation: deviceFadeInUp 0.4s ease-out 1.0s both; } /* Sign Up */
 
 /* Selector button styling */
 .device-selector-button {
