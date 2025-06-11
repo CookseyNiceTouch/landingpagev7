@@ -3,20 +3,20 @@ import SquareButton from './UIbits/sqbutton';
 import Speaker from './UIbits/speaker';
 import Screen from './UIbits/screen';
 import Knob from './UIbits/Knob';
-import SignupModal from './SignupModal';
-import InfoOverlay from './infooverlay';
+
 import RiveAnimation from './rivebits/RiveAnimation';
 import './device.css';
 
-const Device = ({ onFeatureChange }) => {
+const Device = ({ onFeatureChange, onModalOpen }) => {
   const [selectedButton, setSelectedButton] = useState(1); // Track which selector button is active
   const [knobAngle, setKnobAngle] = useState(0); // Track knob rotation
-  const [isSignupModalOpen, setIsSignupModalOpen] = useState(false); // Track signup modal state
-  const [isInfoOverlayOpen, setIsInfoOverlayOpen] = useState(false); // Track info overlay state
+
   const [isAnimationFading, setIsAnimationFading] = useState(false); // Track animation fade state
   const [lastScrollTime, setLastScrollTime] = useState(0); // Track last scroll time
   const [isScrolling, setIsScrolling] = useState(false); // Track if user is currently scrolling
   const [scrollTimeoutId, setScrollTimeoutId] = useState(null); // Track scroll timeout
+  const [touchStartY, setTouchStartY] = useState(0); // Track touch start position
+  const [isSwiping, setIsSwiping] = useState(false); // Track if user is currently swiping
 
   // Features data for different screens and content
   const features = [
@@ -81,10 +81,43 @@ const Device = ({ onFeatureChange }) => {
   // Get current feature based on selected button
   const currentFeature = features[selectedButton - 1];
 
+  // Helper function to handle feature changes (used by both scroll and swipe)
+  const handleFeatureNavigation = (direction) => {
+    let newButton = selectedButton;
+    
+    if (direction === 'down') {
+      // Next feature
+      newButton = selectedButton < 8 ? selectedButton + 1 : 1;
+    } else {
+      // Previous feature  
+      newButton = selectedButton > 1 ? selectedButton - 1 : 8;
+    }
+    
+    if (newButton !== selectedButton) {
+      console.log(`Navigation: ${selectedButton} -> ${newButton}, direction: ${direction}`);
+      
+      // Update button state immediately
+      setSelectedButton(newButton);
+      
+      // Update content immediately
+      const selectedFeature = features[newButton - 1];
+      console.log(`About to call onFeatureChange with:`, selectedFeature.title, `direction:`, direction);
+      if (onFeatureChange) {
+        onFeatureChange(selectedFeature, direction);
+        console.log(`Called onFeatureChange successfully`);
+      } else {
+        console.log(`onFeatureChange is not available!`);
+      }
+      
+      return true; // Feature changed
+    }
+    return false; // No change
+  };
+
   // Initialize with first feature on mount
   React.useEffect(() => {
     if (onFeatureChange) {
-      onFeatureChange(currentFeature);
+      onFeatureChange(currentFeature, 'down'); // Explicitly pass direction
     }
   }, []); // Only run on mount
 
@@ -116,45 +149,91 @@ const Device = ({ onFeatureChange }) => {
       setScrollTimeoutId(timeoutId);
       
       const delta = event.deltaY;
-      let newButton = selectedButton;
+      const direction = delta > 0 ? 'down' : 'up';
       
-      if (delta > 0) {
-        // Scrolling down - next feature
-        newButton = selectedButton < 8 ? selectedButton + 1 : 1;
-      } else {
-        // Scrolling up - previous feature
-        newButton = selectedButton > 1 ? selectedButton - 1 : 8;
-      }
-      
-      if (newButton !== selectedButton) {
-        // Update button state immediately - no animation delays
-        setSelectedButton(newButton);
-        
-        // Update content immediately for tactile feedback
-        const selectedFeature = features[newButton - 1];
-        if (onFeatureChange) {
-          onFeatureChange(selectedFeature);
-        }
-      }
+      // Use helper function for navigation
+      handleFeatureNavigation(direction);
     };
 
     // Add scroll listener to window
     window.addEventListener('wheel', handleScroll, { passive: true });
     
+    // Touch event handlers for mobile swipe
+    const handleTouchStart = (event) => {
+      const touch = event.touches[0];
+      setTouchStartY(touch.clientY);
+      setIsSwiping(true);
+      
+      // Start scrolling state for animations
+      if (!isScrolling) {
+        setIsScrolling(true);
+        setIsAnimationFading(true);
+      }
+    };
+    
+    const handleTouchMove = (event) => {
+      if (!isSwiping) return;
+      
+      // Prevent default scrolling behavior during swipe
+      event.preventDefault();
+    };
+    
+    const handleTouchEnd = (event) => {
+      if (!isSwiping) return;
+      
+      const touch = event.changedTouches[0];
+      const touchEndY = touch.clientY;
+      const deltaY = touchStartY - touchEndY;
+      const minSwipeDistance = 50; // Minimum distance for a valid swipe
+      
+      console.log(`Touch: startY: ${touchStartY}, endY: ${touchEndY}, deltaY: ${deltaY}`);
+      
+      if (Math.abs(deltaY) >= minSwipeDistance) {
+        // Swipe up (deltaY > 0) = next feature (like scroll down)
+        // Swipe down (deltaY < 0) = previous feature (like scroll up)
+        const direction = deltaY > 0 ? 'down' : 'up';
+        console.log(`Swipe detected: ${direction}`);
+        
+        handleFeatureNavigation(direction);
+      }
+      
+      // Reset swipe state
+      setIsSwiping(false);
+      setTouchStartY(0);
+      
+      // Reset scrolling state after a delay
+      if (scrollTimeoutId) {
+        clearTimeout(scrollTimeoutId);
+      }
+      
+      const timeoutId = setTimeout(() => {
+        setIsScrolling(false);
+        setIsAnimationFading(false);
+      }, 10);
+      
+      setScrollTimeoutId(timeoutId);
+    };
+    
+    // Add touch listeners to window for global swipe detection
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
+    
     // Cleanup
     return () => {
       window.removeEventListener('wheel', handleScroll);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
       if (scrollTimeoutId) {
         clearTimeout(scrollTimeoutId);
       }
     };
-  }, [selectedButton, isScrolling, scrollTimeoutId]); // Dependencies
+  }, [selectedButton, isScrolling, scrollTimeoutId, isSwiping, touchStartY]); // Dependencies
 
   const handleButtonClick = (buttonId) => {
-    if (buttonId === 'signup') {
-      setIsSignupModalOpen(true);
-    } else if (buttonId === 'info') {
-      setIsInfoOverlayOpen(true);
+    if (buttonId === 'signup' || buttonId === 'info') {
+      onModalOpen?.(buttonId);
     } else {
       console.log(`Button ${buttonId} clicked`);
     }
@@ -287,18 +366,6 @@ const Device = ({ onFeatureChange }) => {
         </div>
 
       </div>
-      
-      {/* Signup Modal */}
-      <SignupModal 
-        isOpen={isSignupModalOpen}
-        onClose={() => setIsSignupModalOpen(false)}
-      />
-      
-      {/* Info Overlay */}
-      <InfoOverlay 
-        isOpen={isInfoOverlayOpen}
-        onClose={() => setIsInfoOverlayOpen(false)}
-      />
     </div>
   );
 };

@@ -264,12 +264,43 @@ html, body {
   max-width: 500px;
   justify-content: center;
   opacity: 1;
-  transition: opacity 0.1s ease-in-out;
+  transform: translateY(0);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  /* Initial page load animation */
   animation: fadeInSlide 0.8s ease-out 0.7s both;
 }
 
-.feature-container.fading {
+/* Override animation after page load to enable transitions */
+.feature-container.loaded {
+  animation: none;
+}
+
+/* Fade out animations - direction based */
+.feature-container.fading-down {
   opacity: 0;
+  transform: translateY(-60px); /* Move up when scrolling down */
+}
+
+.feature-container.fading-up {
+  opacity: 0;
+  transform: translateY(60px); /* Move down when scrolling up */
+}
+
+/* Fade in animations - direction based */
+.feature-container.entering-down {
+  opacity: 0;
+  transform: translateY(60px); /* Start from bottom when scrolling down */
+}
+
+.feature-container.entering-up {
+  opacity: 0;
+  transform: translateY(-60px); /* Start from top when scrolling up */
+}
+
+/* Normal state: visible and centered */
+.feature-container.loaded:not([class*="fading"]):not([class*="entering"]) {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .feature-title {
