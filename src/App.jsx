@@ -3,6 +3,7 @@ import './App.css'
 import Device from './components/device'
 import SignupModal from './components/SignupModal'
 import InfoOverlay from './components/infooverlay'
+import DownloadModal from './components/DownloadModal'
 
 function App() {
   // Default to first feature
@@ -17,6 +18,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
   const [isInfoOverlayOpen, setIsInfoOverlayOpen] = useState(false);
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
 
   // Enable transitions after initial page load animation
   useEffect(() => {
@@ -79,6 +81,8 @@ function App() {
       setIsSignupModalOpen(true);
     } else if (modalType === 'info') {
       setIsInfoOverlayOpen(true);
+    } else if (modalType === 'download') {
+      setIsDownloadModalOpen(true);
     }
   };
 
@@ -100,8 +104,15 @@ function App() {
         <div className="main-content">
           {/* Top section - title and subtitle */}
           <section className="header-section">
-            <h1 className="main-title">You Create. We Automate</h1>
-            <h2 className="subtitle">Nice Touch, the OS for creators.</h2>
+            <div className="header-text">
+              <h1 className="main-title">You Create. We Automate</h1>
+              <h2 className="subtitle">Nice Touch, the OS for creators.</h2>
+            </div>
+            <div className="header-actions">
+              <button className="download-button" onClick={() => handleModalOpen('download')}>
+                Download The App
+              </button>
+            </div>
           </section>
 
           {/* Bottom section - horizontal flexbox */}
@@ -131,6 +142,11 @@ function App() {
       <InfoOverlay 
         isOpen={isInfoOverlayOpen}
         onClose={() => setIsInfoOverlayOpen(false)}
+      />
+      
+      <DownloadModal 
+        isOpen={isDownloadModalOpen}
+        onClose={() => setIsDownloadModalOpen(false)}
       />
     </div>
   )
