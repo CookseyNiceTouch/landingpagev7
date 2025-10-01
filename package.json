@@ -7,9 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "sync-release": "node scripts/sync-release.js"
   },
   "dependencies": {
+    "@octokit/rest": "^22.0.0",
     "@rive-app/canvas": "^2.29.0",
     "@rive-app/react-canvas": "^4.21.1",
     "github": "^14.0.0",
