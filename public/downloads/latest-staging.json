@@ -1,16 +1,16 @@
 {
-  "version": "0.0.1-alpha.1",
-  "tag_name": "v0.0.1-alpha.1",
-  "release_name": "NT-APP 0.0.1-alpha.1 (Alpha · release pipeline test)",
-  "description": "Purpose: First alpha build to validate our GitHub Releases flow and end-to-end packaging/signing. Core app path is working, but this is not production-ready.\r\n\r\n**What’s in this build**\r\n\r\nElectron desktop shell with local services (FastAPI) wired to NT Core (test accounts)\r\n\r\nBasic sign-in and project flow (happy path)\r\n\r\nInitial telemetry/logging for internal diagnostics\r\n\r\nCore app functionality for asset analysis and AI Editing.\r\n\r\n**Notes**\r\n\r\nAlpha channel only; for internal testing and setup verification\r\n\r\nExpect rough edges; functionality is subject to change before beta/stable",
-  "published_at": "2025-10-01T09:22:52Z",
-  "html_url": "https://github.com/CookseyNiceTouch/nice_touch_app/releases/tag/v0.0.1-alpha.1",
+  "version": "0.0.1-alpha.2",
+  "tag_name": "v0.0.1-alpha.2",
+  "release_name": "NT-APP 0.0.1-alpha.2 (Alpha · release pipeline test 2)",
+  "description": "Second test release for testing auto update pipeline",
+  "published_at": "2025-10-03T09:19:08Z",
+  "html_url": "https://github.com/CookseyNiceTouch/nice-touch-app-releases/releases/tag/v0.0.1-alpha.2",
   "platforms": {
     "windows": {
       "available": true,
-      "download_url": "https://github.com/CookseyNiceTouch/nice_touch_app/releases/download/v0.0.1-alpha.1/Nice.Touch-Windows-0.0.1-alpha.1-Setup.msi",
-      "filename": "Nice.Touch-Windows-0.0.1-alpha.1-Setup.msi",
-      "size": "476.5 MB",
+      "download_url": "https://github.com/CookseyNiceTouch/nice-touch-app-releases/releases/download/v0.0.1-alpha.2/Nice.Touch-Windows-0.0.1-alpha.2-Setup.msi",
+      "filename": "Nice.Touch-Windows-0.0.1-alpha.2-Setup.msi",
+      "size": "566.9 MB",
       "requirements": "Windows 10+"
     },
     "macos": {
@@ -31,8 +31,8 @@
     }
   },
   "github_release": {
-    "api_url": "https://api.github.com/repos/CookseyNiceTouch/nice_touch_app/releases/latest",
+    "api_url": "https://api.github.com/repos/CookseyNiceTouch/nice-touch-app-releases/releases/latest",
     "auto_update": true,
-    "last_synced": "2025-10-01T10:22:51.637Z"
+    "last_synced": "2025-10-03T09:27:02.762Z"
   }
 }

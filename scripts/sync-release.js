@@ -9,9 +9,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Configuration - update these with your repository details
-const GITHUB_OWNER = process.env.GITHUB_OWNER || 'your-org';
-const GITHUB_REPO = process.env.GITHUB_REPO || 'nice-touch';
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Optional, but recommended for higher rate limits
+const GITHUB_OWNER = process.env.GITHUB_OWNER || 'CookseyNiceTouch';
+const GITHUB_REPO = process.env.GITHUB_REPO || 'nice-touch-app-releases';
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Optional for public repos, helps avoid rate limits
 const DEBUG_RELEASE_SYNC = (process.env.DEBUG_RELEASE_SYNC || '').toLowerCase() === 'true' || process.env.DEBUG_RELEASE_SYNC === '1';
 
 // Initialize Octokit
@@ -192,9 +192,9 @@ async function syncLatestRelease() {
       }
     }
     if (error.status === 404) {
-      console.error('   Hint: Private repo? Set GITHUB_TOKEN with repo scope, and ensure owner/repo are correct.');
+      console.error('   Hint: Repository not found. Ensure GITHUB_OWNER and GITHUB_REPO are correct.');
     } else if (error.status === 401) {
-      console.error('   Hint: Authentication failed. Check GITHUB_TOKEN.');
+      console.error('   Hint: Authentication failed. Check GITHUB_TOKEN (should not be needed for public repos).');
     }
     process.exit(1);
   }
