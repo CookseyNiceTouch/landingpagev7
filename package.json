@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "sync-release": "node scripts/sync-release.js"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@octokit/rest": "^22.0.0",
