@@ -109,9 +109,11 @@ function App() {
               <h2 className="subtitle">Nice Touch, the OS for creators.</h2>
             </div>
             <div className="header-actions">
-              <button className="download-button" onClick={() => handleModalOpen('download')}>
-                Download The App
-              </button>
+              {false && (
+                <button className="download-button" onClick={() => handleModalOpen('download')}>
+                  Download The App
+                </button>
+              )}
             </div>
           </section>
 
