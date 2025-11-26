@@ -177,7 +177,7 @@ const DownloadModal = ({ isOpen, onClose }) => {
                   };
 
                    return (
-                     <div key={platformKey} className={`platform-button-container ${!platformData.available ? 'coming-soon' : ''} ${(platformKey === 'windows' || platformKey === 'macos') ? 'beta' : ''}`}>
+                     <div key={platformKey} className={`platform-button-container ${!platformData.available ? 'coming-soon' : ''}`}>
                        <button 
                          className="platform-button" 
                          onClick={() => handleDownload(platformKey)}
@@ -195,11 +195,6 @@ const DownloadModal = ({ isOpen, onClose }) => {
                        {!platformData.available && platformData.coming_soon && (
                          <div className="coming-soon-overlay">
                            <span>Coming Soon</span>
-                         </div>
-                       )}
-                       {(platformKey === 'windows' || platformKey === 'macos') && platformData.available && (
-                         <div className="beta-overlay">
-                           <span>Beta</span>
                          </div>
                        )}
                      </div>
