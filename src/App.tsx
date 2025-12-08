@@ -118,7 +118,7 @@ function App() {
         <section className="hero-content">
           <h1 className="hero-title">
             <span className="gradient-text">Nice Touch</span>
-            <span className="subtitle">Your always available Edit Assistant</span>
+            <span className="subtitle">Your Always Available AI Video Edit Assistant</span>
           </h1>
 
           {/* App Badges */}
