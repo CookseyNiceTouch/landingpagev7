@@ -1,17 +1,13 @@
+import { useState } from 'react'
 import type { ReactElement } from 'react'
 import Header from '../components/Header'
-import DownloadCard from '../components/DownloadCard'
+import GetAppModal from '../components/GetAppModal'
 import premiereProIcon from '../assets/images/premiere-pro-icon.png'
 import davinciResolveIcon from '../assets/images/davinci-resolve-icon.png'
 
-interface HomeProps {
-  macUrl: string
-  winUrl: string
-  macVersion?: string
-  winVersion?: string
-}
+function Home(): ReactElement {
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
-function Home({ macUrl, winUrl, macVersion, winVersion }: HomeProps): ReactElement {
   return (
     <div className="home-page">
       <Header />
@@ -27,12 +23,14 @@ function Home({ macUrl, winUrl, macVersion, winVersion }: HomeProps): ReactEleme
             <img src={davinciResolveIcon} alt="DaVinci Resolve" className="badge-icon" />
           </div>
 
-          <DownloadCard
-            macUrl={macUrl}
-            winUrl={winUrl}
-            macVersion={macVersion}
-            winVersion={winVersion}
-          />
+          <div className="download-section">
+            <button
+              className="get-app-button"
+              onClick={() => setIsModalOpen(true)}
+            >
+              Get the App
+            </button>
+          </div>
         </section>
 
         <section className="hero-media">
@@ -54,6 +52,7 @@ function Home({ macUrl, winUrl, macVersion, winVersion }: HomeProps): ReactEleme
           </div>
         </section>
       </main>
+      <GetAppModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   )
 }

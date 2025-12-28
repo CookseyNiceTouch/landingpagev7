@@ -62,14 +62,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={
-              <Home
-                macUrl={macDownloadUrl}
-                winUrl={winDownloadUrl}
-                macVersion={macVersion}
-                winVersion={winVersion}
-              />
-            }
+            element={<Home />}
           />
           <Route
             path="/download"
