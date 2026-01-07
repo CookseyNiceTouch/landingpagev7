@@ -4,6 +4,7 @@ import './App.css'
 import LiquidEther from './backgrounds/LiquidEther'
 import Home from './pages/Home'
 import Download from './pages/Download'
+import Newsletter from './pages/Newsletter'
 
 // Release data types
 interface PlatformRelease {
@@ -74,6 +75,10 @@ function App() {
                 winVersion={winVersion}
               />
             }
+          />
+          <Route
+            path="/newsletter"
+            element={<Newsletter />}
           />
         </Routes>
       </div>

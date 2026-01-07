@@ -203,6 +203,66 @@
   pointer-events: none;
 }
 
+/* ═══════════════════════════════════════════════════════════
+   Newsletter Section
+   ═══════════════════════════════════════════════════════════ */
+.newsletter-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.newsletter-main {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 4vw, 96px);
+  pointer-events: none;
+}
+
+.newsletter-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: clamp(24px, 2vw, 40px);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  width: min(720px, 90%);
+  pointer-events: auto;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.newsletter-form-container .hs-form-frame {
+  width: 100%;
+  pointer-events: auto !important;
+}
+
+.newsletter-form-container .hs-form-frame *,
+.newsletter-form-container .hs-form-frame iframe,
+.newsletter-form-container .hs-form-frame iframe * {
+  pointer-events: auto !important;
+}
+
+.newsletter-title {
+  margin: 0;
+  font-size: clamp(28px, 2.5vw, 42px);
+  font-weight: 600;
+  color: var(--color-white);
+  text-align: center;
+}
+
+.newsletter-subtitle {
+  margin: 0;
+  font-size: clamp(14px, 1.2vw, 18px);
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  max-width: 420px;
+}
+
 .download-card-standalone {
   width: min(520px, 100%);
   padding-top: 0;
@@ -449,6 +509,20 @@
     font-size: clamp(20px, 5vw, 28px);
   }
 
+  .newsletter-form-container {
+    padding: clamp(16px, 2vw, 28px);
+    gap: 16px;
+    width: min(640px, 92%);
+  }
+
+  .newsletter-title {
+    font-size: clamp(24px, 4vw, 36px);
+  }
+
+  .newsletter-subtitle {
+    font-size: clamp(13px, 1.5vw, 16px);
+  }
+
   .platform-buttons {
     max-width: 280px;
     height: clamp(44px, 6vh, 52px);
@@ -488,6 +562,20 @@
 
   .download-title {
     font-size: clamp(18px, 5vw, 22px);
+  }
+
+  .newsletter-title {
+    font-size: clamp(20px, 5vw, 30px);
+  }
+
+  .newsletter-subtitle {
+    font-size: clamp(12px, 1.2vw, 15px);
+  }
+
+  .newsletter-form-container {
+    padding: clamp(14px, 2vw, 24px);
+    gap: 14px;
+    width: min(540px, 94%);
   }
 
   .platform-buttons {
@@ -544,6 +632,20 @@
 
   .download-title {
     font-size: clamp(14px, 3vh, 20px);
+  }
+
+  .newsletter-form-container {
+    padding: 12px 16px;
+    gap: 10px;
+    width: min(440px, 95%);
+  }
+
+  .newsletter-title {
+    font-size: clamp(16px, 4vh, 24px);
+  }
+
+  .newsletter-subtitle {
+    font-size: clamp(11px, 1vw, 14px);
   }
 
   .platform-buttons {
