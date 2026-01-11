@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react'
-import Header from '../components/Header'
+import PageLayout from '../components/layout/PageLayout'
 import DownloadCard from '../components/DownloadCard'
 
 interface DownloadPageProps {
@@ -11,9 +11,8 @@ interface DownloadPageProps {
 
 function Download({ macUrl, winUrl, macVersion, winVersion }: DownloadPageProps): ReactElement {
   return (
-    <div className="download-page">
-      <Header />
-      <main className="download-main">
+    <PageLayout className="download-page">
+      <div className="download-main">
         <DownloadCard
           macUrl={macUrl}
           winUrl={winUrl}
@@ -21,8 +20,8 @@ function Download({ macUrl, winUrl, macVersion, winVersion }: DownloadPageProps)
           winVersion={winVersion}
           className="download-card-standalone"
         />
-      </main>
-    </div>
+      </div>
+    </PageLayout>
   )
 }
 

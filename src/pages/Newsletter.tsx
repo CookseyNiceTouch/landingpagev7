@@ -1,17 +1,18 @@
 import type { ReactElement } from 'react'
-import Header from '../components/Header'
+import PageLayout from '../components/layout/PageLayout'
 import NewsletterForm from '../components/NewsletterForm'
 
 function Newsletter(): ReactElement {
   return (
-    <div className="newsletter-page">
-      <Header />
-      <main className="newsletter-main">
+    <PageLayout className="newsletter-page">
+      <div className="newsletter-main">
         <NewsletterForm />
-      </main>
-    </div>
+      </div>
+    </PageLayout>
   )
 }
 
 export default Newsletter
+
+
 

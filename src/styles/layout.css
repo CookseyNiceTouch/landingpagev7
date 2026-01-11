@@ -1,0 +1,206 @@
+/* ─────────────────────────────────────────────────────────────
+   Nice Touch - Layout Styles
+   ───────────────────────────────────────────────────────────── */
+
+/* ═══════════════════════════════════════════════════════════
+   Page Container
+   ═══════════════════════════════════════════════════════════ */
+.page-container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg);
+}
+
+.page-container--full-height {
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Header
+   ═══════════════════════════════════════════════════════════ */
+.header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 33px;
+  height: var(--header-height);
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+.logo-link {
+  display: block;
+  height: 100%;
+  transition: opacity var(--transition-fast);
+  pointer-events: auto;
+}
+
+.logo-link:hover {
+  opacity: 0.85;
+}
+
+.header-logo {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Header Right - Contact & Social */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 100%;
+}
+
+.contact-email {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color var(--transition-fast);
+  pointer-events: auto;
+  white-space: nowrap;
+}
+
+.contact-email:hover {
+  color: var(--color-pink);
+}
+
+.header-divider {
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 300;
+  pointer-events: none;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  height: 100%;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(24px, 3vh, 36px);
+  height: clamp(24px, 3vh, 36px);
+  opacity: 0.9;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  pointer-events: auto;
+}
+
+.social-icon:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.social-icon img {
+  width: 100%;
+  height: 100%;
+  filter: brightness(0) invert(1);
+  transition: filter var(--transition-fast);
+}
+
+.social-icon:hover img {
+  filter: brightness(0) saturate(100%) invert(20%) sepia(100%) saturate(7000%) hue-rotate(320deg) brightness(105%) contrast(105%);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Main Content Area
+   ═══════════════════════════════════════════════════════════ */
+.main-content {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Responsive: Tablet (≤1024px)
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .header {
+    padding: 12px var(--content-padding-x-tablet);
+    align-items: center;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Responsive: Mobile (≤768px)
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 60px;
+  }
+
+  .header {
+    padding: 10px var(--content-padding-x-mobile);
+  }
+
+  .header-right {
+    gap: 12px;
+  }
+
+  .contact-email {
+    font-size: 12px;
+  }
+
+  .header-divider {
+    display: none;
+  }
+
+  .social-icons {
+    gap: 16px;
+  }
+
+  .social-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Responsive: Small Mobile (≤480px)
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .contact-email {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Responsive: Tablet (≤1200px)
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 1200px) {
+  .social-icons {
+    gap: 20px;
+  }
+
+  .social-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Landscape Mobile
+   ═══════════════════════════════════════════════════════════ */
+@media (max-height: 500px) and (orientation: landscape) {
+  :root {
+    --header-height: 50px;
+  }
+
+  .social-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+

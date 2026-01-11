@@ -1,8 +1,21 @@
 import { useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css'
-import LiquidEther from './backgrounds/LiquidEther'
+import { ModalProvider } from './contexts/ModalContext'
 import Home from './pages/Home'
+import Product from './pages/Product'
+import IntegrationsHub from './pages/integrations/IntegrationsHub'
+import PremierePro from './pages/integrations/PremierePro'
+import DavinciResolve from './pages/integrations/DavinciResolve'
+import WorkflowsHub from './pages/workflows/WorkflowsHub'
+import TimecodedFeedback from './pages/workflows/TimecodedFeedback'
+import RoughCutFromTranscript from './pages/workflows/RoughCutFromTranscript'
+import ExportQC from './pages/workflows/ExportQC'
+import Pricing from './pages/Pricing'
+import About from './pages/About'
+import Contact from './pages/Contact'
+import Security from './pages/Security'
+import Privacy from './pages/Privacy'
+import Terms from './pages/Terms'
 import Download from './pages/Download'
 import Newsletter from './pages/Newsletter'
 
@@ -40,31 +53,32 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="landing-page">
-        <LiquidEther
-          colors={['#5227FF', '#FF9FFC', '#B19EEF']}
-          mouseForce={20}
-          cursorSize={100}
-          isViscous={false}
-          viscous={30}
-          iterationsViscous={32}
-          iterationsPoisson={32}
-          resolution={0.5}
-          isBounce={false}
-          autoDemo={true}
-          autoSpeed={0.5}
-          autoIntensity={2.2}
-          takeoverDuration={0.25}
-          autoResumeDelay={3000}
-          autoRampDuration={0.6}
-          style={{ position: 'absolute', inset: 0 }}
-        />
-
+      <ModalProvider>
         <Routes>
-          <Route
-            path="/"
-            element={<Home />}
-          />
+          {/* Main Pages */}
+          <Route path="/" element={<Home />} />
+          <Route path="/product" element={<Product />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          
+          {/* Integrations */}
+          <Route path="/integrations" element={<IntegrationsHub />} />
+          <Route path="/integrations/adobe-premiere-pro" element={<PremierePro />} />
+          <Route path="/integrations/davinci-resolve" element={<DavinciResolve />} />
+          
+          {/* Workflows */}
+          <Route path="/workflows" element={<WorkflowsHub />} />
+          <Route path="/workflows/timecoded-feedback" element={<TimecodedFeedback />} />
+          <Route path="/workflows/rough-cut-from-transcript" element={<RoughCutFromTranscript />} />
+          <Route path="/workflows/export-qc-checks" element={<ExportQC />} />
+          
+          {/* Legal & Security */}
+          <Route path="/security" element={<Security />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          
+          {/* Existing Pages */}
           <Route
             path="/download"
             element={
@@ -76,12 +90,9 @@ function App() {
               />
             }
           />
-          <Route
-            path="/newsletter"
-            element={<Newsletter />}
-          />
+          <Route path="/newsletter" element={<Newsletter />} />
         </Routes>
-      </div>
+      </ModalProvider>
     </BrowserRouter>
   )
 }

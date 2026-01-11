@@ -1,0 +1,39 @@
+# Nice Touch - AI Video Editing Assistant
+
+Nice Touch is an AI video editing assistant that integrates directly with Adobe Premiere Pro and DaVinci Resolve to help professional editors and teams turn feedback, transcripts, and QC checks into actions.
+
+## Core URLs
+
+https://nicetouch.app/
+https://nicetouch.app/product/
+https://nicetouch.app/integrations/
+https://nicetouch.app/integrations/adobe-premiere-pro/
+https://nicetouch.app/integrations/davinci-resolve/
+https://nicetouch.app/workflows/
+https://nicetouch.app/workflows/timecoded-feedback/
+https://nicetouch.app/workflows/rough-cut-from-transcript/
+https://nicetouch.app/workflows/export-qc-checks/
+https://nicetouch.app/pricing/
+https://nicetouch.app/about/
+https://nicetouch.app/contact/
+https://nicetouch.app/security/
+
+## Key Features
+
+- Timecoded feedback handling: Turn review notes into actionable edits
+- Rough cuts from transcript: Build story-driven rough cuts faster
+- Export QC checks: Catch delivery mistakes before they ship
+- Native integration with Premiere Pro and DaVinci Resolve
+- Works with your existing project files and workflows
+
+## Target Users
+
+- Professional video editors
+- Post-production teams
+- Content producers
+- Video production companies
+
+## Contact
+
+Email: cooksey@nicetouch.app
+
