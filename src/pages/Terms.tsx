@@ -35,3 +35,5 @@ function Terms(): ReactElement {
 
 export default Terms
 
+
+
