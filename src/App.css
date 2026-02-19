@@ -263,6 +263,38 @@
   max-width: 420px;
 }
 
+/* ═══════════════════════════════════════════════════════════
+   Pricing Section
+   ═══════════════════════════════════════════════════════════ */
+.pricing-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.pricing-main {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 4vw, 96px);
+  pointer-events: none;
+  overflow-y: auto;
+}
+
+.pricing-table-wrapper {
+  width: min(960px, 90%);
+  pointer-events: auto;
+  background-color: #000;
+  border-radius: 8px;
+}
+
+.pricing-table-wrapper stripe-pricing-table {
+  width: 100%;
+}
+
 .download-card-standalone {
   width: min(520px, 100%);
   padding-top: 0;

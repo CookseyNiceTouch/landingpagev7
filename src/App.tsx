@@ -5,6 +5,7 @@ import LiquidEther from './backgrounds/LiquidEther'
 import Home from './pages/Home'
 import Download from './pages/Download'
 import Newsletter from './pages/Newsletter'
+import Pricing from './pages/Pricing'
 
 // Release data types
 interface PlatformRelease {
@@ -79,6 +80,10 @@ function App() {
           <Route
             path="/newsletter"
             element={<Newsletter />}
+          />
+          <Route
+            path="/pricing"
+            element={<Pricing />}
           />
         </Routes>
       </div>
