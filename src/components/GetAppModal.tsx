@@ -12,7 +12,6 @@ export default function GetAppModal({ isOpen, onClose }: GetAppModalProps): Reac
   useEffect(() => {
     if (!isOpen) return
 
-    // Load HubSpot script once when the modal is opened for the first time.
     const existing = document.querySelector(`script[src="${HUBSPOT_SCRIPT_SRC}"]`)
     if (existing) return
 
@@ -25,14 +24,28 @@ export default function GetAppModal({ isOpen, onClose }: GetAppModalProps): Reac
   if (!isOpen) return null
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-panel" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose} aria-label="Close">×</button>
-        
-        <h2 className="modal-title">Get the App</h2>
+    <div
+      className="fixed inset-0 bg-black/75 backdrop-blur-sm flex items-center justify-center z-[1000] p-5 pointer-events-auto"
+      onClick={onClose}
+    >
+      <div
+        className="relative bg-black border-2 border-border rounded-xl p-[clamp(24px,4vw,40px)] max-w-[760px] w-full max-h-[90vh] overflow-y-auto scrollbar-thin"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          className="absolute top-4 right-4 text-[32px] text-white/60 hover:text-white transition-colors leading-none cursor-pointer"
+          onClick={onClose}
+          aria-label="Close"
+        >
+          &times;
+        </button>
+
+        <h2 className="m-0 mb-6 text-[clamp(24px,4vw,32px)] font-semibold text-white">
+          Get the App
+        </h2>
 
         <div
-          className="hs-form-frame"
+          className="hs-form-frame pointer-events-auto"
           data-region="eu1"
           data-form-id="e7b7312c-1884-4467-a616-42a27512a402"
           data-portal-id="146425863"
@@ -41,4 +54,3 @@ export default function GetAppModal({ isOpen, onClose }: GetAppModalProps): Reac
     </div>
   )
 }
-

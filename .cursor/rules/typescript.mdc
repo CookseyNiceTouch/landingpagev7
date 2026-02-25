@@ -1,0 +1,63 @@
+---
+description: TypeScript standards for this project
+globs: **/*.{ts,tsx}
+alwaysApply: false
+---
+
+# TypeScript Standards
+
+## Strictness
+
+The project uses strict TypeScript (`"strict": true` plus `noUnusedLocals`, `noUnusedParameters`). All code must pass `tsc -b --noEmit` with zero errors.
+
+## Typing Rules
+
+- No `any` — use proper types or `unknown`
+- Use `interface` for object shapes, `type` for unions/aliases
+- Export types alongside their consumers; put shared types in the relevant `data/` file
+- Annotate component return types explicitly: `function Foo(): ReactElement`
+
+```ts
+// ✅ GOOD
+interface Plan {
+  name: string
+  highlighted: boolean
+  pricing?: { gbp: PlanPricing; usd: PlanPricing }
+}
+
+// ❌ BAD
+const plan: any = { ... }
+```
+
+## Imports
+
+Always use the `@/` alias for imports within `src/`. Never use relative `../../` paths.
+
+```ts
+// ✅ GOOD
+import Button from '@/components/ui/Button'
+import { PLANS } from '@/data/pricing'
+
+// ❌ BAD
+import Button from '../../components/ui/Button'
+```
+
+## Constants
+
+Mutable runtime config (API URLs, Stripe links, HubSpot IDs) belongs in `src/data/`, not hardcoded inline. Immutable module-level constants use `SCREAMING_SNAKE_CASE`.
+
+```ts
+// ✅ GOOD — in src/data/pricing.ts
+const CHECKOUT_LINKS = { basic: { gbp: { monthly: 'https://...' } } } as const
+
+// ❌ BAD — hardcoded inside a component
+<a href="https://buy.stripe.com/14A7sL639eyT79J5j27Zu04">
+```
+
+## Verification
+
+Before finishing any change, run:
+```bash
+npm run build   # tsc -b && vite build
+npm run lint    # eslint . (LiquidEther.tsx pre-existing warnings are expected)
+```

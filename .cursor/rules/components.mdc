@@ -1,0 +1,74 @@
+---
+description: React component patterns and conventions for this project
+globs: **/*.tsx
+alwaysApply: false
+---
+
+# Component Conventions
+
+## General Rules
+
+- Functional components only; no class components
+- Always annotate return type: `function Foo(): ReactElement`
+- Default exports for pages and layout; named exports are fine for small utilities
+- No prop drilling beyond one level — use the `data/` layer or a hook
+
+## Reusable UI Components
+
+Before writing custom button/link/wrapper markup, check `src/components/ui/` first.
+
+**Button** — use for all CTA interactions:
+```tsx
+import Button from '@/components/ui/Button'
+
+// as a button
+<Button variant="primary" size="lg" onClick={handleClick}>Get the App</Button>
+
+// as an anchor link
+<Button as="a" href="https://..." target="_blank" rel="noopener noreferrer">Subscribe</Button>
+```
+Variants: `primary` (pink), `secondary` (glass), `ghost` (text-only)
+Sizes: `sm`, `md`, `lg`
+
+**Container** — wraps page content with max-width and horizontal padding:
+```tsx
+import Container from '@/components/ui/Container'
+
+<Container size="lg">…content…</Container>
+```
+Sizes: `sm` (2xl), `md` (4xl), `lg` (6xl), `xl` (7xl)
+
+## Page Components
+
+Pages are thin — they contain layout/structure and delegate to components. They do not contain:
+- Hardcoded data (use `src/data/`)
+- Fetch logic (use `src/hooks/`)
+
+```tsx
+// ✅ GOOD — page imports data and hooks
+import { PLANS } from '@/data/pricing'
+import { useReleases } from '@/hooks/useReleases'
+
+// ❌ BAD — data hardcoded in page
+const PLANS = [{ name: 'Basic', price: 25, ... }]
+```
+
+## Data Layer
+
+All site content that might change or be reused lives in `src/data/`:
+
+- **`navigation.ts`** — add items to `NAV_LINKS` to auto-populate header + footer
+- **`social.ts`** — `SOCIAL_LINKS` and `CONTACT_EMAIL`; both header and footer read from here
+- **`pricing.ts`** — plan definitions, Stripe checkout links, currency detection
+
+## Hooks
+
+Async/stateful logic belongs in `src/hooks/`. Each hook file exports a single `useFoo` function.
+
+## HubSpot Forms
+
+Two forms are embedded via `data-form-id` attributes on a `div.hs-form-frame`:
+- **Get App modal**: form-id `e7b7312c-1884-4467-a616-42a27512a402`
+- **Newsletter**: form-id `98567906-bbd8-4dde-99f6-4581261e62cf`
+
+Both use portal `146425863`, region `eu1`. Load the HubSpot script (`https://js-eu1.hsforms.net/forms/embed/146425863.js`) once via a `useEffect` with a guard against duplicate injection.

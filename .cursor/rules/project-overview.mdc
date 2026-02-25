@@ -1,0 +1,62 @@
+---
+description: Nice Touch site structure, stack, and folder conventions
+alwaysApply: true
+---
+
+# Nice Touch – Project Overview
+
+## Stack
+
+- **React 19** with TypeScript (strict mode), functional components only
+- **Vite 7** for bundling; `@vitejs/plugin-react` + `@tailwindcss/vite`
+- **Tailwind CSS v4** for all styling — no separate CSS files except `index.css` (global resets/tokens) and `LiquidEther.css` (scoped to the WebGL background)
+- **React Router v7** (`BrowserRouter` + nested routes via `<Outlet />`)
+- **Three.js** powers the `LiquidEther` fluid background
+- **HubSpot** embedded forms (loaded via `<script>` tag injection)
+- **Stripe** for checkout (direct links in `src/data/pricing.ts`)
+- Package manager: **npm**; path alias `@/` maps to `src/`
+
+## Folder Structure
+
+```
+src/
+  App.tsx                     # Route tree only — no logic
+  main.tsx                    # Entry point
+  index.css                   # Tailwind directives + CSS custom properties
+  assets/
+    icons/                    # SVG icons (apple, windows, discord, linkedin, youtube)
+    images/                   # PNG images (logos, app badges)
+  backgrounds/
+    LiquidEther.tsx            # WebGL fluid — do not modify without care
+    LiquidEther.css
+  components/
+    layout/
+      Layout.tsx               # Shell: LiquidEther + Header + <Outlet /> + Footer
+      Header.tsx               # Nav links from data/navigation.ts, social from data/social.ts
+      Footer.tsx               # Footer links, social, copyright
+    ui/
+      Button.tsx               # Reusable button (variant: primary/secondary/ghost, size: sm/md/lg)
+      Container.tsx            # Max-width content wrapper
+    GetAppModal.tsx            # HubSpot modal form
+    DownloadCard.tsx           # macOS / Windows download buttons
+    NewsletterForm.tsx         # HubSpot newsletter embed
+  data/
+    navigation.ts              # NAV_LINKS array — single source of truth for nav
+    pricing.ts                 # PLANS, CHECKOUT_LINKS, detectCurrency(), formatPrice()
+    social.ts                  # SOCIAL_LINKS, CONTACT_EMAIL
+  hooks/
+    useReleases.ts             # Fetches release data from GitHub JSON
+  pages/
+    Home.tsx
+    Pricing.tsx
+    Download.tsx
+    Newsletter.tsx
+    NotFound.tsx
+```
+
+## Routing
+
+All routes are children of the `<Layout />` route in `App.tsx`. To add a new page:
+1. Create `src/pages/MyPage.tsx`
+2. Add `<Route path="/my-page" element={<MyPage />} />` inside the Layout route
+3. Add a nav entry to `src/data/navigation.ts` if it should appear in the header/footer

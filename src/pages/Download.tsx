@@ -1,30 +1,18 @@
 import type { ReactElement } from 'react'
-import Header from '../components/Header'
-import DownloadCard from '../components/DownloadCard'
+import DownloadCard from '@/components/DownloadCard'
+import { useReleases } from '@/hooks/useReleases'
 
-interface DownloadPageProps {
-  macUrl: string
-  winUrl: string
-  macVersion?: string
-  winVersion?: string
-}
+export default function Download(): ReactElement {
+  const { macDownloadUrl, winDownloadUrl, macVersion, winVersion } = useReleases()
 
-function Download({ macUrl, winUrl, macVersion, winVersion }: DownloadPageProps): ReactElement {
   return (
-    <div className="download-page">
-      <Header />
-      <main className="download-main">
-        <DownloadCard
-          macUrl={macUrl}
-          winUrl={winUrl}
-          macVersion={macVersion}
-          winVersion={winVersion}
-          className="download-card-standalone"
-        />
-      </main>
+    <div className="flex-1 flex items-center justify-center p-[clamp(24px,4vw,96px)] pointer-events-none">
+      <DownloadCard
+        macUrl={macDownloadUrl}
+        winUrl={winDownloadUrl}
+        macVersion={macVersion}
+        winVersion={winVersion}
+      />
     </div>
   )
 }
-
-export default Download
-
