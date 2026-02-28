@@ -6,7 +6,7 @@ import Footer from './Footer'
 
 export default function Layout(): ReactElement {
   return (
-    <div className="relative min-h-screen bg-bg flex flex-col">
+    <div className="min-h-screen bg-bg flex flex-col">
       <LiquidEther
         colors={['#5227FF', '#FF9FFC', '#B19EEF']}
         mouseForce={20}
@@ -23,7 +23,7 @@ export default function Layout(): ReactElement {
         takeoverDuration={0.25}
         autoResumeDelay={3000}
         autoRampDuration={0.6}
-        style={{ position: 'absolute', inset: 0 }}
+        style={{ position: 'fixed', inset: 0, zIndex: 0 }}
       />
       <Header />
       <main className="relative z-10 flex-1 flex flex-col">

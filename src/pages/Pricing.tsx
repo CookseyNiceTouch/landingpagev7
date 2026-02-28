@@ -54,12 +54,12 @@ export default function Pricing(): ReactElement {
           return (
             <div
               key={plan.name}
-              className={`flex-1 flex flex-col justify-between gap-1 p-[clamp(20px,2vw,32px)] border-2 rounded-lg bg-black/20 ${
-                plan.highlighted ? 'border-pink' : 'border-border'
+              className={`flex-1 flex flex-col justify-between gap-1 p-[clamp(20px,2vw,32px)] border-2 rounded-xl bg-black/40 backdrop-blur-sm transition-transform hover:-translate-y-1 ${
+                plan.highlighted ? 'border-yellow' : 'border-border'
               }`}
             >
               <div className="flex flex-col gap-1">
-                <h3 className={`m-0 text-[clamp(20px,1.8vw,28px)] font-semibold ${plan.highlighted ? 'text-pink' : 'text-white'}`}>
+                <h3 className={`m-0 font-bold font-heading leading-[0.61] tracking-[-0.04em] text-[clamp(20px,1.8vw,28px)] ${plan.highlighted ? 'text-yellow' : 'text-white'}`}>
                   {plan.name}
                 </h3>
                 <p className="m-0 mb-1 text-[clamp(13px,1vw,15px)] text-white-55 leading-relaxed">
