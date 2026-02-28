@@ -9,10 +9,8 @@ interface CableConnectorProps {
   triggerRef: React.RefObject<HTMLElement | null>
   /** Vertical position of the cable (top of SVG). Use % or px, e.g. '55%' or '400px' */
   top?: string
-  /** Horizontal offset from center in px. Positive = right, negative = left. */
+  /** Horizontal offset in px from center of the 1200px content column. Positive = right, negative = left. */
   offsetX?: number
-  /** Horizontal offset as % of viewport. Positive = right. e.g. 20 for 20vw */
-  offsetXPercent?: number
   /** Scale factor. 1 = original size, 0.5 = half, 1.2 = 20% larger */
   scale?: number
   /** Pixels of scroll after which the cable is fully drawn. e.g. 600 */
@@ -25,10 +23,9 @@ export default function CableConnector({
   triggerRef,
   top = '10%',
   offsetX = 0,
-  offsetXPercent = 0,
   scale = 1,
-  scrollDistance = 600,
-  ease = 'power2.out',
+  scrollDistance = 100,
+  ease = 'power=10.out',
 }: CableConnectorProps): ReactElement {
   const pathRef = useRef<SVGPathElement>(null)
 
@@ -76,14 +73,15 @@ export default function CableConnector({
     return () => ctx.revert()
   }, [triggerRef, scrollDistance, ease])
 
-  const xOffset = offsetXPercent ? `${offsetX}px + ${offsetXPercent}vw` : `${offsetX}px`
-  const transform = `translateX(calc(-50% + ${xOffset})) scale(${scale})`
+  const transform = `translateX(calc(-50% + ${offsetX}px)) scale(${scale})`
 
   return (
     <div
-      className="absolute inset-0 pointer-events-none flex justify-center"
+      className="absolute inset-0 pointer-events-none"
       style={{ top, zIndex: -1 }}
     >
+      {/* Constrained column — mirrors the 1200px content container */}
+      <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', height: '100%' }}>
       <svg
         width="789"
         height="815"
@@ -107,6 +105,7 @@ export default function CableConnector({
           style={{ visibility: 'hidden' }}
         />
       </svg>
+      </div>
     </div>
   )
 }
