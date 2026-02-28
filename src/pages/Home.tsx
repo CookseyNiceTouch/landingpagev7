@@ -181,8 +181,7 @@ export default function Home(): ReactElement {
         <CableConnector
           triggerRef={heroSection2Ref}
           top="30%"
-          offsetX={0}
-          offsetXPercent={20}
+          offsetX={240}
           scale={0.625}
           scrollDistance={600}
           ease="power2.in"
