@@ -59,6 +59,9 @@ export default function Home(): ReactElement {
 
   const activeWorkflowData = WORKFLOWS.find((w) => w.id === activeWorkflow) ?? WORKFLOWS[0]
   const heroSection2Ref = useRef<HTMLDivElement>(null)
+  const multicamRef = useRef<HTMLDivElement>(null)
+
+  const CABLE2_PATH = 'M592.868 45.25C592.868 45.25 584.862 93.2502 726.875 267.25C868.889 441.25 1188.48 421.25 1200.88 741.25C1213.29 1061.25 1570.9 1106.48 1744.89 1017.25C1918.88 928.023 1937.39 597.255 1744.89 335.25C1600.88 139.25 1386.88 -22.75 1076.88 3.25002C766.883 29.25 332.889 321.25 166.879 561.25C0.869522 801.25 -43.1203 1119.25 44.8803 1377.25C132.881 1635.25 240.854 1931.25 592.868 1989.25C944.883 2047.25 954.883 1713.25 1398.89 1713.25C1842.9 1713.25 1938.88 1997.25 1880.88 2283.25C1822.88 2569.25 1102.89 2331.25 1212.88 2641.25'
 
   return (
     <>
@@ -183,12 +186,29 @@ export default function Home(): ReactElement {
           top="30%"
           offsetX={240}
           scale={0.625}
-          scrollDistance={600}
-          ease="power2.in"
+          scrollDistance={700}
+          ease="power10.out"
         />
       </div>
 
       {/* ── Multicam ──────────────────────────────────────────────── */}
+      <div ref={multicamRef} className="relative">
+        {CABLE2_PATH && (
+          <CableConnector
+            triggerRef={multicamRef}
+            pathD={CABLE2_PATH}
+            viewBoxValue="-25 -25 1950 2700"
+            svgWidth={1897}
+            svgHeight={2642}
+            top="-70%"
+            offsetX={180}
+            scale={0.484}
+            strokeWidth={33}
+            scrollStart="top 90%"
+            scrollDistance={2000}
+            ease="power10.out"
+          />
+        )}
       <section className="relative px-[clamp(24px,8vw,120px)] py-[clamp(64px,8vw,120px)] pointer-events-none">
         <div className="absolute inset-0 bg-black/20 pointer-events-none" />
         <div className="relative max-w-6xl mx-auto flex flex-col gap-[clamp(32px,4vw,64px)]">
@@ -237,6 +257,7 @@ export default function Home(): ReactElement {
           </div>
         </div>
       </section>
+      </div>{/* end multicamRef wrapper */}
 
       {/* ── Built For Workflows ───────────────────────────────────── */}
       <section className="relative px-[clamp(24px,8vw,120px)] py-[clamp(64px,8vw,120px)] pointer-events-none">
