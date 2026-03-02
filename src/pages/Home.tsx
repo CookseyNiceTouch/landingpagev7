@@ -1,14 +1,17 @@
-import { useState, useMemo, useRef } from 'react'
+import { useState, useMemo } from 'react'
 import type { ReactElement } from 'react'
 import GetAppModal from '@/components/GetAppModal'
-import CableConnector from '@/components/ui/CableConnector'
+import ScrollySteps from '@/components/ui/ScrollySteps'
 import { PLANS, detectCurrency, formatPrice } from '@/data/pricing'
 import type { Interval } from '@/data/pricing'
 import section01 from '@/assets/images/Section01_Login.png'
-import section02 from '@/assets/images/Section02_RoughCut02.png'
 import section03 from '@/assets/images/Section03_Mulit.png'
 import section04 from '@/assets/images/Section04_BuiltFor.png'
 import section05 from '@/assets/images/Section05_Price.png'
+import img04b from '@/assets/images/Section02_RoughCut04b.png'
+import img04c from '@/assets/images/Section02_RoughCut04c.png'
+import img04d from '@/assets/images/Section02_RoughCut04d.png'
+import img04e from '@/assets/images/Section02_RoughCut04e.png'
 
 const STEPS = [
   {
@@ -58,14 +61,10 @@ export default function Home(): ReactElement {
   const currency = useMemo(() => detectCurrency(), [])
 
   const activeWorkflowData = WORKFLOWS.find((w) => w.id === activeWorkflow) ?? WORKFLOWS[0]
-  const heroSection2Ref = useRef<HTMLDivElement>(null)
-  const multicamRef = useRef<HTMLDivElement>(null)
-
-  const CABLE2_PATH = 'M592.868 45.25C592.868 45.25 584.862 93.2502 726.875 267.25C868.889 441.25 1188.48 421.25 1200.88 741.25C1213.29 1061.25 1570.9 1106.48 1744.89 1017.25C1918.88 928.023 1937.39 597.255 1744.89 335.25C1600.88 139.25 1386.88 -22.75 1076.88 3.25002C766.883 29.25 332.889 321.25 166.879 561.25C0.869522 801.25 -43.1203 1119.25 44.8803 1377.25C132.881 1635.25 240.854 1931.25 592.868 1989.25C944.883 2047.25 954.883 1713.25 1398.89 1713.25C1842.9 1713.25 1938.88 1997.25 1880.88 2283.25C1822.88 2569.25 1102.89 2331.25 1212.88 2641.25'
 
   return (
     <>
-      <div ref={heroSection2Ref} className="relative">
+      <div>
         {/* ── Hero ──────────────────────────────────────────────────── */}
         <section className="relative px-6 pointer-events-none" style={{ paddingTop: '240px', paddingBottom: '40px' }}>
         <div className="absolute inset-0 bg-black/20 pointer-events-none" />
@@ -95,120 +94,50 @@ export default function Home(): ReactElement {
         </div>
       </section>
 
-      {/* ── Three Steps ───────────────────────────────────────────── */}
-      <section className="relative px-6 pointer-events-none" style={{ paddingTop: '90px', paddingBottom: '140px' }}>
+      {/* ── Three Steps (scrollytelling) ──────────────────────────── */}
+      <ScrollySteps
+        steps={STEPS as [typeof STEPS[0], typeof STEPS[0], typeof STEPS[0]]}
+        images={[img04b, img04c, img04d, img04e]}
+      />
+
+      {/* ── Long-form copy ────────────────────────────────────────── */}
+      <section className="relative px-6 pointer-events-none" style={{ paddingTop: '80px', paddingBottom: '140px' }}>
         <div className="absolute inset-0 bg-black/25 pointer-events-none" />
         <div
-          className="relative flex flex-col gap-16"
-          style={{ width: 'min(1200px, calc(100% - 48px))', margin: '0 auto' }}
+          className="relative grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8 max-w-[880px]"
+          style={{ margin: '0 auto' }}
         >
-          {/* 3-column symmetric grid: text | image (center anchor) | spacer */}
-          <div
-            className="grid grid-cols-1 items-center"
-            style={{
-              gridTemplateColumns: 'minmax(200px, 420px) minmax(280px, 480px) minmax(200px, 420px)',
-              columnGap: '64px',
-            }}
-          >
-            {/* Col 1: numbered steps */}
-            <div className="flex flex-col" style={{ gap: '48px' }}>
-              {STEPS.map((step, i) => (
-                <div key={step.id} className="flex flex-col gap-2">
-                  <h3
-                    className="m-0 font-bold text-yellow"
-                    style={{ fontSize: 'clamp(14px, 1.1vw, 17px)' }}
-                  >
-                    {i + 1}.&nbsp;&nbsp;{step.title}
-                  </h3>
-                  <div className="flex flex-col gap-0.5">
-                    {step.lines.map((line, j) => (
-                      <p
-                        key={j}
-                        className="m-0 text-white/60 leading-snug"
-                        style={{ fontSize: 'clamp(13px, 1vw, 15px)' }}
-                      >
-                        {line}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Col 2: image — center anchor */}
-            <div className="flex justify-center items-center">
-              <img
-                src={section02}
-                alt="Analyse, Explore and Rough Cut modules"
-                className="block rounded-xl object-contain"
-                style={{ maxHeight: '820px', width: 'auto', margin: '0 auto' }}
-              />
-            </div>
-
-            {/* Col 3: empty spacer — mirrors col 1 to keep col 2 centered */}
-            <div />
-
+          {/* Part 1 */}
+          <div className="flex flex-col gap-5">
+            <p className="m-0 font-semibold text-white" style={{ fontSize: 'clamp(16px, 1.3vw, 20px)' }}>
+              Analyse. Explore. Rough Cut.
+            </p>
+            <p className="m-0 text-white/70 leading-relaxed" style={{ fontSize: 'clamp(14px, 1.1vw, 17px)' }}>
+              Nice Touch starts by understanding your footage.
+            </p>
+            <p className="m-0 text-white/55 leading-relaxed" style={{ fontSize: 'clamp(14px, 1.1vw, 17px)' }}>
+              It transcribes interviews, detects speakers, and surfaces themes across long-form conversations. Instead of scrubbing through hours of material, you can see the shape of the story immediately.
+            </p>
           </div>
 
-          {/* Long-form copy — two columns */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8 max-w-[880px]">
-            {/* Part 1 */}
-            <div className="flex flex-col gap-5">
-              <p className="m-0 font-semibold text-white" style={{ fontSize: 'clamp(16px, 1.3vw, 20px)' }}>
-                Analyse. Explore. Rough Cut.
-              </p>
-              <p className="m-0 text-white/70 leading-relaxed" style={{ fontSize: 'clamp(14px, 1.1vw, 17px)' }}>
-                Nice Touch starts by understanding your footage.
-              </p>
-              <p className="m-0 text-white/55 leading-relaxed" style={{ fontSize: 'clamp(14px, 1.1vw, 17px)' }}>
-                It transcribes interviews, detects speakers, and surfaces themes across long-form conversations. Instead of scrubbing through hours of material, you can see the shape of the story immediately.
-              </p>
-            </div>
-
-            {/* Part 2 */}
-            <div className="flex flex-col gap-5">
-              <p className="m-0 text-white/55 leading-relaxed" style={{ fontSize: 'clamp(14px, 1.1vw, 17px)' }}>
-                From there, you can explore. Ask questions about topics captured in your footage and refine the direction of an edit before you commit to a timeline.
-              </p>
-              <p className="m-0 text-white/55 leading-relaxed" style={{ fontSize: 'clamp(14px, 1.1vw, 17px)' }}>
-                When you're ready, generate a structured first pass inside Premiere or DaVinci. Not a finished film. Not locked decisions. Just a clean, intelligent starting point.
-              </p>
-              <p className="m-0 text-white/70 font-medium leading-relaxed" style={{ fontSize: 'clamp(14px, 1.1vw, 17px)' }}>
-                The slow part is handled.<br />You stay in control.
-              </p>
-            </div>
+          {/* Part 2 */}
+          <div className="flex flex-col gap-5">
+            <p className="m-0 text-white/55 leading-relaxed" style={{ fontSize: 'clamp(14px, 1.1vw, 17px)' }}>
+              From there, you can explore. Ask questions about topics captured in your footage and refine the direction of an edit before you commit to a timeline.
+            </p>
+            <p className="m-0 text-white/55 leading-relaxed" style={{ fontSize: 'clamp(14px, 1.1vw, 17px)' }}>
+              When you're ready, generate a structured first pass inside Premiere or DaVinci. Not a finished film. Not locked decisions. Just a clean, intelligent starting point.
+            </p>
+            <p className="m-0 text-white/70 font-medium leading-relaxed" style={{ fontSize: 'clamp(14px, 1.1vw, 17px)' }}>
+              The slow part is handled.<br />You stay in control.
+            </p>
           </div>
         </div>
       </section>
 
-        <CableConnector
-          triggerRef={heroSection2Ref}
-          top="30%"
-          offsetX={240}
-          scale={0.625}
-          scrollDistance={700}
-          ease="power10.out"
-        />
       </div>
 
       {/* ── Multicam ──────────────────────────────────────────────── */}
-      <div ref={multicamRef} className="relative">
-        {CABLE2_PATH && (
-          <CableConnector
-            triggerRef={multicamRef}
-            pathD={CABLE2_PATH}
-            viewBoxValue="-25 -25 1950 2700"
-            svgWidth={1897}
-            svgHeight={2642}
-            top="-70%"
-            offsetX={180}
-            scale={0.484}
-            strokeWidth={33}
-            scrollStart="top 90%"
-            scrollDistance={2000}
-            ease="power10.out"
-          />
-        )}
       <section className="relative px-[clamp(24px,8vw,120px)] py-[clamp(64px,8vw,120px)] pointer-events-none">
         <div className="absolute inset-0 bg-black/20 pointer-events-none" />
         <div className="relative max-w-6xl mx-auto flex flex-col gap-[clamp(32px,4vw,64px)]">
@@ -257,7 +186,6 @@ export default function Home(): ReactElement {
           </div>
         </div>
       </section>
-      </div>{/* end multicamRef wrapper */}
 
       {/* ── Built For Workflows ───────────────────────────────────── */}
       <section className="relative px-[clamp(24px,8vw,120px)] py-[clamp(64px,8vw,120px)] pointer-events-none">
