@@ -7,7 +7,7 @@ export default function Footer(): ReactElement {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="relative z-10 border-t border-white/10 pointer-events-auto">
+    <footer className="mt-auto border-t border-white/10 pointer-events-auto">
       <div className="max-w-6xl mx-auto px-6 py-10">
         <div className="flex flex-col md:flex-row justify-between gap-8">
           <div className="flex flex-col gap-3">

@@ -12,13 +12,13 @@ export default function Header(): ReactElement {
 
   return (
     <>
-      <header className="sticky top-0 z-50 flex items-center justify-between px-8 py-3.5 h-20 shrink-0 pointer-events-none backdrop-blur-md bg-black/30 border-b border-white/08">
-        <a href="/" className="block h-full transition-opacity hover:opacity-85 pointer-events-auto" aria-label="Nice Touch Home">
+      <header className="sticky top-0 z-50 flex items-center justify-between px-8 py-3.5 h-20 shrink-0 backdrop-blur-md bg-black/30 border-b border-white/08">
+        <a href="/" className="block h-full transition-opacity hover:opacity-85" aria-label="Nice Touch Home">
           <img src={niceTouchLogo} alt="Nice Touch" className="h-full w-auto object-contain" />
         </a>
 
         <div className="flex items-center gap-4 h-full">
-          <nav className="hidden md:flex items-center gap-6 pointer-events-auto" aria-label="Main navigation">
+          <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
             {NAV_LINKS.map((link) => (
               <NavLink
                 key={link.href}
@@ -32,16 +32,16 @@ export default function Header(): ReactElement {
             ))}
           </nav>
 
-          <span className="hidden md:block text-white-30 font-light pointer-events-none">|</span>
+          <span className="hidden md:block text-white-30 font-light">|</span>
 
           <a
             href={`mailto:${CONTACT_EMAIL}`}
-            className="text-sm text-white/70 transition-colors hover:text-yellow pointer-events-auto whitespace-nowrap max-sm:hidden"
+            className="text-sm text-white/70 transition-colors hover:text-yellow whitespace-nowrap max-sm:hidden"
           >
             Contact Us
           </a>
 
-          <span className="hidden sm:block text-white-30 font-light pointer-events-none max-sm:hidden">|</span>
+          <span className="hidden sm:block text-white-30 font-light max-sm:hidden">|</span>
 
           <nav className="flex gap-4 items-center h-full" aria-label="Social media links">
             {SOCIAL_LINKS.map((social) => (
@@ -50,7 +50,7 @@ export default function Header(): ReactElement {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-[clamp(20px,2.5vh,30px)] h-[clamp(20px,2.5vh,30px)] opacity-70 transition-all hover:opacity-100 hover:-translate-y-0.5 pointer-events-auto"
+                className="flex items-center justify-center w-[clamp(20px,2.5vh,30px)] h-[clamp(20px,2.5vh,30px)] opacity-70 transition-all hover:opacity-100 hover:-translate-y-0.5"
                 aria-label={social.label}
               >
                 <img
@@ -64,7 +64,7 @@ export default function Header(): ReactElement {
 
           <Button
             size="sm"
-            className="pointer-events-auto ml-2"
+            className="ml-2"
             onClick={() => setIsModalOpen(true)}
           >
             Try now
