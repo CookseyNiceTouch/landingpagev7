@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import type { ReactElement } from 'react'
 
 interface GetAppModalProps {
@@ -6,27 +5,15 @@ interface GetAppModalProps {
   onClose: () => void
 }
 
-const HUBSPOT_SCRIPT_SRC = 'https://js-eu1.hsforms.net/forms/embed/146425863.js'
-
-export default function GetAppModal({ isOpen, onClose }: GetAppModalProps): ReactElement | null {
-  useEffect(() => {
-    if (!isOpen) return
-
-    const existing = document.querySelector(`script[src="${HUBSPOT_SCRIPT_SRC}"]`)
-    if (existing) return
-
-    const script = document.createElement('script')
-    script.src = HUBSPOT_SCRIPT_SRC
-    script.defer = true
-    document.body.appendChild(script)
-  }, [isOpen])
-
-  if (!isOpen) return null
-
+export default function GetAppModal({ isOpen, onClose }: GetAppModalProps): ReactElement {
   return (
     <div
-      className="fixed inset-0 bg-black/75 backdrop-blur-sm flex items-center justify-center z-[1000] p-5 pointer-events-auto"
-      onClick={onClose}
+      className={`fixed inset-0 flex items-center justify-center z-[1000] p-5 transition-[opacity,backdrop-filter] duration-200 ${
+        isOpen
+          ? 'bg-black/75 backdrop-blur-sm pointer-events-auto opacity-100'
+          : 'pointer-events-none opacity-0 invisible'
+      }`}
+      onClick={isOpen ? onClose : undefined}
     >
       <div
         className="relative bg-black border-2 border-border rounded-xl p-[clamp(24px,4vw,40px)] max-w-[760px] w-full max-h-[90vh] overflow-y-auto scrollbar-thin"

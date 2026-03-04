@@ -1,21 +1,6 @@
-import { useEffect } from 'react'
 import type { ReactElement } from 'react'
 
 export default function NewsletterForm(): ReactElement {
-  useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://js-eu1.hsforms.net/forms/embed/146425863.js'
-    script.defer = true
-    script.charset = 'utf-8'
-    script.type = 'text/javascript'
-    document.body.appendChild(script)
-
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script)
-      }
-    }
-  }, [])
 
   return (
     <div className="flex flex-col items-center gap-5 p-[clamp(24px,2vw,40px)] border-2 border-border rounded-lg w-[min(720px,90%)] pointer-events-auto bg-black/20 max-[768px]:p-[clamp(16px,2vw,28px)] max-[768px]:gap-4 max-[768px]:w-[min(640px,92%)] max-[480px]:p-[clamp(14px,2vw,24px)] max-[480px]:gap-3.5 max-[480px]:w-[min(540px,94%)]">

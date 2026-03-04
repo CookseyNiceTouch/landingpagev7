@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import type { ReactElement } from 'react'
 import { Outlet } from 'react-router-dom'
 import FaultyTerminal from '@/backgrounds/FaultyTerminal'
@@ -5,9 +6,27 @@ import CrtOverlay from '@/components/ui/CrtOverlay'
 import Header from './Header'
 import Footer from './Footer'
 
+const HUBSPOT_SCRIPT_SRC = 'https://js-eu1.hsforms.net/forms/embed/146425863.js'
+
 export default function Layout(): ReactElement {
+  useEffect(() => {
+    if (document.querySelector(`script[src="${HUBSPOT_SCRIPT_SRC}"]`)) return
+    const script = document.createElement('script')
+    script.src = HUBSPOT_SCRIPT_SRC
+    script.defer = true
+    document.body.appendChild(script)
+  }, [])
+
   return (
     <div className="relative min-h-screen bg-bg flex flex-col">
+      {/* Preload newsletter form iframe in background so it's ready when user navigates to /newsletter */}
+      <div
+        className="hs-form-frame"
+        data-region="eu1"
+        data-form-id="98567906-bbd8-4dde-99f6-4581261e62cf"
+        data-portal-id="146425863"
+        style={{ position: 'fixed', visibility: 'hidden', left: '-9999px', width: '1px', height: '1px' }}
+      />
       <FaultyTerminal
         scale={2.5}
         digitSize={1.2}

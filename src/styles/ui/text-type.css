@@ -4,10 +4,6 @@
 
 @layer components {
 
-  .text-type {
-    display: inline;
-  }
-
   .text-type__content {
     display: inline;
   }

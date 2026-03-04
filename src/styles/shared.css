@@ -17,6 +17,25 @@
   /* Section Title component wrapper */
   .section-title-wrapper {
     pointer-events: none;
+    padding-block: clamp(3rem, 6vw, 6rem);
+  }
+
+  /* Inner container that stacks ghost + typed text */
+  .section-title-inner {
+    position: relative;
+  }
+
+  /* Full text rendered invisibly to reserve final layout height */
+  .section-title-ghost {
+    visibility: hidden;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Typed text sits directly on top of the ghost */
+  .section-title-typed {
+    position: absolute;
+    inset: 0;
   }
 
   /* Infocard — heading + body (single paragraph or bullet list) */

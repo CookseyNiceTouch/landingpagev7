@@ -12,18 +12,26 @@ export default function SectionTitle({
 }: SectionTitleProps): ReactElement {
   return (
     <div className={`section-title-wrapper ${className}`}>
-      <TextType
-        as="h2"
-        text={children}
-        className="type-title"
-        typingSpeed={28}
-        initialDelay={150}
-        showCursor
-        cursorCharacter="_"
-        cursorBlinkDuration={0.6}
-        loop={false}
-        startOnVisible
-      />
+      <div className="section-title-inner">
+        {/* Ghost: invisible copy that always holds the final rendered height */}
+        <h2 className="type-title section-title-ghost" aria-hidden="true">
+          {children}
+        </h2>
+
+        {/* Typed text sits on top via position:absolute */}
+        <TextType
+          as="h2"
+          text={children}
+          className="type-title section-title-typed"
+          typingSpeed={28}
+          initialDelay={150}
+          showCursor
+          cursorCharacter="_"
+          cursorBlinkDuration={0.6}
+          loop={false}
+          startOnVisible
+        />
+      </div>
     </div>
   )
 }
