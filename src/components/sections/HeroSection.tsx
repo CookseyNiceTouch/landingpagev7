@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react'
 import { HERO } from '@/data/home'
-import heroDevice from '@/assets/images/devices/try now.png'
+import heroDevice from '@/assets/images/devices/try-now.png'
 
 export default function HeroSection(): ReactElement {
   return (
