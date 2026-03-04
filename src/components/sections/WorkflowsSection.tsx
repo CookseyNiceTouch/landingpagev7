@@ -10,6 +10,7 @@ export default function WorkflowsSection(): ReactElement {
         src={workflowsDevice}
         alt="Nice Touch workflows — corporate interviews, documentary, podcasts, social cutdowns"
         className="workflows-device"
+        data-cable-anchor="workflows-device"
       />
       <Infocard content={WORKFLOWS_CARD} className="content-column" />
     </section>

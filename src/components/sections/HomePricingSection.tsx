@@ -14,6 +14,7 @@ export default function HomePricingSection(): ReactElement {
         src={pricingDevice}
         alt="Nice Touch Pro plan — pricing overview"
         className="home-pricing-device"
+        data-cable-anchor="pricing-device"
       />
 
       <div className="home-pricing-toggle">

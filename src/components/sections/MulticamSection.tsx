@@ -11,6 +11,7 @@ export default function MulticamSection(): ReactElement {
         src={multicamDevice}
         alt="Nice Touch multicam mode — multi-angle timeline editing"
         className="multicam-device"
+        data-cable-anchor="multicam-device"
       />
     </section>
   )

@@ -60,6 +60,7 @@ export default function DemoSection(): ReactElement {
           src={demoDevice}
           alt="Nice Touch demo — upload, chat, generate"
           className="demo-device"
+          data-cable-anchor="demo-device"
         />
       </div>
     </section>

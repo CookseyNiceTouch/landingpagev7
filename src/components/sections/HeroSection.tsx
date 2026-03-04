@@ -17,6 +17,7 @@ export default function HeroSection(): ReactElement {
         src={heroDevice}
         alt="Nice Touch app — Try Now"
         className="hero-device"
+        data-cable-anchor="hero-device"
       />
     </section>
   )
