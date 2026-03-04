@@ -1,0 +1,52 @@
+/* ==========================================================================
+   Demo Section
+   ========================================================================== */
+
+@layer components {
+
+  .demo-section {
+    --demo-device-max-height: 42rem; /* Adjust this to change image size */
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100dvh;
+    padding-block: clamp(2rem, 4vw, 4rem);
+    gap: clamp(2rem, 8vw, 6rem);
+
+  .demo-feature-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(24px, 2.7vw, 52px);
+
+    @media (min-width: 1024px) {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+    }
+  }
+
+  .demo-feature-infocard {
+    width: 100%;
+    max-width: 340px;
+
+    @media (min-width: 1024px) {
+      max-width: none;
+      justify-self: end;
+    }
+  }
+
+  .demo-device {
+    max-height: var(--demo-device-max-height);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    pointer-events: auto;
+  }
+
+  }
+
+}

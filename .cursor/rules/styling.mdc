@@ -1,69 +1,102 @@
 ---
-description: Tailwind CSS v4 styling conventions for this project
-globs: **/*.tsx
+description: Styling conventions for this project (Tailwind CSS v4 + co-located CSS)
+globs: "**/*.{tsx,css}"
 alwaysApply: false
 ---
 
 # Styling Conventions
 
-## Tailwind CSS v4 Only
+## Architecture
 
-All styles go in Tailwind utility classes on the JSX element. Do not create new `.css` files or `<style>` tags.
+Styles are split across co-located CSS files under `src/styles/`. `src/index.css` is the entry point and contains only three things: `@import` statements, `@theme` design tokens, and `@layer base` resets.
+
+```
+src/
+  index.css                    ← imports, tokens, base resets
+  styles/
+    typography.css             ← @utility type scale (type-display, type-title, etc.)
+    shared.css                 ← reusable component classes (content-column, text-card, section-title)
+    layout/
+      header.css               ← .site-header, .header-* classes
+      footer.css               ← .site-footer, .footer-* classes
+    sections/
+      hero.css                 ← .hero-section, .hero-subtitle, .hero-device
+      demo.css                 ← .demo-section, .demo-* classes
+      multicam.css             ← .multicam-section, .multicam-device
+      workflows.css            ← .workflows-section, .workflows-device
+      pricing.css              ← .pricing-section, .pricing-device
+```
+
+## Adding New Styles
+
+When adding a new section or component:
+1. Create a new `.css` file in the appropriate directory (`sections/`, `layout/`, or top-level `styles/`)
+2. Wrap all classes in `@layer components { ... }`
+3. Add an `@import` for it in `src/index.css`
+4. Use semantic class names that describe **what the element is**, not how it looks
+
+```css
+/* ✅ GOOD — src/styles/sections/testimonials.css */
+@layer components {
+  .testimonials-section { ... }
+  .testimonial-card { ... }
+  .testimonial-quote { ... }
+}
+
+/* ❌ BAD — inline utility soup in JSX */
+<section className="flex flex-col gap-8 px-6 md:px-10 py-20 pointer-events-none">
+```
+
+## When to Use Inline Tailwind Utilities
+
+Tailwind utility classes on JSX are fine for **simple one-off modifiers** that don't warrant a named class:
 
 ```tsx
-// ✅ GOOD
-<div className="flex items-center gap-4 bg-black/20 border border-border rounded-lg p-6">
+// ✅ OK — single-purpose modifiers
+<h1 className="type-display text-center">
+<span className="block">
 
-// ❌ BAD — no new CSS files or inline style objects for layout
-<div style={{ display: 'flex', gap: '16px' }}>
+// ❌ BAD — multi-property layout belongs in a CSS file
+<div className="flex flex-col lg:flex-row items-center justify-center gap-8 px-6 md:px-10">
 ```
+
+Rule of thumb: if you're combining 3+ layout/spacing utilities, create a named class in CSS instead.
+
+## Typography Scale
+
+Defined as `@utility` blocks in `src/styles/typography.css`. Apply as single classes — they include family, size, weight, line-height, tracking, and colour:
+
+| Class | Usage | Element |
+|---|---|---|
+| `type-display` | Hero heading | `<h1>` |
+| `type-title` | Between-section title | `<h2>` |
+| `type-subtitle` | Hero descriptor | `<p>` |
+| `type-body` | Body copy, bullets | `<p>`, `<li>` |
+| `type-card-heading` | Card/section sub-heading | `<h3>` |
+| `para-gap` | Paragraph bottom spacing | Any text element |
 
 ## Design Tokens
 
-Defined in `src/index.css` under `@theme` and available as Tailwind classes:
+Defined in `src/index.css` under `@theme`. Always use tokens rather than raw values:
 
-| Token | Class | Value |
+| Token | Utility class | Value |
 |---|---|---|
-| `--color-pink` | `bg-pink`, `text-pink`, `border-pink` | `#ff008c` |
-| `--color-pink-hover` | `hover:bg-pink-hover` | `#e6007d` |
+| `--color-yellow` | `text-yellow`, `bg-yellow` | `#faff00` |
+| `--color-pink` | `text-pink`, `bg-pink` | `#ff008c` |
 | `--color-cyan` | `text-cyan` | `#2bffed` |
 | `--color-purple` | `text-purple` | `#9b84ff` |
 | `--color-magenta` | `text-magenta` | `#ff00bf` |
 | `--color-bg` | `bg-bg` | `#000000` |
 | `--color-border` | `border-border` | `rgba(255,255,255,0.18)` |
-| `--color-border-light` | `border-border-light` | `rgba(255,255,255,0.08)` |
-
-Always use these tokens rather than raw hex values.
-
-## Fluid/Clamp Sizing
-
-For sizes that should scale between breakpoints, use CSS `clamp()` via arbitrary values:
-
-```tsx
-<h1 className="text-[clamp(32px,2.5vw,48px)]">
-```
+| `--font-heading` | `font-heading` | Hind |
+| `--font-body` | `font-body` | Poppins |
 
 ## Pointer Events
 
-The LiquidEther background sits at `z-index: 0`. Page content is at `z-index: 10`. The layout uses `pointer-events: none` on containers that should pass mouse events through to the background, and `pointer-events: auto` on interactive elements.
+The LiquidEther background sits at `z-index: 0`. Page content is at `z-index: 10`. Section containers use `pointer-events: none` so mouse events pass through to the background. Interactive elements (images, buttons, links) use `pointer-events: auto`.
 
-- Containers/sections that should be transparent to mouse: `pointer-events-none`
-- Buttons, links, inputs, interactive cards: `pointer-events-auto`
+This is handled in the CSS class definitions — you should not need to add these as inline Tailwind utilities.
 
-## Card / Panel Pattern
+## No Inline Style Objects
 
-Consistent border style for cards and floating panels:
-
-```tsx
-<div className="border-2 border-border rounded-lg bg-black/20 p-6">
-```
-
-For highlighted/active cards (e.g. Pro plan), use `border-pink` instead.
-
-## Gradient Text
-
-```tsx
-<span className="bg-gradient-to-r from-cyan via-purple to-magenta bg-clip-text text-transparent">
-  Nice Touch
-</span>
-```
+Do not use React `style={{ }}` props for layout. All layout goes in CSS files.

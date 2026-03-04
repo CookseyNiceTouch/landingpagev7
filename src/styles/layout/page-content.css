@@ -1,0 +1,20 @@
+/* ==========================================================================
+   Page Content — main wrapper for page sections
+   Single source of padding for all content. Adjust here to change layout inset.
+   ========================================================================== */
+
+@layer components {
+
+  .page-content {
+    --page-content-padding-inline: clamp(2rem, 20vw, 12rem);
+
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: relative;
+    z-index: 10;
+    padding-inline: var(--page-content-padding-inline);
+    gap: 0;
+  }
+
+}

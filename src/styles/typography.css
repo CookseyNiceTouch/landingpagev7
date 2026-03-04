@@ -1,0 +1,61 @@
+/* ==========================================================================
+   Typography
+   Simple rem-based scale. One weight for headings (700), one for body (400).
+   ========================================================================== */
+
+/* Hero display — "Assistant video editor" */
+@utility type-display {
+  font-family: var(--font-heading);
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-yellow);
+}
+
+/* Hero subtitle */
+@utility type-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-yellow);
+}
+
+
+/* Section title — "Multicam shouldn't take half your day." */
+@utility type-title {
+  font-family: var(--font-heading);
+  font-size: 6rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-yellow);
+}
+
+
+/* Card/section sub-heading (h3) */
+@utility type-card-heading {
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--color-yellow);
+}
+
+
+/* Body copy and bullets */
+@utility type-body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: white;
+}
+
+
+
+/* Paragraph spacing */
+@utility para-gap {
+  margin-bottom: 1rem;
+}

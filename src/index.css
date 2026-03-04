@@ -1,32 +1,69 @@
+/* ==========================================================================
+   Nice Touch — Entry Point
+   Imports, design tokens, and base resets only.
+   All component/section styles live in src/styles/.
+   ========================================================================== */
+
 @import "tailwindcss";
+@import "./styles/typography.css";
+@import "./styles/shared.css";
+@import "./styles/layout/header.css";
+@import "./styles/layout/footer.css";
+@import "./styles/layout/page-content.css";
+@import "./styles/sections/hero.css";
+@import "./styles/sections/demo.css";
+@import "./styles/sections/multicam.css";
+@import "./styles/sections/workflows.css";
+@import "./styles/sections/pricing.css";
+@import "./styles/sections/home-pricing.css";
+@import "./styles/sections/faq.css";
+@import "./styles/sections/security.css";
+
+
+/* ==========================================================================
+   Design Tokens
+   Registered with Tailwind via @theme so they become utility classes.
+   e.g. text-yellow, bg-pink, font-heading
+   ========================================================================== */
 
 @theme {
-  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* Fonts */
+  --font-sans:    'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Hind', sans-serif;
+  --font-body:    'Poppins', sans-serif;
 
-  --color-bg: #000000;
-  --color-bg-darker: #0a0a0a;
-  --color-pink: #ff008c;
+  /* Brand colours */
+  --color-yellow:     #faff00;
+  --color-pink:       #ff008c;
   --color-pink-hover: #e6007d;
-  --color-cyan: #2bffed;
-  --color-purple: #9b84ff;
-  --color-magenta: #ff00bf;
-  --color-white-70: rgba(255, 255, 255, 0.7);
+  --color-cyan:       #2bffed;
+  --color-purple:     #9b84ff;
+  --color-magenta:    #ff00bf;
+
+  /* Backgrounds */
+  --color-bg:        #000000;
+  --color-bg-darker: #0a0a0a;
+
+  /* White alpha scale */
+  --color-white-70: rgba(255, 255, 255, 0.70);
   --color-white-55: rgba(255, 255, 255, 0.55);
   --color-white-45: rgba(255, 255, 255, 0.45);
-  --color-white-30: rgba(255, 255, 255, 0.3);
+  --color-white-30: rgba(255, 255, 255, 0.30);
   --color-white-18: rgba(255, 255, 255, 0.18);
   --color-white-08: rgba(255, 255, 255, 0.08);
-  --color-border: rgba(255, 255, 255, 0.18);
+
+  /* Borders */
+  --color-border:       rgba(255, 255, 255, 0.18);
   --color-border-light: rgba(255, 255, 255, 0.08);
 }
 
-@layer base {
-  @font-face {
-    font-family: 'Inter';
-    font-display: swap;
-    src: url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-  }
 
+/* ==========================================================================
+   Base / Reset
+   Minimal opinionated resets on top of Tailwind's Preflight.
+   ========================================================================== */
+
+@layer base {
   html {
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
@@ -35,8 +72,6 @@
   }
 
   body {
-    margin: 0;
-    padding: 0;
     min-height: 100vh;
     font-family: var(--font-sans);
     font-weight: 400;
@@ -54,7 +89,8 @@
     text-decoration: none;
   }
 
-  img, video {
+  img,
+  video {
     display: block;
     max-width: 100%;
   }
@@ -66,6 +102,19 @@
     background: none;
     padding: 0;
     margin: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+  }
+
+  ul, ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
   :focus-visible {

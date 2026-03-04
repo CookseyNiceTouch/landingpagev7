@@ -1,32 +1,29 @@
 import type { ReactElement } from 'react'
 import { Outlet } from 'react-router-dom'
-import LiquidEther from '@/backgrounds/LiquidEther'
+import FaultyTerminal from '@/backgrounds/FaultyTerminal'
 import Header from './Header'
 import Footer from './Footer'
 
 export default function Layout(): ReactElement {
   return (
     <div className="relative min-h-screen bg-bg flex flex-col">
-      <LiquidEther
-        colors={['#5227FF', '#FF9FFC', '#B19EEF']}
-        mouseForce={20}
-        cursorSize={100}
-        isViscous={false}
-        viscous={30}
-        iterationsViscous={32}
-        iterationsPoisson={32}
-        resolution={0.5}
-        isBounce={false}
-        autoDemo={true}
-        autoSpeed={0.5}
-        autoIntensity={2.2}
-        takeoverDuration={0.25}
-        autoResumeDelay={3000}
-        autoRampDuration={0.6}
-        style={{ position: 'absolute', inset: 0 }}
+      <FaultyTerminal
+        scale={2.5}
+        digitSize={1.2}
+        scanlineIntensity={0.1}
+        glitchAmount={0.5}
+        flickerAmount={0.5}
+        noiseAmp={1}
+        chromaticAberration={1}
+        dither={0}
+        curvature={0.05}
+        tint="#6f6549"
+        mouseReact
+        mouseStrength={0.5}
+        brightness={0.4}
       />
       <Header />
-      <main className="relative z-10 flex-1 flex flex-col">
+      <main className="page-content">
         <Outlet />
       </main>
       <Footer />

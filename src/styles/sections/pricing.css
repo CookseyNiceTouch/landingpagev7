@@ -1,0 +1,27 @@
+/* ==========================================================================
+   Pricing Section
+   ========================================================================== */
+
+@layer components {
+
+  .pricing-section {
+    --pricing-device-max-height: 30rem; /* Adjust this to change image size */
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100dvh;
+    padding-block: clamp(2rem, 4vw, 4rem);
+  }
+
+  .pricing-device {
+    max-height: var(--pricing-device-max-height);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    margin-inline: auto;
+    pointer-events: auto;
+  }
+
+}
