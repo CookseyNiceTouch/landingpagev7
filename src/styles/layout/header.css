@@ -6,7 +6,7 @@
 
   .site-header {
     position: relative;
-    z-index: 10;
+    z-index: 10001; /* above crt-vignette (10000) and crt-scanlines (9999) */
     display: flex;
     align-items: center;
     justify-content: space-between;

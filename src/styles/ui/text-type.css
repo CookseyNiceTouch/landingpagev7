@@ -1,0 +1,29 @@
+/* ==========================================================================
+   TextType — typing animation component
+   ========================================================================== */
+
+@layer components {
+
+  .text-type {
+    display: inline;
+  }
+
+  .text-type__content {
+    display: inline;
+  }
+
+  .text-type__cursor {
+    display: inline;
+    animation: text-type-blink var(--text-type-blink-duration, 0.5s) ease-in-out infinite;
+  }
+
+  .text-type__cursor--hidden {
+    visibility: hidden;
+  }
+
+  @keyframes text-type-blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+}

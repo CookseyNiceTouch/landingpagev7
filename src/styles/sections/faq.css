@@ -14,6 +14,13 @@
     padding-block: clamp(2rem, 4vw, 4rem);
   }
 
+  .faq-section-title {
+    width: 100%;
+    max-width: 860px;
+    margin: 0 0 clamp(2rem, 4vw, 3rem);
+    text-align: center;
+  }
+
   .faq-list {
     width: 100%;
     max-width: 860px;

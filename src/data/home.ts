@@ -10,14 +10,29 @@ export const HERO = {
     'turns interviews, documentaries and long-form footage into structured rough cuts in minutes\n— inside Premiere and DaVinci.',
 } as const
 
-export const DEMO_FEATURE: InfocardContent = {
-  heading: 'Analyze',
-  body: [
-    'Upload footage.',
-    'Extract transcript.',
-    'Identify speakers and themes.',
-  ].join('\n\n'),
-}
+export const DEMO_STEPS: InfocardContent[] = [
+  {
+    heading: 'Analyse',
+    body: [
+      'Upload footage.',
+      'Extract transcript.',
+      'Identify speakers and themes.',
+    ].join('\n\n'),
+  },
+  {
+    heading: 'Explore',
+    body: [
+      'Chat with your footage.',
+      'Find topics.',
+      'Isolate speakers.',
+      'Test narratives.',
+    ].join('\n\n'),
+  },
+  {
+    heading: 'Rough Cut',
+    body: 'Generate structured timeline edits in minutes.',
+  },
+]
 
 export interface FaqItem {
   question: string

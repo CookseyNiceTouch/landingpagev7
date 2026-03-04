@@ -20,7 +20,6 @@ export default function Home(): ReactElement {
       <WorkflowsSection />
       <SectionTitle>{SECTION_TITLES.pricing}</SectionTitle>
       <HomePricingSection />
-      <SectionTitle>{SECTION_TITLES.faq}</SectionTitle>
       <FaqSection />
       <SectionTitle>{SECTION_TITLES.security}</SectionTitle>
       <SecuritySection />

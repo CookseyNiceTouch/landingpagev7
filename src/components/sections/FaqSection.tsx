@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
 import type { ReactElement } from 'react'
-import { FAQ_ITEMS } from '@/data/home'
+import { FAQ_ITEMS, SECTION_TITLES } from '@/data/home'
 
 export default function FaqSection(): ReactElement {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
@@ -11,6 +11,7 @@ export default function FaqSection(): ReactElement {
 
   return (
     <section className="faq-section">
+      <h2 className="faq-section-title type-title">{SECTION_TITLES.faq}</h2>
       <dl className="faq-list">
         {FAQ_ITEMS.map((item, i) => {
           const isOpen = openIndex === i
