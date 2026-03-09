@@ -30,75 +30,99 @@ export interface Plan {
   features: PlanFeature[]
 }
 
+export interface AddOnPack {
+  name: string
+  generations: number
+  audioHours: number
+  pricing: {
+    pro: { gbp: number; usd: number }
+    ultra: { gbp: number; usd: number }
+  }
+}
+
 const integrationIcons = [
   { src: premiereProIcon, alt: 'Adobe Premiere Pro' },
   { src: davinciResolveIcon, alt: 'DaVinci Resolve' },
 ]
 
 const CHECKOUT_LINKS = {
-  basic: {
-    gbp: {
-      monthly: 'https://buy.stripe.com/14A7sL639eyT79J5j27Zu04',
-      annual: 'https://buy.stripe.com/bJe7sLfDJ76rbpZ6n67Zu03',
-    },
-    usd: {
-      monthly: 'https://buy.stripe.com/14A7sL639eyT79J5j27Zu04',
-      annual: 'https://buy.stripe.com/bJe7sLfDJ76rbpZ6n67Zu03',
-    },
+  hobbyist: {
+    gbp: { monthly: '#', annual: '#' },
+    usd: { monthly: '#', annual: '#' },
   },
   pro: {
-    gbp: {
-      monthly: 'https://buy.stripe.com/6oU6oH3V11M7alV26Q7Zu01',
-      annual: 'https://buy.stripe.com/9B6fZh0IPfCX79J6n67Zu02',
-    },
-    usd: {
-      monthly: 'https://buy.stripe.com/6oU6oH3V11M7alV26Q7Zu01',
-      annual: 'https://buy.stripe.com/9B6fZh0IPfCX79J6n67Zu02',
-    },
+    gbp: { monthly: '#', annual: '#' },
+    usd: { monthly: '#', annual: '#' },
+  },
+  ultra: {
+    gbp: { monthly: '#', annual: '#' },
+    usd: { monthly: '#', annual: '#' },
   },
 } as const
 
 export const PLANS: Plan[] = [
   {
-    name: 'Basic',
-    tagline: 'Trying Nice Touch on a real job',
+    name: 'Hobbyist',
+    tagline: 'Get started with Nice Touch',
     highlighted: false,
     pricing: {
-      gbp: { monthly: 25, annual: 250 },
-      usd: { monthly: 30, annual: 300 },
+      gbp: { monthly: 15, annual: 144 },
+      usd: { monthly: 19, annual: 182.40 },
     },
     links: {
-      gbp: CHECKOUT_LINKS.basic.gbp,
-      usd: CHECKOUT_LINKS.basic.usd,
+      gbp: CHECKOUT_LINKS.hobbyist.gbp,
+      usd: CHECKOUT_LINKS.hobbyist.usd,
     },
     features: [
-      { label: 'Users', value: '1 user' },
-      { label: 'Projects', value: '2' },
-      { label: 'Footage analysis / processing', value: '1 hour' },
-      { label: 'Edit generations', value: '25 per month' },
+      { label: 'Projects', value: '10' },
       { label: 'Multicam', value: 'Not included' },
+      { label: 'Priority Analysis & Edit Gen', value: 'Not included' },
+      { label: 'Audio Analysis Cap', value: '2 hours' },
+      { label: 'Edit Generations', value: '20 / month' },
       { label: 'Integrations', icons: integrationIcons },
       { label: 'Support', value: 'Standard' },
     ],
   },
   {
     name: 'Pro',
-    tagline: 'Professional editors and teams',
+    tagline: 'For professional editors and teams',
     highlighted: true,
     pricing: {
-      gbp: { monthly: 250, annual: 2500 },
-      usd: { monthly: 300, annual: 3000 },
+      gbp: { monthly: 50, annual: 480 },
+      usd: { monthly: 65, annual: 624 },
     },
     links: {
       gbp: CHECKOUT_LINKS.pro.gbp,
       usd: CHECKOUT_LINKS.pro.usd,
     },
     features: [
-      { label: 'Users', value: 'Per user (seats)' },
       { label: 'Projects', value: 'Unlimited' },
-      { label: 'Footage analysis / processing', value: '25 hours' },
-      { label: 'Edit generations', value: '250 per month' },
       { label: 'Multicam', value: 'Included' },
+      { label: 'Priority Analysis & Edit Gen', value: 'Not included' },
+      { label: 'Audio Analysis Cap', value: '5 hours' },
+      { label: 'Edit Generations', value: '60 / month' },
+      { label: 'Integrations', icons: integrationIcons },
+      { label: 'Support', value: 'Standard' },
+    ],
+  },
+  {
+    name: 'Ultra',
+    tagline: 'Maximum power and priority access',
+    highlighted: false,
+    pricing: {
+      gbp: { monthly: 250, annual: 2400 },
+      usd: { monthly: 320, annual: 3072 },
+    },
+    links: {
+      gbp: CHECKOUT_LINKS.ultra.gbp,
+      usd: CHECKOUT_LINKS.ultra.usd,
+    },
+    features: [
+      { label: 'Projects', value: 'Unlimited' },
+      { label: 'Multicam', value: 'Included' },
+      { label: 'Priority Analysis & Edit Gen', value: 'Included' },
+      { label: 'Audio Analysis Cap', value: '25 hours' },
+      { label: 'Edit Generations', value: '400 / month' },
       { label: 'Integrations', icons: integrationIcons },
       { label: 'Support', value: 'Priority' },
     ],
@@ -109,14 +133,44 @@ export const PLANS: Plan[] = [
     highlighted: false,
     contactUs: true,
     features: [
-      { label: 'Users', value: 'Custom' },
       { label: 'Projects', value: 'Unlimited' },
-      { label: 'Footage analysis / processing', value: 'Custom' },
-      { label: 'Edit generations', value: 'Custom' },
       { label: 'Multicam', value: 'Included' },
+      { label: 'Priority Analysis & Edit Gen', value: 'Included' },
+      { label: 'Audio Analysis Cap', value: 'Custom' },
+      { label: 'Edit Generations', value: 'Custom' },
       { label: 'Integrations', icons: integrationIcons, value: '+ Custom' },
       { label: 'Support', value: 'Priority + onboarding' },
     ],
+  },
+]
+
+export const ADD_ON_PACKS: AddOnPack[] = [
+  {
+    name: 'S',
+    generations: 25,
+    audioHours: 2,
+    pricing: {
+      pro: { gbp: 30, usd: 39 },
+      ultra: { gbp: 22, usd: 28 },
+    },
+  },
+  {
+    name: 'M',
+    generations: 100,
+    audioHours: 10,
+    pricing: {
+      pro: { gbp: 110, usd: 139 },
+      ultra: { gbp: 82, usd: 105 },
+    },
+  },
+  {
+    name: 'L',
+    generations: 250,
+    audioHours: 25,
+    pricing: {
+      pro: { gbp: 260, usd: 329 },
+      ultra: { gbp: 195, usd: 249 },
+    },
   },
 ]
 
