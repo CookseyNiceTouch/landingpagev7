@@ -1,40 +1,12 @@
 import { useState, useMemo } from 'react'
 import type { ReactElement } from 'react'
-import { PLANS, ADD_ON_PACKS, detectCurrency, formatPrice } from '@/data/pricing'
+import { PLANS, ADD_ON_PACKS, detectCurrency, formatPrice, featureValueClass, ultraVsProSavingPerGen } from '@/data/pricing'
 import type { Interval, Currency, AddOnPack } from '@/data/pricing'
-
-// Positive feature values get pink; absent ones are dimmed.
-function featureValueClass(value: string | undefined): string {
-  if (!value) return 'text-white'
-  if (value === 'Not included') return 'text-white/35'
-  if (value === 'Included' || value === 'Unlimited' || value === 'Priority' || value === 'Priority + onboarding') return 'text-pink'
-  return 'text-white'
-}
 
 function savingsPercent(pack: AddOnPack, currency: Currency): number {
   const pro = pack.pricing.pro[currency]
   const ultra = pack.pricing.ultra[currency]
   return Math.round(((pro - ultra) / pro) * 100)
-}
-
-function parseGenerations(planName: string): number {
-  const plan = PLANS.find(p => p.name === planName)
-  const feature = plan?.features.find(f => f.label === 'Edit Generations')
-  const match = feature?.value?.match(/\d+/)
-  return match ? parseInt(match[0], 10) : 0
-}
-
-function ultraVsProSavingPerGen(currency: Currency): number {
-  const proPlan = PLANS.find(p => p.name === 'Pro')
-  const ultraPlan = PLANS.find(p => p.name === 'Ultra')
-  const proGens = parseGenerations('Pro')
-  const ultraGens = parseGenerations('Ultra')
-  const proPrice = proPlan?.pricing?.[currency].monthly ?? 0
-  const ultraPrice = ultraPlan?.pricing?.[currency].monthly ?? 0
-  if (!proGens || !ultraGens || !proPrice || !ultraPrice) return 0
-  const proCostPerGen = proPrice / proGens
-  const ultraCostPerGen = ultraPrice / ultraGens
-  return Math.round(((proCostPerGen - ultraCostPerGen) / proCostPerGen) * 100)
 }
 
 export default function Pricing(): ReactElement {

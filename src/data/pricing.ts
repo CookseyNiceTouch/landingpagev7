@@ -174,6 +174,38 @@ export const ADD_ON_PACKS: AddOnPack[] = [
   },
 ]
 
+export function featureValueClass(value: string | undefined): string {
+  if (!value) return 'text-white'
+  if (value === 'Not included') return 'text-white/35'
+  if (
+    value === 'Included' ||
+    value === 'Unlimited' ||
+    value === 'Priority' ||
+    value === 'Priority + onboarding'
+  ) return 'text-pink'
+  return 'text-white'
+}
+
+export function parseGenerations(planName: string): number {
+  const plan = PLANS.find(p => p.name === planName)
+  const feature = plan?.features.find(f => f.label === 'Edit Generations')
+  const match = feature?.value?.match(/\d+/)
+  return match ? parseInt(match[0], 10) : 0
+}
+
+export function ultraVsProSavingPerGen(currency: Currency): number {
+  const proPlan = PLANS.find(p => p.name === 'Pro')
+  const ultraPlan = PLANS.find(p => p.name === 'Ultra')
+  const proGens = parseGenerations('Pro')
+  const ultraGens = parseGenerations('Ultra')
+  const proPrice = proPlan?.pricing?.[currency].monthly ?? 0
+  const ultraPrice = ultraPlan?.pricing?.[currency].monthly ?? 0
+  if (!proGens || !ultraGens || !proPrice || !ultraPrice) return 0
+  const proCostPerGen = proPrice / proGens
+  const ultraCostPerGen = ultraPrice / ultraGens
+  return Math.round(((proCostPerGen - ultraCostPerGen) / proCostPerGen) * 100)
+}
+
 export function detectCurrency(): Currency {
   try {
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone
