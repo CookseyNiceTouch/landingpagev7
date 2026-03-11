@@ -78,7 +78,7 @@ export default function TextType({
           if (entry.isIntersecting) setIsVisible(true)
         })
       },
-      { threshold: 0.1 },
+      { threshold: 0, rootMargin: '0px 0px -42% 0px' },
     )
     observer.observe(containerRef.current)
     return () => observer.disconnect()

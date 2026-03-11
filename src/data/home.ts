@@ -5,32 +5,27 @@ export interface InfocardContent {
 }
 
 export const HERO = {
-  headingLines: ['Assistant video editor'],
+  headingLines: ['Your AI edit assistant'],
   subtitle:
-    'turns interviews, documentaries and long-form footage into structured rough cuts in minutes\n— inside Premiere and DaVinci.',
+    'Nice Touch helps post-production teams move faster by reducing repetitive workflow effort, accelerating rough cuts, and keeping assistance inside the tools teams already use.',
 } as const
 
 export const DEMO_STEPS: InfocardContent[] = [
   {
-    heading: 'Analyse',
-    body: [
-      'Upload footage.',
-      'Extract transcript.',
-      'Identify speakers and themes.',
-    ].join('\n\n'),
+    heading: 'Bring in your context',
+    body: 'Upload briefs, transcripts, notes, and reference links. Nice Touch builds a usable project memory that the AI assistant draws on throughout the edit.',
   },
   {
-    heading: 'Explore',
-    body: [
-      'Chat with your footage.',
-      'Find topics.',
-      'Isolate speakers.',
-      'Test narratives.',
-    ].join('\n\n'),
+    heading: 'Analyse your footage',
+    body: 'Audio is transcribed with word-level accuracy, giving the assistant a detailed map of every spoken moment in your footage.',
   },
   {
-    heading: 'Rough Cut',
-    body: 'Generate structured timeline edits in minutes.',
+    heading: 'Work with the AI assistant',
+    body: 'Ask the assistant to find moments, build a rough cut, restructure a sequence, or handle a specific edit task. Actions execute directly inside Resolve or Premiere.',
+  },
+  {
+    heading: 'Review and refine',
+    body: 'The AI builds on your brief and your footage, not a blank template. Every edit can be reviewed, adjusted, and refined. The editor stays in control throughout.',
   },
 ]
 
@@ -102,7 +97,7 @@ export const MULTICAM_CARD: InfocardContent = {
 export const WORKFLOWS_CARD: InfocardContent = {
   heading: 'Built for the stories that matter.',
   body: [
-    'Multiple cameras. Multiple speakers. One conversation.',
-    "Nice Touch analyses synced multicam footage as a single narrative. It tracks who\u2019s speaking, identifies key moments, and builds structure across every angle.",
+    'Nice Touch understands your full project context — briefs, transcripts, and timeline data — and can take real actions inside the edit.',
+    'Execute editing operations directly inside Resolve or Premiere without leaving the Nice Touch interface. The result is faster rough cuts, less repetitive timeline work, and more creative time for the people doing it.',
   ].join('\n\n'),
 }

@@ -10,7 +10,15 @@
 @layer components {
 
   .page-content {
-    --page-content-padding-inline: clamp(2rem, 20vw, 12rem);
+    --page-content-padding-inline: 1.5rem;
+
+    @media (min-width: 640px) {
+      --page-content-padding-inline: 2.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      --page-content-padding-inline: 4rem;
+    }
 
     display: flex;
     flex-direction: column;

@@ -1,10 +1,13 @@
 import type { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import { SOCIAL_LINKS, CONTACT_EMAIL } from '@/data/social'
-import { NAV_LINKS } from '@/data/navigation'
+import { NAV_ITEMS, isNavGroup } from '@/data/navigation'
 
 export default function Footer(): ReactElement {
   const year = new Date().getFullYear()
+
+  const productLinks = NAV_ITEMS.find((item) => isNavGroup(item) && item.label === 'Product')
+  const companyLinks = NAV_ITEMS.find((item) => isNavGroup(item) && item.label === 'Company')
 
   return (
     <footer className="site-footer">
@@ -19,14 +22,30 @@ export default function Footer(): ReactElement {
           </div>
 
           <div className="footer-link-columns">
-            <div className="footer-link-column">
-              <span className="footer-column-heading">Product</span>
-              {NAV_LINKS.map((link) => (
-                <Link key={link.href} to={link.href} className="footer-link">
-                  {link.label}
-                </Link>
-              ))}
-            </div>
+            {productLinks && isNavGroup(productLinks) && (
+              <div className="footer-link-column">
+                <span className="footer-column-heading">Product</span>
+                {productLinks.children.map((link) => (
+                  <Link key={link.href} to={link.href} className="footer-link">
+                    {link.label}
+                  </Link>
+                ))}
+                <Link to="/pricing" className="footer-link">Pricing</Link>
+                <Link to="/download" className="footer-link">Download</Link>
+              </div>
+            )}
+
+            {companyLinks && isNavGroup(companyLinks) && (
+              <div className="footer-link-column">
+                <span className="footer-column-heading">Company</span>
+                {companyLinks.children.map((link) => (
+                  <Link key={link.href} to={link.href} className="footer-link">
+                    {link.label}
+                  </Link>
+                ))}
+                <Link to="/newsletter" className="footer-link">Newsletter</Link>
+              </div>
+            )}
 
             <div className="footer-link-column">
               <span className="footer-column-heading">Connect</span>

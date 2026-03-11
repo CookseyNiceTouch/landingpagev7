@@ -1,9 +1,15 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Layout from '@/components/layout/Layout'
 import Home from '@/pages/Home'
+import Features from '@/pages/Features'
+import MulticamPage from '@/pages/MulticamPage'
+import Integrations from '@/pages/Integrations'
+import UseCases from '@/pages/UseCases'
+import About from '@/pages/About'
+import Security from '@/pages/Security'
+import Pricing from '@/pages/Pricing'
 import Download from '@/pages/Download'
 import Newsletter from '@/pages/Newsletter'
-import Pricing from '@/pages/Pricing'
 import NotFound from '@/pages/NotFound'
 
 export default function App() {
@@ -12,9 +18,15 @@ export default function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/multicam" element={<MulticamPage />} />
+          <Route path="/integrations" element={<Integrations />} />
+          <Route path="/use-cases" element={<UseCases />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/security" element={<Security />} />
+          <Route path="/pricing" element={<Pricing />} />
           <Route path="/download" element={<Download />} />
           <Route path="/newsletter" element={<Newsletter />} />
-          <Route path="/pricing" element={<Pricing />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

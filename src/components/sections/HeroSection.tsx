@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react'
 import { HERO } from '@/data/home'
-import heroDevice from '@/assets/images/devices/try-now.png'
+import Button from '@/components/ui/Button'
 
 export default function HeroSection(): ReactElement {
   return (
@@ -13,12 +13,14 @@ export default function HeroSection(): ReactElement {
 
       <p className="type-subtitle hero-subtitle">{HERO.subtitle}</p>
 
-      <img
-        src={heroDevice}
-        alt="Nice Touch app — Try Now"
-        className="hero-device"
-        data-cable-anchor="hero-device"
-      />
+      <div className="hero-cta-row">
+        <Button as="a" href="/features" variant="primary" size="lg">
+          See How It Works
+        </Button>
+        <Button as="a" href="/pricing" variant="secondary" size="lg">
+          View Pricing
+        </Button>
+      </div>
     </section>
   )
 }

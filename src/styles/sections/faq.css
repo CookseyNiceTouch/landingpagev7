@@ -10,15 +10,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100dvh;
-    padding-block: clamp(2rem, 4vw, 4rem);
-  }
-
-  .faq-section-title {
-    width: 100%;
-    max-width: 860px;
-    margin: 0 0 clamp(2rem, 4vw, 3rem);
-    text-align: center;
+    padding-block: 0 14rem;
   }
 
   .faq-list {
@@ -39,11 +31,11 @@
     justify-content: space-between;
     width: 100%;
     gap: 1rem;
-    padding-block: clamp(1rem, 2vw, 1.5rem);
+    padding-block: 1.25rem;
     text-align: left;
     cursor: pointer;
     font-family: var(--font-body);
-    font-size: clamp(1rem, 1.2vw, 1.25rem);
+    font-size: 1.125rem;
     font-weight: 600;
     color: white;
     transition: color 0.15s ease;
@@ -76,7 +68,7 @@
   .faq-answer-text {
     overflow: hidden;
     font-family: var(--font-body);
-    font-size: clamp(0.875rem, 1vw, 1rem);
+    font-size: 0.9375rem;
     color: var(--color-white-70);
     line-height: 1.6;
     padding-bottom: 0;
@@ -89,7 +81,7 @@
   }
 
   .faq-item.is-open .faq-answer-text {
-    padding-bottom: clamp(1rem, 2vw, 1.5rem);
+    padding-bottom: 1.25rem;
   }
 
 }

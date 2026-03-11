@@ -5,23 +5,13 @@
 @layer components {
 
   .home-pricing-section {
-    --home-pricing-device-max-height: 24rem;
     pointer-events: none;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100dvh;
-    padding-block: clamp(2rem, 4vw, 4rem);
-    gap: clamp(2rem, 4vw, 4rem);
-  }
-
-  .home-pricing-device {
-    max-height: var(--home-pricing-device-max-height);
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    pointer-events: auto;
+    padding-block: 0 14rem;
+    gap: 2.5rem;
   }
 
 }

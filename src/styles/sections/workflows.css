@@ -5,41 +5,23 @@
 @layer components {
 
   .workflows-section {
-    --workflows-device-max-height: 32rem; /* Adjust this to change image size */
     pointer-events: none;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100dvh;
-    padding-block: clamp(2rem, 4vw, 4rem);
-    gap: clamp(24px, 4.7vw, 90px);
-
-    @media (min-width: 1024px) {
-      flex-direction: row;
-    }
+    padding-block: 0 14rem;
+    gap: 2rem;
   }
 
   .workflows-section .content-column {
     width: 100%;
-    max-width: 340px;
-
-    @media (min-width: 1024px) {
-      max-width: none;
-      flex: 1 1 auto;
-    }
+    max-width: 44rem;
+    text-align: center;
   }
 
-  .workflows-device {
-    max-height: var(--workflows-device-max-height);
-    width: auto;
-    height: auto;
-    object-fit: contain;
+  .workflows-cta {
     pointer-events: auto;
-
-    @media (min-width: 1024px) {
-      flex-shrink: 0;
-    }
   }
 
 }

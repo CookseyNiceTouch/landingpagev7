@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
 import type { ReactElement } from 'react'
+import SEO from '@/components/ui/SEO'
 import { PLANS, ADD_ON_PACKS, detectCurrency, formatPrice, featureValueClass, ultraVsProSavingPerGen } from '@/data/pricing'
 import type { Interval, Currency, AddOnPack } from '@/data/pricing'
 
@@ -16,6 +17,11 @@ export default function Pricing(): ReactElement {
 
   return (
     <div className="flex-1 flex flex-col items-center gap-[clamp(40px,5vw,72px)] p-[clamp(24px,4vw,96px)] px-[clamp(40px,8vw,160px)] pointer-events-none overflow-y-auto">
+      <SEO
+        title="Pricing"
+        description="Simple, transparent pricing for Nice Touch. Plans for individual creators through to enterprise teams, with monthly and annual options."
+        path="/pricing"
+      />
       {/* Interval Toggle */}
       <div className="flex flex-col items-center gap-3 pointer-events-auto">
         <div className="flex rounded-full border-2 border-border overflow-hidden">

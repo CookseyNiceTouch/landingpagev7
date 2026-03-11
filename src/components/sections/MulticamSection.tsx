@@ -1,18 +1,17 @@
 import type { ReactElement } from 'react'
 import { MULTICAM_CARD } from '@/data/home'
 import Infocard from '@/components/ui/Infocard'
-import multicamDevice from '@/assets/images/devices/multicam.png'
+import Button from '@/components/ui/Button'
 
 export default function MulticamSection(): ReactElement {
   return (
     <section className="multicam-section">
       <Infocard content={MULTICAM_CARD} className="content-column" />
-      <img
-        src={multicamDevice}
-        alt="Nice Touch multicam mode — multi-angle timeline editing"
-        className="multicam-device"
-        data-cable-anchor="multicam-device"
-      />
+      <div className="multicam-cta">
+        <Button as="a" href="/multicam" variant="secondary" size="md">
+          Learn more about multicam
+        </Button>
+      </div>
     </section>
   )
 }

@@ -2,7 +2,6 @@ import { useState, useMemo } from 'react'
 import type { ReactElement } from 'react'
 import { PLANS, detectCurrency, formatPrice, featureValueClass, ultraVsProSavingPerGen } from '@/data/pricing'
 import type { Interval } from '@/data/pricing'
-import pricingDevice from '@/assets/images/devices/pricing.png'
 
 export default function HomePricingSection(): ReactElement {
   const currency = useMemo(() => detectCurrency(), [])
@@ -11,13 +10,6 @@ export default function HomePricingSection(): ReactElement {
 
   return (
     <section className="home-pricing-section">
-      <img
-        src={pricingDevice}
-        alt="Nice Touch Pro plan — pricing overview"
-        className="home-pricing-device"
-        data-cable-anchor="pricing-device"
-      />
-
       {/* Interval Toggle */}
       <div className="flex flex-col items-center gap-3 pointer-events-auto">
         <div className="flex rounded-full border-2 border-border overflow-hidden">

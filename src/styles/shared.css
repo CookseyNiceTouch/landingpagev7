@@ -10,14 +10,16 @@
     width: 100%;
 
     @media (min-width: 1024px) {
-      width: clamp(360px, 37vw, 717px);
+      width: min(100%, 44rem);
     }
   }
 
-  /* Section Title component wrapper */
+  /* Section Title component wrapper
+     14rem above pulls the title well below the previous section's fold;
+     4rem below gives a clean gap between the title and its section content. */
   .section-title-wrapper {
     pointer-events: none;
-    padding-block: clamp(3rem, 6vw, 6rem);
+    padding-block: 14rem 4rem;
   }
 
   /* Inner container that stacks ghost + typed text */
@@ -56,7 +58,7 @@
   }
 
   .infocard-list-item {
-    margin-bottom: clamp(16px, 1.9vw, 36px);
+    margin-bottom: 1.5rem;
   }
 
   .infocard-list-item:last-child {

@@ -20,6 +20,8 @@
 @import "./styles/sections/faq.css";
 @import "./styles/sections/security.css";
 @import "./styles/ui/text-type.css";
+@import "./styles/ui/fade-in.css";
+@import "./styles/sections/content-page.css";
 
 
 /* ==========================================================================

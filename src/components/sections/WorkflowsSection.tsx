@@ -1,18 +1,17 @@
 import type { ReactElement } from 'react'
 import { WORKFLOWS_CARD } from '@/data/home'
 import Infocard from '@/components/ui/Infocard'
-import workflowsDevice from '@/assets/images/devices/workflows.png'
+import Button from '@/components/ui/Button'
 
 export default function WorkflowsSection(): ReactElement {
   return (
     <section className="workflows-section">
-      <img
-        src={workflowsDevice}
-        alt="Nice Touch workflows — corporate interviews, documentary, podcasts, social cutdowns"
-        className="workflows-device"
-        data-cable-anchor="workflows-device"
-      />
       <Infocard content={WORKFLOWS_CARD} className="content-column" />
+      <div className="workflows-cta">
+        <Button as="a" href="/features" variant="secondary" size="md">
+          Explore all features
+        </Button>
+      </div>
     </section>
   )
 }
