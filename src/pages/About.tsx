@@ -6,8 +6,6 @@ import Button from '@/components/ui/Button'
 import {
   ABOUT_HERO,
   TEAM,
-  MISSION,
-  STRATEGIC_DIRECTION,
   NOT_LIST,
 } from '@/data/about'
 
