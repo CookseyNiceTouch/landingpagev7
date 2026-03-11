@@ -11,13 +11,33 @@
     align-items: center;
     justify-content: center;
     padding-block: 0 14rem;
+  }
+
+  /* Two-column layout: copy left, image right */
+  .multicam-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    width: 100%;
+    max-width: 72rem;
+    align-items: center;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+    }
+  }
+
+  .multicam-copy {
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
   }
 
-  .multicam-section .content-column {
-    width: 100%;
-    max-width: 44rem;
-    text-align: center;
+  .multicam-image-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .multicam-cta {

@@ -40,6 +40,15 @@
     inset: 0;
   }
 
+  /* Shared illustration image — used in multicam, security, etc. */
+  .section-illustration {
+    width: 100%;
+    max-width: 36rem;
+    height: auto;
+    display: block;
+    mix-blend-mode: screen;
+  }
+
   /* Infocard — heading + body (single paragraph or bullet list) */
   .infocard {
     display: flex;

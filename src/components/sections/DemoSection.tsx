@@ -2,10 +2,19 @@ import type { ReactElement } from 'react'
 import { DEMO_STEPS } from '@/data/home'
 import FadeIn from '@/components/ui/FadeIn'
 import PixelCard from '@/components/ui/PixelCard'
+import editIllustration from '@/assets/images/illustrations/edit.png'
 
 export default function DemoSection(): ReactElement {
   return (
     <section className="demo-section">
+      <FadeIn>
+        <img
+          src={editIllustration}
+          alt=""
+          className="demo-illustration"
+          aria-hidden="true"
+        />
+      </FadeIn>
       <h2 className="type-card-heading demo-section-heading">How it works</h2>
       <div className="demo-grid">
         {DEMO_STEPS.map((step, i) => (

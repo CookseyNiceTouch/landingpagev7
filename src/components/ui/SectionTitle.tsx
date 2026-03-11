@@ -15,7 +15,7 @@ export default function SectionTitle({
       <div className="section-title-inner">
         {/* Ghost: invisible copy that always holds the final rendered height */}
         <h2 className="type-title section-title-ghost" aria-hidden="true">
-          {children}
+          <span className="section-title-highlight">{children}</span>
         </h2>
 
         {/* Typed text sits on top via position:absolute */}

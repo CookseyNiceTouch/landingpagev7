@@ -1,0 +1,91 @@
+/* ==========================================================================
+   Hero Image — fade-in + chromatic aberration
+   ========================================================================== */
+
+/* ── Wrapper ─────────────────────────────────────────────────────────────── */
+
+.hero-img-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 48rem;
+  pointer-events: auto;
+  isolation: isolate;
+  animation: hero-fade-in 1.1s ease-out both;
+}
+
+/* ── Images ──────────────────────────────────────────────────────────────── */
+
+.hero-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: screen;
+}
+
+.hero-img--base {
+  position: relative;
+  z-index: 1;
+}
+
+/* Colour channel layers sit on top of the base.
+   Translate is driven by CSS custom properties set from pointermove.
+   ─────────────────────────────────────────────────────────────────────────
+   CHROMATIC ABERRATION CONTROLS
+   ─────────────────────────────────────────────────────────────────────────
+   opacity      → how bright/visible the fringing is  (0 = off, 1 = very strong)
+   transition   → how quickly the layers chase the cursor  (lower = snappier)
+   ─────────────────────────────────────────────────────────────────────────── */
+.hero-img--r,
+.hero-img--g,
+.hero-img--b {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0.5;                         /* ← fringing brightness */
+  transition: translate 200ms ease-out; /* ← cursor chase speed  */
+}
+
+.hero-img--r {
+  mix-blend-mode: screen;
+  filter: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><filter id='r'><feColorMatrix type='matrix' values='1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/></filter></svg>#r");
+  translate: var(--ab-rx) var(--ab-ry);
+}
+
+.hero-img--g {
+  mix-blend-mode: screen;
+  filter: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><filter id='g'><feColorMatrix type='matrix' values='0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0'/></filter></svg>#g");
+  translate: var(--ab-gx) var(--ab-gy);
+}
+
+.hero-img--b {
+  mix-blend-mode: screen;
+  filter: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><filter id='b'><feColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0'/></filter></svg>#b");
+  translate: var(--ab-bx) var(--ab-by);
+}
+
+/* ── Keyframes ───────────────────────────────────────────────────────────── */
+
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-img-wrap {
+    animation: none;
+    opacity: 1;
+  }
+  .hero-img--r,
+  .hero-img--g,
+  .hero-img--b {
+    translate: 0 0;
+    transition: none;
+  }
+}

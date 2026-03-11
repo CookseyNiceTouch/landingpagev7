@@ -14,6 +14,14 @@
     gap: 3rem;
   }
 
+  .demo-illustration {
+    width: 100%;
+    max-width: 44rem;
+    height: auto;
+    display: block;
+    mix-blend-mode: screen;
+  }
+
   .demo-section-heading {
     text-align: center;
     color: var(--color-yellow);
