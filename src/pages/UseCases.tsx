@@ -3,7 +3,7 @@ import SEO from '@/components/ui/SEO'
 import FadeIn from '@/components/ui/FadeIn'
 import PixelCard from '@/components/ui/PixelCard'
 import Button from '@/components/ui/Button'
-import { USE_CASES_HERO, USE_CASES, BUYING_MOTION } from '@/data/use-cases'
+import { USE_CASES_HERO, USE_CASES} from '@/data/use-cases'
 
 export default function UseCases(): ReactElement {
   return (
