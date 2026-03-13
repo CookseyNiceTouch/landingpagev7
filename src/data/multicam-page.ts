@@ -32,5 +32,26 @@ export const MULTICAM_CAPABILITIES: MulticamCapability[] = [
   },
 ]
 
-export const MULTICAM_RESULT =
-  'The most time-consuming part of multicam work — the first-pass listen and rough assembly — can be accelerated significantly without forcing editors out of their established NLE setup.'
+export interface MulticamPainQuote {
+  quote: string
+  role: string
+  company: string
+}
+
+export const MULTICAM_PAIN_QUOTES: MulticamPainQuote[] = [
+  {
+    quote: "We come back from a shoot with eight camera angles and four recorder tracks. Just deciding which audio to cut against used to take most of the first day.",
+    role: 'Editor',
+    company: 'Documentary Production',
+  },
+  {
+    quote: "The part no one talks about is the first listen — going through every angle, every take, just to understand what you have. It can be days before you've even touched the timeline.",
+    role: 'Senior Editor',
+    company: 'Broadcast & Live Events',
+  },
+  {
+    quote: "Syncing multicam in Resolve is fine when it works. But the moment something's off — wrong timecode, dropped frames, a second unit that went rogue — you're in for hours of manual fixing.",
+    role: 'Post Production Supervisor',
+    company: 'Reality & Factual TV',
+  },
+]

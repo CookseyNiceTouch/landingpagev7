@@ -3,7 +3,7 @@ import SEO from '@/components/ui/SEO'
 import FadeIn from '@/components/ui/FadeIn'
 import PixelCard from '@/components/ui/PixelCard'
 import Button from '@/components/ui/Button'
-import { SECURITY_HERO, SECURITY_POINTS, TECH_OVERVIEW } from '@/data/security'
+import { SECURITY_HERO, SECURITY_POINTS, TECH_ARCHITECTURE } from '@/data/security'
 
 export default function Security(): ReactElement {
   return (
@@ -40,18 +40,28 @@ export default function Security(): ReactElement {
 
       <section className="content-block">
         <FadeIn>
-          <h2 className="content-block-heading">{TECH_OVERVIEW.heading}</h2>
+          <h2 className="content-block-heading">Technical architecture</h2>
         </FadeIn>
-        <FadeIn delay={80}>
-          <div className="tech-table">
-            {TECH_OVERVIEW.items.map((item) => (
-              <div key={item.label} className="tech-row">
-                <span className="tech-label">{item.label}</span>
-                <span className="tech-value">{item.value}</span>
+        <div className="arch-grid">
+          {TECH_ARCHITECTURE.map((layer, i) => (
+            <FadeIn key={layer.index} delay={i * 100}>
+              <div className="arch-card">
+                <div className="arch-card-header">
+                  <span className="arch-index">{layer.index}</span>
+                  <span className="arch-label">{layer.label}</span>
+                </div>
+                <h3 className="arch-heading">{layer.heading}</h3>
+                <p className="arch-body">{layer.body}</p>
+                <ul className="arch-points">
+                  {layer.points.map((point) => (
+                    <li key={point} className="arch-point">{point}</li>
+                  ))}
+                </ul>
+                <div className="arch-note">{layer.note}</div>
               </div>
-            ))}
-          </div>
-        </FadeIn>
+            </FadeIn>
+          ))}
+        </div>
       </section>
 
       <FadeIn>

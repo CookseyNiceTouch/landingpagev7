@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react'
-import pricingDevice from '@/assets/images/devices/pricing.png'
+import pricingDevice from '@/assets/images/devices/pricing.webp'
 
 export default function PricingSection(): ReactElement {
   return (

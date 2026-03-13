@@ -3,14 +3,29 @@ import type { ReactElement } from 'react'
 import './HeroImage.css'
 
 interface HeroImageProps {
-  src: string
+  videoSrc: string
+  posterSrc?: string
   alt?: string
   className?: string
 }
 
-export default function HeroImage({ src, alt = '', className = '' }: HeroImageProps): ReactElement {
+export default function HeroImage({ videoSrc, posterSrc, alt = '', className = '' }: HeroImageProps): ReactElement {
   const wrapRef = useRef<HTMLDivElement>(null)
+  const videosRef = useRef<HTMLVideoElement[]>([])
+  const durationRef = useRef(0)
   const rafRef = useRef<number | null>(null)
+
+  const setVideoRef = useCallback((index: number) => (el: HTMLVideoElement | null) => {
+    if (el) videosRef.current[index] = el
+  }, [])
+
+  const seekAll = useCallback((t: number) => {
+    for (const v of videosRef.current) {
+      if (v && Math.abs(v.currentTime - t) > 0.03) {
+        v.currentTime = t
+      }
+    }
+  }, [])
 
   const handlePointerMove = useCallback((e: PointerEvent) => {
     const el = wrapRef.current
@@ -19,11 +34,10 @@ export default function HeroImage({ src, alt = '', className = '' }: HeroImagePr
     if (rafRef.current !== null) return
     rafRef.current = requestAnimationFrame(() => {
       rafRef.current = null
-      const rect = el.getBoundingClientRect()
-      const cx = rect.left + rect.width / 2
-      const cy = rect.top + rect.height / 2
-      const dx = (e.clientX - cx) / (rect.width / 2)
-      const dy = (e.clientY - cy) / (rect.height / 2)
+
+      // Chromatic aberration — based on full viewport position
+      const dx = (e.clientX / window.innerWidth) * 2 - 1   // -1 (left) to +1 (right)
+      const dy = (e.clientY / window.innerHeight) * 2 - 1  // -1 (top) to +1 (bottom)
       const dist = Math.min(Math.hypot(dx, dy), 1.2)
 
       const shiftX = dx * dist * 60
@@ -35,8 +49,14 @@ export default function HeroImage({ src, alt = '', className = '' }: HeroImagePr
       el.style.setProperty('--ab-gy', `${-shiftY * 0.6}px`)
       el.style.setProperty('--ab-bx', `${-shiftX * 1.1}px`)
       el.style.setProperty('--ab-by', `${shiftY * 0.8}px`)
+
+      // Video scrub based on X position across the full viewport
+      if (durationRef.current > 0) {
+        const progress = Math.max(0, Math.min(1, e.clientX / window.innerWidth))
+        seekAll(progress * durationRef.current)
+      }
     })
-  }, [])
+  }, [seekAll])
 
   const handlePointerLeave = useCallback(() => {
     const el = wrapRef.current
@@ -50,27 +70,31 @@ export default function HeroImage({ src, alt = '', className = '' }: HeroImagePr
   }, [])
 
   useEffect(() => {
-    const el = wrapRef.current
-    if (!el) return
-
-    const section = el.closest('.hero-section')
-    const target = (section ?? document) as HTMLElement
-
-    target.addEventListener('pointermove', handlePointerMove as EventListener)
-    target.addEventListener('pointerleave', handlePointerLeave as EventListener)
+    document.addEventListener('pointermove', handlePointerMove)
+    document.addEventListener('pointerleave', handlePointerLeave)
 
     return () => {
-      target.removeEventListener('pointermove', handlePointerMove as EventListener)
-      target.removeEventListener('pointerleave', handlePointerLeave as EventListener)
+      document.removeEventListener('pointermove', handlePointerMove)
+      document.removeEventListener('pointerleave', handlePointerLeave)
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current)
     }
   }, [handlePointerMove, handlePointerLeave])
+
+  // Capture duration from the base video once metadata loads
+  const handleMetadata = useCallback(() => {
+    const base = videosRef.current[0]
+    if (base) {
+      durationRef.current = base.duration
+      base.currentTime = 0
+    }
+  }, [])
 
   return (
     <div
       ref={wrapRef}
       className={`hero-img-wrap ${className}`.trim()}
       aria-hidden="true"
+      aria-label={alt}
       style={{
         '--ab-rx': '0px',
         '--ab-ry': '0px',
@@ -80,14 +104,40 @@ export default function HeroImage({ src, alt = '', className = '' }: HeroImagePr
         '--ab-by': '0px',
       } as React.CSSProperties}
     >
-      {/* Base image — all channels visible */}
-      <img src={src} alt={alt} className="hero-img hero-img--base" />
-      {/* R channel layer */}
-      <img src={src} alt="" className="hero-img hero-img--r" />
-      {/* G channel layer */}
-      <img src={src} alt="" className="hero-img hero-img--g" />
-      {/* B channel layer */}
-      <img src={src} alt="" className="hero-img hero-img--b" />
+      <video
+        ref={setVideoRef(0)}
+        src={videoSrc}
+        poster={posterSrc}
+        className="hero-img hero-img--base"
+        muted
+        playsInline
+        preload="auto"
+        onLoadedMetadata={handleMetadata}
+      />
+      <video
+        ref={setVideoRef(1)}
+        src={videoSrc}
+        className="hero-img hero-img--r"
+        muted
+        playsInline
+        preload="auto"
+      />
+      <video
+        ref={setVideoRef(2)}
+        src={videoSrc}
+        className="hero-img hero-img--g"
+        muted
+        playsInline
+        preload="auto"
+      />
+      <video
+        ref={setVideoRef(3)}
+        src={videoSrc}
+        className="hero-img hero-img--b"
+        muted
+        playsInline
+        preload="auto"
+      />
     </div>
   )
 }

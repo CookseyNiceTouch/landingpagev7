@@ -4,8 +4,8 @@ import FadeIn from '@/components/ui/FadeIn'
 import PixelCard from '@/components/ui/PixelCard'
 import Button from '@/components/ui/Button'
 import { OPEN_TRY_NOW } from '@/components/layout/Header'
-import premiereProIcon from '@/assets/images/premiere-pro-icon.png'
-import davinciResolveIcon from '@/assets/images/davinci-resolve-icon.png'
+import premiereProIcon from '@/assets/images/premiere-pro-icon.webp'
+import davinciResolveIcon from '@/assets/images/davinci-resolve-icon.webp'
 import {
   INTEGRATIONS_HERO,
   INTEGRATIONS_HOW,

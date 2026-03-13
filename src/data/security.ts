@@ -1,7 +1,7 @@
 export const SECURITY_HERO = {
-  heading: 'Your footage stays yours',
+  heading: 'Professional grade security, no matter the project',
   subtitle:
-    'Nice Touch is built for professional post-production teams who work with sensitive, embargoed, and pre-release material. We treat your content the way you would.',
+    'Nice Touch is built for professional post-production teams who work with sensitive, embargoed, and pre-release material. We treat your content the way you would. No training, ever.',
 } as const
 
 export interface SecurityPoint {
@@ -32,13 +32,56 @@ export const SECURITY_POINTS: SecurityPoint[] = [
   },
 ]
 
-export const TECH_OVERVIEW = {
-  heading: 'Technical architecture',
-  items: [
-    { label: 'Desktop app', value: 'Electron with local NLE bridge execution' },
-    { label: 'AI', value: 'Anthropic Claude for chat and tool system, AssemblyAI for transcription' },
-    { label: 'NLE connectivity', value: 'DaVinci Resolve via Lua, Adobe Premiere via CEP panel' },
-    { label: 'Infrastructure', value: 'NestJS API hosted on Sevalla, MySQL via Prisma' },
-    { label: 'Distribution', value: 'GitHub Releases with auto-update' },
-  ],
-} as const
+export interface ArchLayer {
+  index: string
+  label: string
+  heading: string
+  body: string
+  points: string[]
+  note: string
+}
+
+export const TECH_ARCHITECTURE: ArchLayer[] = [
+  {
+    index: '01',
+    label: 'On your machine',
+    heading: 'The app and your NLE',
+    body: 'The Nice Touch desktop app runs locally. All editing operations — building timelines, reading project files, executing cuts — happen inside your open NLE session. Your media never moves.',
+    points: [
+      'Electron desktop app with local NLE bridge',
+      'DaVinci Resolve via Lua scripting',
+      'Adobe Premiere Pro via CEP panel',
+      'Project files and media stay on disk',
+      'No footage is uploaded to any server',
+    ],
+    note: 'Your project files and media never leave your machine.',
+  },
+  {
+    index: '02',
+    label: 'Our servers',
+    heading: 'What we store and why',
+    body: 'Our backend stores only what is necessary to run your projects: transcripts, briefs, metadata, and account data. Nothing is retained beyond your configured period, and nothing is used for model training.',
+    points: [
+      'NestJS API, MySQL via Prisma, hosted on Sevalla',
+      'Data encrypted in transit (TLS 1.3) and at rest (AES-256)',
+      'Transcripts and metadata deleted after retention period',
+      'Isolated processing environments per job',
+      'Firebase authentication, JWT access control',
+    ],
+    note: 'We store only what your project needs. Never for training.',
+  },
+  {
+    index: '03',
+    label: 'External APIs',
+    heading: 'Inference only — no storage',
+    body: 'We use Anthropic Claude for AI reasoning and AssemblyAI for audio transcription. Both are used for inference only. No customer data is stored at rest by these providers, and neither is used to train any model.',
+    points: [
+      'Anthropic Claude — AI chat, tool use, edit reasoning',
+      'AssemblyAI — audio transcription and speaker detection',
+      'Data passed for inference only, not retained',
+      'No training on customer content by either provider',
+      'Contractual data processing agreements in place',
+    ],
+    note: 'Inference only. Your content is never used to train external models.',
+  },
+]

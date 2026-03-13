@@ -2,16 +2,19 @@ import type { ReactElement } from 'react'
 import { DEMO_STEPS } from '@/data/home'
 import FadeIn from '@/components/ui/FadeIn'
 import PixelCard from '@/components/ui/PixelCard'
-import editIllustration from '@/assets/images/illustrations/edit.png'
+import deskLoop from '@/assets/video/desk_loop.mp4'
 
 export default function DemoSection(): ReactElement {
   return (
     <section className="demo-section">
       <FadeIn>
-        <img
-          src={editIllustration}
-          alt=""
+        <video
+          src={deskLoop}
           className="demo-illustration"
+          autoPlay
+          loop
+          muted
+          playsInline
           aria-hidden="true"
         />
       </FadeIn>

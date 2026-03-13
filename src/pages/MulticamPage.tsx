@@ -4,10 +4,11 @@ import FadeIn from '@/components/ui/FadeIn'
 import PixelCard from '@/components/ui/PixelCard'
 import Button from '@/components/ui/Button'
 import { OPEN_TRY_NOW } from '@/components/layout/Header'
+import multicam2Illustration from '@/assets/images/illustrations/multicam2.webp'
 import {
   MULTICAM_HERO,
   MULTICAM_CAPABILITIES,
-  MULTICAM_RESULT,
+  MULTICAM_PAIN_QUOTES,
 } from '@/data/multicam-page'
 
 export default function MulticamPage(): ReactElement {
@@ -21,9 +22,16 @@ export default function MulticamPage(): ReactElement {
 
       <section className="content-hero">
         <FadeIn>
-          <h1 className="content-hero-heading">{MULTICAM_HERO.heading}</h1>
+          <img
+            src={multicam2Illustration}
+            alt="Multicam editing with Nice Touch"
+            className="section-illustration features-hero-laptop"
+          />
         </FadeIn>
         <FadeIn delay={80}>
+          <h1 className="content-hero-heading">{MULTICAM_HERO.heading}</h1>
+        </FadeIn>
+        <FadeIn delay={160}>
           <p className="content-hero-subtitle">{MULTICAM_HERO.subtitle}</p>
         </FadeIn>
       </section>
@@ -47,11 +55,21 @@ export default function MulticamPage(): ReactElement {
       </section>
 
       <section className="content-block">
-        <FadeIn>
-          <div className="content-callout">
-            <p>{MULTICAM_RESULT}</p>
-          </div>
-        </FadeIn>
+        <div className="testimonials-grid">
+          {MULTICAM_PAIN_QUOTES.map((q, i) => (
+            <FadeIn key={i} delay={i * 80}>
+              <figure className="testimonial-card">
+                <blockquote className="testimonial-quote">
+                  &ldquo;{q.quote}&rdquo;
+                </blockquote>
+                <figcaption className="testimonial-author">
+                  <span className="testimonial-role">{q.role}</span>
+                  <span className="testimonial-company">{q.company}</span>
+                </figcaption>
+              </figure>
+            </FadeIn>
+          ))}
+        </div>
       </section>
 
       <FadeIn>

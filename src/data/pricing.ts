@@ -1,5 +1,5 @@
-import premiereProIcon from '@/assets/images/premiere-pro-icon.png'
-import davinciResolveIcon from '@/assets/images/davinci-resolve-icon.png'
+import premiereProIcon from '@/assets/images/premiere-pro-icon.webp'
+import davinciResolveIcon from '@/assets/images/davinci-resolve-icon.webp'
 
 export type Currency = 'gbp' | 'usd'
 export type Interval = 'monthly' | 'yearly'

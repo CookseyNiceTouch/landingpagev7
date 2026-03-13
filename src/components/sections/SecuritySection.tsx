@@ -2,7 +2,7 @@ import type { ReactElement } from 'react'
 import { SECURITY_CARD } from '@/data/home'
 import Infocard from '@/components/ui/Infocard'
 import FadeIn from '@/components/ui/FadeIn'
-import securityIllustration from '@/assets/images/illustrations/security.png'
+import securityIllustration from '@/assets/images/illustrations/security.webp'
 
 export default function SecuritySection(): ReactElement {
   return (

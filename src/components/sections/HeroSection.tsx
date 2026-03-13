@@ -3,12 +3,13 @@ import { HERO } from '@/data/home'
 import Button from '@/components/ui/Button'
 import HeroImage from '@/components/ui/HeroImage'
 import { OPEN_TRY_NOW } from '@/components/layout/Header'
-import directorIllustration from '@/assets/images/illustrations/director.png'
+import heroVideo from '@/assets/video/wl_480_15fps_crf28.mp4'
+import directorPoster from '@/assets/images/illustrations/director.webp'
 
 export default function HeroSection(): ReactElement {
   return (
     <section className="hero-section">
-      <HeroImage src={directorIllustration} />
+      <HeroImage videoSrc={heroVideo} posterSrc={directorPoster} />
 
       <h1 className="type-display text-center">
         {HERO.headingLines.map((line, i) => (

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, type ReactElement } from 'react'
 import { NavLink } from 'react-router-dom'
-import niceTouchLogo from '@/assets/images/nice-touch-logo.png'
+import niceTouchLogo from '@/assets/images/nice-touch-logo.webp'
 import { NAV_ITEMS, isNavGroup } from '@/data/navigation'
 import type { NavGroup, NavLink as NavLinkData } from '@/data/navigation'
 import { SOCIAL_LINKS, CONTACT_EMAIL } from '@/data/social'

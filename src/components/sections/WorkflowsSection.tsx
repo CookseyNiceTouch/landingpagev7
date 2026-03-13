@@ -3,7 +3,7 @@ import { WORKFLOWS_CARD } from '@/data/home'
 import Infocard from '@/components/ui/Infocard'
 import Button from '@/components/ui/Button'
 import FadeIn from '@/components/ui/FadeIn'
-import tapesIllustration from '@/assets/images/illustrations/tapes.png'
+import tapesIllustration from '@/assets/images/illustrations/tapes.webp'
 
 export default function WorkflowsSection(): ReactElement {
   return (

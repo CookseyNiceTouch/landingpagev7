@@ -3,7 +3,7 @@ import { MULTICAM_CARD } from '@/data/home'
 import Infocard from '@/components/ui/Infocard'
 import Button from '@/components/ui/Button'
 import FadeIn from '@/components/ui/FadeIn'
-import multicamIllustration from '@/assets/images/illustrations/multicam.png'
+import multicamIllustration from '@/assets/images/illustrations/multicam.webp'
 
 export default function MulticamSection(): ReactElement {
   return (

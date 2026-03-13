@@ -5,10 +5,11 @@ import PixelCard from '@/components/ui/PixelCard'
 import Button from '@/components/ui/Button'
 import { OPEN_TRY_NOW } from '@/components/layout/Header'
 import { FEATURES_HERO, HOW_IT_WORKS, CORE_FEATURES, TESTIMONIALS } from '@/data/features'
-import projectShot from '@/assets/images/productshots/project.png'
-import analysisShot from '@/assets/images/productshots/analysis.png'
-import chatShot from '@/assets/images/productshots/chat.png'
-import timelineShot from '@/assets/images/productshots/timeline.png'
+import laptopIllustration from '@/assets/images/illustrations/laptop.webp'
+import projectShot from '@/assets/images/productshots/project.webp'
+import analysisShot from '@/assets/images/productshots/analysis.webp'
+import chatShot from '@/assets/images/productshots/chat.webp'
+import timelineShot from '@/assets/images/productshots/timeline.webp'
 
 // Map screenshots to HOW_IT_WORKS steps by index — null = no screenshot
 const STEP_SCREENSHOTS: (string | null)[] = [
@@ -40,9 +41,16 @@ export default function Features(): ReactElement {
 
       <section className="content-hero">
         <FadeIn>
-          <h1 className="content-hero-heading">{FEATURES_HERO.heading}</h1>
+          <img
+            src={laptopIllustration}
+            alt="Nice Touch running on a laptop"
+            className="section-illustration features-hero-laptop"
+          />
         </FadeIn>
         <FadeIn delay={80}>
+          <h1 className="content-hero-heading">{FEATURES_HERO.heading}</h1>
+        </FadeIn>
+        <FadeIn delay={160}>
           <p className="content-hero-subtitle">{FEATURES_HERO.subtitle}</p>
         </FadeIn>
       </section>
