@@ -33,7 +33,6 @@ export const NAV_ITEMS: NavItem[] = [
     ],
   },
   { label: 'Pricing', href: '/pricing' },
-  { label: 'Download', href: '/download' },
 ]
 
 /** Flat list of all navigable links (used by footer and anywhere a simple list is needed) */

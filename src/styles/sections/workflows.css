@@ -11,17 +11,42 @@
     align-items: center;
     justify-content: center;
     padding-block: 0 14rem;
-    gap: 2rem;
   }
 
-  .workflows-section .content-column {
+  /* Two-column layout: image left, copy right */
+  .workflows-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
     width: 100%;
-    max-width: 44rem;
-    text-align: center;
+    max-width: 72rem;
+    align-items: center;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+    }
+  }
+
+  .workflows-image-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Stack below copy on mobile */
+    @media (max-width: 767px) {
+      order: 1;
+    }
   }
 
   .workflows-illustration {
     max-width: 40rem;
+  }
+
+  .workflows-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
 
   .workflows-cta {

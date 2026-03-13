@@ -3,6 +3,7 @@ import SEO from '@/components/ui/SEO'
 import FadeIn from '@/components/ui/FadeIn'
 import PixelCard from '@/components/ui/PixelCard'
 import Button from '@/components/ui/Button'
+import { OPEN_TRY_NOW } from '@/components/layout/Header'
 import premiereProIcon from '@/assets/images/premiere-pro-icon.png'
 import davinciResolveIcon from '@/assets/images/davinci-resolve-icon.png'
 import {
@@ -84,9 +85,18 @@ export default function Integrations(): ReactElement {
           <p className="content-cta-text">
             See all the features Nice Touch brings to your editing workflow.
           </p>
-          <Button as="a" href="/features" variant="primary" size="lg">
-            Explore Features
-          </Button>
+          <div className="flex gap-4 flex-wrap justify-center">
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={() => window.dispatchEvent(new CustomEvent(OPEN_TRY_NOW))}
+            >
+              Try Now
+            </Button>
+            <Button as="a" href="/features" variant="secondary" size="lg">
+              Explore Features
+            </Button>
+          </div>
         </div>
       </FadeIn>
     </div>

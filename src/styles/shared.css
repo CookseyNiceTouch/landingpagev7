@@ -74,4 +74,54 @@
     margin-bottom: 0;
   }
 
+  /* Single pull-quote used between home page sections */
+  .home-quote {
+    width: 100%;
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 2.5rem 3rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.75rem;
+    pointer-events: none;
+  }
+
+  .home-quote__mark {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--color-yellow);
+    margin-bottom: 0.75rem;
+  }
+
+  .home-quote__text {
+    margin: 0 0 1.5rem;
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.75);
+    font-style: italic;
+  }
+
+  .home-quote__footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .home-quote__role {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .home-quote__company {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
 }

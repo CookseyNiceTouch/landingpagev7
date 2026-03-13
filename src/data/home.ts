@@ -5,9 +5,9 @@ export interface InfocardContent {
 }
 
 export const HERO = {
-  headingLines: ['Your AI edit assistant'],
+  headingLines: ['Your AI Edit Assistant'],
   subtitle:
-    'Nice Touch helps post-production teams move faster by reducing repetitive workflow effort, accelerating rough cuts, and keeping assistance inside the tools teams already use.',
+    'From footage to first cut, faster.',
 } as const
 
 export const DEMO_STEPS: InfocardContent[] = [
@@ -37,7 +37,7 @@ export interface FaqItem {
 export const SECTION_TITLES = {
   multicam: "Multicam shouldn\u2019t take half your day.",
   workflows: 'Built for real post-production workflows.',
-  pricing: 'Simple, transparent pricing.',
+  pricing: 'Pay for what you use, pay less the more you create.',
   faq: 'Frequently asked questions.',
   security: 'Your footage stays yours.',
 } as const
@@ -95,9 +95,10 @@ export const MULTICAM_CARD: InfocardContent = {
 }
 
 export const WORKFLOWS_CARD: InfocardContent = {
-  heading: 'Built for the stories that matter.',
+  heading: 'Every project lands differently.',
   body: [
-    'Nice Touch understands your full project context — briefs, transcripts, and timeline data — and can take real actions inside the edit.',
-    'Execute editing operations directly inside Resolve or Premiere without leaving the Nice Touch interface. The result is faster rough cuts, less repetitive timeline work, and more creative time for the people doing it.',
+    'A documentary shoot comes back with 200 hours of cards. A corporate event fills twelve drives across six cameras. A narrative pilot wraps with six weeks of dailies and a producer\'s note three pages long.',
+    'No two projects look the same, and no two editors work the same way. Nice Touch adapts to your footage, your brief, and your process — not the other way around.',
+    'Sift through hours of material in minutes. Find the moments that matter, build structure from raw chaos, and get to a first cut without grinding through every second of every card.',
   ].join('\n\n'),
 }

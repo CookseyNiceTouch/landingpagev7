@@ -1,0 +1,189 @@
+.try-now-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: try-now-bg-in 200ms ease-out both;
+}
+
+.try-now-panel {
+  position: relative;
+  width: 100%;
+  max-width: 30rem;
+  max-height: calc(100dvh - 3rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  padding: 2.5rem 2.5rem 2rem;
+  box-shadow:
+    0 2px 0 rgba(255, 255, 255, 0.06) inset,
+    0 32px 80px rgba(0, 0, 0, 0.8);
+  animation: try-now-panel-in 250ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Styled scrollbar inside the panel */
+.try-now-panel::-webkit-scrollbar {
+  width: 6px;
+}
+.try-now-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+.try-now-panel::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+.try-now-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.try-now-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  transition: color 150ms ease, background 150ms ease;
+}
+
+.try-now-close:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.try-now-header {
+  margin-bottom: 2rem;
+}
+
+.try-now-title {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-yellow);
+  letter-spacing: -0.02em;
+}
+
+.try-now-subtitle {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ── HubSpot form overrides ─────────────────────────────────────────────── */
+.try-now-form .hs-form-private,
+.try-now-form .hs_submit {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.try-now-form .hs-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.try-now-form label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.try-now-form input[type="text"],
+.try-now-form input[type="email"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.5rem;
+  color: #fff;
+  font-size: 0.9375rem;
+  outline: none;
+  transition: border-color 150ms ease, background 150ms ease;
+  box-sizing: border-box;
+}
+
+.try-now-form input:focus {
+  border-color: var(--color-yellow);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.try-now-form .hs-error-msgs {
+  list-style: none;
+  margin: 0.25rem 0 0;
+  padding: 0;
+}
+
+.try-now-form .hs-error-msgs li {
+  font-size: 0.8125rem;
+  color: #ff6b6b;
+}
+
+.try-now-form .hs-button {
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  margin-top: 0.5rem;
+  background: var(--color-yellow);
+  color: #000;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 150ms ease, transform 150ms ease;
+}
+
+.try-now-form .hs-button:hover {
+  background: color-mix(in srgb, var(--color-yellow) 90%, transparent);
+  transform: translateY(-1px);
+}
+
+.try-now-form .hs-button:active {
+  transform: translateY(0);
+}
+
+/* Legal / GDPR text */
+.try-now-form .legal-consent-container {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: 0.5rem;
+}
+
+/* ── Animations ─────────────────────────────────────────────────────────── */
+@keyframes try-now-bg-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes try-now-panel-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .try-now-overlay,
+  .try-now-panel {
+    animation: none;
+  }
+}

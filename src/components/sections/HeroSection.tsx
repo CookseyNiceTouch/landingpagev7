@@ -2,6 +2,7 @@ import type { ReactElement } from 'react'
 import { HERO } from '@/data/home'
 import Button from '@/components/ui/Button'
 import HeroImage from '@/components/ui/HeroImage'
+import { OPEN_TRY_NOW } from '@/components/layout/Header'
 import directorIllustration from '@/assets/images/illustrations/director.png'
 
 export default function HeroSection(): ReactElement {
@@ -18,8 +19,12 @@ export default function HeroSection(): ReactElement {
       <p className="type-subtitle hero-subtitle">{HERO.subtitle}</p>
 
       <div className="hero-cta-row">
-        <Button as="a" href="/features" variant="primary" size="lg">
-          See How It Works
+        <Button
+          variant="primary"
+          size="lg"
+          onClick={() => window.dispatchEvent(new CustomEvent(OPEN_TRY_NOW))}
+        >
+          Try Now
         </Button>
         <Button as="a" href="/pricing" variant="secondary" size="lg">
           View Pricing

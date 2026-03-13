@@ -4,6 +4,9 @@ import niceTouchLogo from '@/assets/images/nice-touch-logo.png'
 import { NAV_ITEMS, isNavGroup } from '@/data/navigation'
 import type { NavGroup, NavLink as NavLinkData } from '@/data/navigation'
 import { SOCIAL_LINKS, CONTACT_EMAIL } from '@/data/social'
+import TryNowModal from '@/components/ui/TryNowModal'
+
+export const OPEN_TRY_NOW = 'open-try-now-modal'
 
 function DropdownMenu({ group }: { group: NavGroup }): ReactElement {
   const [open, setOpen] = useState(false)
@@ -73,40 +76,62 @@ function renderNavItem(item: NavLinkData | NavGroup): ReactElement {
 }
 
 export default function Header(): ReactElement {
+  const [modalOpen, setModalOpen] = useState(false)
+
+  // Allow any component to open the modal via a custom DOM event
+  useEffect(() => {
+    const handler = () => setModalOpen(true)
+    window.addEventListener(OPEN_TRY_NOW, handler)
+    return () => window.removeEventListener(OPEN_TRY_NOW, handler)
+  }, [])
+
   return (
-    <header className="site-header">
-      <a href="/" className="header-logo" aria-label="Nice Touch Home">
-        <img src={niceTouchLogo} alt="Nice Touch" className="header-logo-image" />
-      </a>
-
-      <div className="header-actions">
-        <nav className="header-nav" aria-label="Main navigation">
-          {NAV_ITEMS.map(renderNavItem)}
-        </nav>
-
-        <span className="header-divider" aria-hidden="true">|</span>
-
-        <a href={`mailto:${CONTACT_EMAIL}`} className="header-contact-link">
-          Contact Us
+    <>
+      <header className="site-header">
+        <a href="/" className="header-logo" aria-label="Nice Touch Home">
+          <img src={niceTouchLogo} alt="Nice Touch" className="header-logo-image" />
         </a>
 
-        <span className="header-divider" aria-hidden="true">|</span>
+        <div className="header-actions">
+          <nav className="header-nav" aria-label="Main navigation">
+            {NAV_ITEMS.map(renderNavItem)}
+          </nav>
 
-        <nav className="header-social-nav" aria-label="Social media links">
-          {SOCIAL_LINKS.map((social) => (
-            <a
-              key={social.label}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="header-social-link"
-              aria-label={social.label}
-            >
-              <img src={social.icon} alt="" className="header-social-icon" />
-            </a>
-          ))}
-        </nav>
-      </div>
-    </header>
+          <span className="header-divider" aria-hidden="true">|</span>
+
+          <button
+            className="header-try-now-btn"
+            onClick={() => setModalOpen(true)}
+          >
+            Try Now
+          </button>
+
+          <span className="header-divider" aria-hidden="true">|</span>
+
+          <a href={`mailto:${CONTACT_EMAIL}`} className="header-contact-link">
+            Contact Us
+          </a>
+
+          <span className="header-divider" aria-hidden="true">|</span>
+
+          <nav className="header-social-nav" aria-label="Social media links">
+            {SOCIAL_LINKS.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="header-social-link"
+                aria-label={social.label}
+              >
+                <img src={social.icon} alt="" className="header-social-icon" />
+              </a>
+            ))}
+          </nav>
+        </div>
+      </header>
+
+      <TryNowModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+    </>
   )
 }

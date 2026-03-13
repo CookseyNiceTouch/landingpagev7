@@ -3,6 +3,7 @@ import SEO from '@/components/ui/SEO'
 import FadeIn from '@/components/ui/FadeIn'
 import PixelCard from '@/components/ui/PixelCard'
 import Button from '@/components/ui/Button'
+import { OPEN_TRY_NOW } from '@/components/layout/Header'
 import { USE_CASES_HERO, USE_CASES} from '@/data/use-cases'
 
 export default function UseCases(): ReactElement {
@@ -44,9 +45,18 @@ export default function UseCases(): ReactElement {
           <p className="content-cta-text">
             Find the plan that fits your team.
           </p>
-          <Button as="a" href="/pricing" variant="primary" size="lg">
-            View Pricing
-          </Button>
+          <div className="flex gap-4 flex-wrap justify-center">
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={() => window.dispatchEvent(new CustomEvent(OPEN_TRY_NOW))}
+            >
+              Try Now
+            </Button>
+            <Button as="a" href="/pricing" variant="secondary" size="lg">
+              View Pricing
+            </Button>
+          </div>
         </div>
       </FadeIn>
     </div>

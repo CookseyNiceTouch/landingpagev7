@@ -38,6 +38,10 @@ export interface AddOnPack {
     pro: { gbp: number; usd: number }
     ultra: { gbp: number; usd: number }
   }
+  links: {
+    pro: { gbp: string; usd: string }
+    ultra: { gbp: string; usd: string }
+  }
 }
 
 const integrationIcons = [
@@ -47,16 +51,34 @@ const integrationIcons = [
 
 const CHECKOUT_LINKS = {
   hobbyist: {
-    gbp: { monthly: '#', annual: '#' },
-    usd: { monthly: '#', annual: '#' },
+    gbp: {
+      monthly: 'https://buy.stripe.com/fZu9AT0IP76rcu35j27Zu07',
+      annual:  'https://buy.stripe.com/aFacN53V19ez65F12M7Zu09',
+    },
+    usd: {
+      monthly: 'https://buy.stripe.com/00w7sL9fl3UfalV26Q7Zu08',
+      annual:  'https://buy.stripe.com/6oU7sL2QX1M779JeTC7Zu0a',
+    },
   },
   pro: {
-    gbp: { monthly: '#', annual: '#' },
-    usd: { monthly: '#', annual: '#' },
+    gbp: {
+      monthly: 'https://buy.stripe.com/fZu6oH6398avfGffXG7Zu0b',
+      annual:  'https://buy.stripe.com/3cIdR9gHNduP9hR3aU7Zu0d',
+    },
+    usd: {
+      monthly: 'https://buy.stripe.com/dRmfZhfDJcqL1PpaDm7Zu0c',
+      annual:  'https://buy.stripe.com/00w14n4Z5eyT79JdPy7Zu0e',
+    },
   },
   ultra: {
-    gbp: { monthly: '#', annual: '#' },
-    usd: { monthly: '#', annual: '#' },
+    gbp: {
+      monthly: 'https://buy.stripe.com/5kQaEX0IP9ezfGfh1K7Zu0f',
+      annual:  'https://buy.stripe.com/eVq28r9fl62nfGf4eY7Zu0h',
+    },
+    usd: {
+      monthly: 'https://buy.stripe.com/28E4gz2QXgH10LldPy7Zu0g',
+      annual:  'https://buy.stripe.com/aFa8wP1MT76rdy7bHq7Zu0i',
+    },
   },
 } as const
 
@@ -67,7 +89,7 @@ export const PLANS: Plan[] = [
     highlighted: false,
     pricing: {
       gbp: { monthly: 15, annual: 144 },
-      usd: { monthly: 19, annual: 182.40 },
+      usd: { monthly: 19, annual: 180 },
     },
     links: {
       gbp: CHECKOUT_LINKS.hobbyist.gbp,
@@ -111,7 +133,7 @@ export const PLANS: Plan[] = [
     highlighted: false,
     pricing: {
       gbp: { monthly: 250, annual: 2400 },
-      usd: { monthly: 320, annual: 3072 },
+      usd: { monthly: 320, annual: 3100 },
     },
     links: {
       gbp: CHECKOUT_LINKS.ultra.gbp,
@@ -153,6 +175,10 @@ export const ADD_ON_PACKS: AddOnPack[] = [
       pro: { gbp: 30, usd: 39 },
       ultra: { gbp: 22, usd: 28 },
     },
+    links: {
+      pro:   { gbp: 'https://buy.stripe.com/bJecN59fl9ez3Xx3aU7Zu0j', usd: 'https://buy.stripe.com/4gM4gzgHN2QbalV26Q7Zu0k' },
+      ultra: { gbp: 'https://buy.stripe.com/6oU6oH1MT3Ufcu3dPy7Zu0p', usd: 'https://buy.stripe.com/4gM8wPdvB8av2Tt9zi7Zu0q' },
+    },
   },
   {
     name: 'M',
@@ -162,6 +188,10 @@ export const ADD_ON_PACKS: AddOnPack[] = [
       pro: { gbp: 110, usd: 139 },
       ultra: { gbp: 82, usd: 105 },
     },
+    links: {
+      pro:   { gbp: 'https://buy.stripe.com/7sY9ATbntcqL9hR26Q7Zu0l', usd: 'https://buy.stripe.com/3cIcN5dvB76rcu3cLu7Zu0m' },
+      ultra: { gbp: 'https://buy.stripe.com/00w5kDbnt1M78dN4eY7Zu0r', usd: 'https://buy.stripe.com/28EdR91MT3Ufcu36n67Zu0s' },
+    },
   },
   {
     name: 'L',
@@ -170,6 +200,10 @@ export const ADD_ON_PACKS: AddOnPack[] = [
     pricing: {
       pro: { gbp: 260, usd: 329 },
       ultra: { gbp: 195, usd: 249 },
+    },
+    links: {
+      pro:   { gbp: 'https://buy.stripe.com/aFafZh4Z5duP79J4eY7Zu0n', usd: 'https://buy.stripe.com/6oU4gz0IP4Yj8dN9zi7Zu0o' },
+      ultra: { gbp: 'https://buy.stripe.com/aFaeVdcrxduPeCb12M7Zu0t', usd: 'https://buy.stripe.com/8x29ATfDJ2Qbdy76n67Zu0u' },
     },
   },
 ]

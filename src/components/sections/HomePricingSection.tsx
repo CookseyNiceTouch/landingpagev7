@@ -1,7 +1,20 @@
 import { useState, useMemo } from 'react'
 import type { ReactElement } from 'react'
-import { PLANS, detectCurrency, formatPrice, featureValueClass, ultraVsProSavingPerGen } from '@/data/pricing'
-import type { Interval } from '@/data/pricing'
+import {
+  PLANS,
+  ADD_ON_PACKS,
+  detectCurrency,
+  formatPrice,
+  featureValueClass,
+  ultraVsProSavingPerGen,
+} from '@/data/pricing'
+import type { Interval, Currency, AddOnPack } from '@/data/pricing'
+
+function savingsPercent(pack: AddOnPack, currency: Currency): number {
+  const pro = pack.pricing.pro[currency]
+  const ultra = pack.pricing.ultra[currency]
+  return Math.round(((pro - ultra) / pro) * 100)
+}
 
 export default function HomePricingSection(): ReactElement {
   const currency = useMemo(() => detectCurrency(), [])
@@ -151,6 +164,87 @@ export default function HomePricingSection(): ReactElement {
             </div>
           )
         })}
+      </div>
+
+      {/* Add-On Packs */}
+      <div className="flex flex-col items-center gap-[clamp(20px,2.5vw,40px)] w-full max-w-[1360px] pointer-events-auto">
+        <div className="text-center">
+          <h2 className="m-0 text-[clamp(22px,2vw,32px)] font-semibold text-white">
+            Add-On Packs
+          </h2>
+          <p className="m-0 mt-2 text-[clamp(13px,1vw,16px)] text-white-55">
+            Top up generations and audio hours
+          </p>
+        </div>
+
+        <div className="grid grid-cols-3 gap-[clamp(12px,1.5vw,20px)] w-full max-w-[900px] max-[700px]:grid-cols-1">
+          {ADD_ON_PACKS.map((pack) => {
+            const savings = savingsPercent(pack, currency)
+
+            return (
+              <div
+                key={pack.name}
+                className="flex flex-col gap-4 p-[clamp(18px,1.8vw,28px)] border-2 border-border rounded-lg bg-black/20"
+              >
+                <div className="flex flex-col gap-3">
+                  <h3 className="m-0 text-[clamp(20px,1.8vw,28px)] font-bold text-white">
+                    Pack {pack.name}
+                  </h3>
+
+                  <div className="flex flex-col gap-1.5">
+                    <div className="flex justify-between items-center">
+                      <span className="text-[clamp(11px,0.8vw,13px)] text-white-45 font-medium uppercase tracking-wider">Generations</span>
+                      <span className="text-[clamp(13px,1vw,16px)] text-white font-semibold">{pack.generations}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-[clamp(11px,0.8vw,13px)] text-white-45 font-medium uppercase tracking-wider">Audio hours</span>
+                      <span className="text-[clamp(13px,1vw,16px)] text-white font-semibold">{pack.audioHours}</span>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-border-light pt-3 flex flex-col gap-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-[clamp(12px,0.9vw,14px)] text-white-55 font-medium">With Pro</span>
+                      <span className="text-[clamp(14px,1.1vw,18px)] text-white font-semibold">
+                        {formatPrice(pack.pricing.pro[currency], currency)}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-[clamp(12px,0.9vw,14px)] text-pink font-medium">With Ultra</span>
+                      <span className="flex items-center gap-2">
+                        <span className="text-[clamp(10px,0.75vw,12px)] font-semibold px-1.5 py-0.5 rounded bg-yellow/15 text-yellow">
+                          Save {savings}%
+                        </span>
+                        <span className="text-[clamp(14px,1.1vw,18px)] text-pink font-semibold">
+                          {formatPrice(pack.pricing.ultra[currency], currency)}
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-2 mt-auto">
+                    <a
+                      href={pack.links.pro[currency]}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full py-[clamp(9px,1.1vh,13px)] bg-white/10 text-white font-semibold text-[clamp(12px,0.95vw,15px)] text-center rounded-lg border border-white/15 transition-all hover:bg-white/15 hover:-translate-y-0.5 active:translate-y-0"
+                    >
+                      Buy with Pro
+                    </a>
+                    <a
+                      href={pack.links.ultra[currency]}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full py-[clamp(9px,1.1vh,13px)] bg-yellow text-black font-semibold text-[clamp(12px,0.95vw,15px)] text-center rounded-lg transition-all hover:bg-yellow/90 hover:-translate-y-0.5 active:translate-y-0"
+                    >
+                      Buy with Ultra
+                    </a>
+                  </div>
+              </div>
+            )
+          })}
+        </div>
       </div>
     </section>
   )

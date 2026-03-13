@@ -3,6 +3,7 @@ import SEO from '@/components/ui/SEO'
 import FadeIn from '@/components/ui/FadeIn'
 import PixelCard from '@/components/ui/PixelCard'
 import Button from '@/components/ui/Button'
+import { OPEN_TRY_NOW } from '@/components/layout/Header'
 import {
   MULTICAM_HERO,
   MULTICAM_CAPABILITIES,
@@ -58,9 +59,18 @@ export default function MulticamPage(): ReactElement {
           <p className="content-cta-text">
             Multicam is available on Pro plans and above.
           </p>
-          <Button as="a" href="/pricing" variant="primary" size="lg">
-            View Plans
-          </Button>
+          <div className="flex gap-4 flex-wrap justify-center">
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={() => window.dispatchEvent(new CustomEvent(OPEN_TRY_NOW))}
+            >
+              Try Now
+            </Button>
+            <Button as="a" href="/pricing" variant="secondary" size="lg">
+              View Plans
+            </Button>
+          </div>
         </div>
       </FadeIn>
     </div>

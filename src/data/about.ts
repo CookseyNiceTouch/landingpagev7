@@ -1,44 +1,25 @@
 export const ABOUT_HERO = {
-  heading: 'The team behind Nice Touch',
+  heading: 'About Nice Touch',
   subtitle:
     'Nice Touch is an early-stage SaaS company. The product is live with pilots and early commercial activity in progress. The team is small and founder-led, with a deliberate focus on proving measurable value before expanding scope.',
 } as const
 
-export interface TeamMember {
-  name: string
-  role: string
-  description: string
-}
+export const MISSION = {
+  heading: 'Mission',
+  body: [
+    'Post-production is full of work that isn\'t really editing. Watching through takes to find one usable line. Re-syncing multicam timelines. Manually transcribing an interview because the brief changed. Building the same rough-cut structure you\'ve built fifty times before.',
+    'Nice Touch exists to remove that layer. Not to replace editors — to give them back the time and headspace that gets eaten by repetitive, low-creative-value work.',
+    'Our mission is to make professional editors and their teams materially more effective, by building the workflow layer that sits between raw footage and the cut that actually matters.',
+  ].join('\n\n'),
+} as const
 
-export const TEAM: TeamMember[] = [
-  {
-    name: 'Matthew Cooksey',
-    role: 'CEO',
-    description:
-      'Company strategy, product direction, go-to-market, and translation of real workflow pain into product value.',
-  },
-  {
-    name: 'Paul',
-    role: 'Design / Product',
-    description:
-      'Product design, UX, brand, and overall experience quality. Ensures Nice Touch feels native inside professional workflows.',
-  },
-  {
-    name: 'Simon',
-    role: 'CTO',
-    description:
-      'Architecture, reliability, integrations, and the technical foundations of the platform.',
-  },
-]
-
-export const MISSION =
-  'Nice Touch is not trying to become another editor. It is trying to become the workflow layer that makes professional editors and their teams materially more effective.'
-
-export const STRATEGIC_DIRECTION = {
-  near: 'Prove ROI in a tightly defined wedge. Faster rough cuts and adjacent workflow tasks.',
-  medium:
-    'Deepen product embed across the editing workflow. Richer project memory, broader automation, feedback handling, search, and QC.',
-  long: 'Become the trusted layer that connects context and action across the entire post-production process.',
+export const VISION = {
+  heading: 'Vision',
+  body: [
+    'Every post-production team — from a solo editor cutting corporate content to a studio delivering ten broadcast series a year — carries a version of the same problem: too much footage, too little time, and a process that hasn\'t fundamentally changed in decades.',
+    'We\'re building toward a future where that process has an intelligent layer running through it. One that understands your footage, your brief, your team\'s working style, and the history of the project — and can act on all of it in real time, inside the tools you already use.',
+    'Not a new platform to learn. Not a workaround. A layer that makes the work you already do faster, smarter, and less draining.',
+  ].join('\n\n'),
 } as const
 
 export const NOT_LIST: string[] = [

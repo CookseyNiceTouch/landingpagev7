@@ -1,11 +1,12 @@
 import type { ReactElement } from 'react'
 import SEO from '@/components/ui/SEO'
 import FadeIn from '@/components/ui/FadeIn'
-import PixelCard from '@/components/ui/PixelCard'
 import Button from '@/components/ui/Button'
+import { OPEN_TRY_NOW } from '@/components/layout/Header'
 import {
   ABOUT_HERO,
-  TEAM,
+  MISSION,
+  VISION,
   NOT_LIST,
 } from '@/data/about'
 
@@ -29,28 +30,32 @@ export default function About(): ReactElement {
         <FadeIn>
           <h1 className="content-hero-heading">{ABOUT_HERO.heading}</h1>
         </FadeIn>
+        <FadeIn delay={80}>
+          <p className="content-hero-subtitle">{ABOUT_HERO.subtitle}</p>
+        </FadeIn>
       </section>
-
 
       <section className="content-block">
         <FadeIn>
-          <h2 className="content-block-heading">The team</h2>
+          <h2 className="content-block-heading">{MISSION.heading}</h2>
         </FadeIn>
-        <div className="content-card-grid">
-          {TEAM.map((member, i) => (
-            <FadeIn key={member.name} delay={i * 80}>
-              <PixelCard>
-                <div className="pixel-card-content">
-                  <div className="team-card-name">{member.name}</div>
-                  <div className="team-card-role">{member.role}</div>
-                  <p className="team-card-desc">{member.description}</p>
-                </div>
-              </PixelCard>
-            </FadeIn>
-          ))}
-        </div>
+        <FadeIn delay={80}>
+          <div className="content-callout">
+            <p style={{ whiteSpace: 'pre-line' }}>{MISSION.body}</p>
+          </div>
+        </FadeIn>
       </section>
 
+      <section className="content-block">
+        <FadeIn>
+          <h2 className="content-block-heading">{VISION.heading}</h2>
+        </FadeIn>
+        <FadeIn delay={80}>
+          <div className="content-callout">
+            <p style={{ whiteSpace: 'pre-line' }}>{VISION.body}</p>
+          </div>
+        </FadeIn>
+      </section>
 
       <section className="content-block">
         <FadeIn>
@@ -70,9 +75,18 @@ export default function About(): ReactElement {
           <p className="content-cta-text">
             Want to learn more about what Nice Touch can do?
           </p>
-          <Button as="a" href="/features" variant="primary" size="lg">
-            Explore Features
-          </Button>
+          <div className="flex gap-4 flex-wrap justify-center">
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={() => window.dispatchEvent(new CustomEvent(OPEN_TRY_NOW))}
+            >
+              Try Now
+            </Button>
+            <Button as="a" href="/features" variant="secondary" size="lg">
+              Explore Features
+            </Button>
+          </div>
         </div>
       </FadeIn>
     </div>

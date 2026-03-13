@@ -5,7 +5,7 @@ export const INTEGRATIONS_HERO = {
 } as const
 
 export const INTEGRATIONS_HOW = {
-  heading: 'Direct, two-way connection',
+  heading: 'No exporting, no importing, no sync required.',
   body: 'Nice Touch runs as a desktop app alongside your NLE. It reads your project structure, clips, and timeline directly — and writes edit decisions back in real time. When the AI assistant generates a rough cut or executes a timeline action, the result appears inside your open project immediately.',
 } as const
 

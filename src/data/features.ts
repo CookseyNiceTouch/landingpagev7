@@ -38,6 +38,52 @@ export const HOW_IT_WORKS: FeatureStep[] = [
   },
 ]
 
+export interface Testimonial {
+  quote: string
+  name: string
+  role: string
+  company: string
+}
+
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    quote: "We have hours of footage we used to watch through manually. Nice Touch means we don't have to do that anymore — we're straight to the moments that matter.",
+    name: 'Placeholder',
+    role: 'Producer',
+    company: 'Ad Agency',
+  },
+  {
+    quote: "Nice Touch is my first port of call when I open up a project. It has knowledge about all my assets that I couldn't hold in my head — and it acts on it instantly.",
+    name: 'Placeholder',
+    role: 'Editor',
+    company: 'YouTube Channel',
+  },
+  {
+    quote: "The rough cut used to take a full day before we even started making real decisions. Now it takes an hour. That time goes back into the edit where it belongs.",
+    name: 'Placeholder',
+    role: 'Senior Editor',
+    company: 'Documentary Production Co.',
+  },
+  {
+    quote: "Multicam sync was the part of the job I dreaded most. Nice Touch handles the whole thing — by the time I'm in the timeline it's already been done.",
+    name: 'Placeholder',
+    role: 'Freelance Editor',
+    company: 'Live Events',
+  },
+  {
+    quote: "Having the brief and the transcripts all in one place, searchable, with an assistant that actually understands them — that's changed how we start every project.",
+    name: 'Placeholder',
+    role: 'Post Production Supervisor',
+    company: 'Broadcast',
+  },
+  {
+    quote: "It works inside Resolve. There's nothing to export, nothing to import. It just sits there and does the work.",
+    name: 'Placeholder',
+    role: 'Colorist / Editor',
+    company: 'Boutique Studio',
+  },
+]
+
 export const CORE_FEATURES: FeatureItem[] = [
   {
     heading: 'Context-aware AI chat',
