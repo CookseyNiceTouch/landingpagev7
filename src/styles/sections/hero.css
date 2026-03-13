@@ -11,8 +11,12 @@
     align-items: center;
     justify-content: center;
     min-height: 100svh;
-    padding-block: 5rem;
-    gap: 2rem;
+    padding-block: 3rem;
+    padding-inline: 1rem;
+    gap: 1.25rem;
+
+    @media (min-width: 640px) { padding-block: 4rem; padding-inline: 0; gap: 1.5rem; }
+    @media (min-width: 1024px) { padding-block: 5rem; gap: 2rem; }
   }
 
   .hero-subtitle {
@@ -23,6 +27,8 @@
 
   .hero-cta-row {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
     pointer-events: auto;
   }

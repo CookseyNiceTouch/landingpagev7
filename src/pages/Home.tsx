@@ -47,7 +47,7 @@ export default function Home(): ReactElement {
       <DemoSection />
 
       {/* Quote: first port of call / project knowledge */}
-      <FadeIn className="flex justify-center px-6">
+      <FadeIn className="flex justify-center">
         <figure className="home-quote">
           <span className="home-quote__mark" aria-hidden="true">&ldquo;</span>
           <blockquote className="home-quote__text">
@@ -66,7 +66,7 @@ export default function Home(): ReactElement {
       <WorkflowsSection />
 
       {/* Quote: hours of footage / manual review */}
-      <FadeIn className="flex justify-center px-6">
+      <FadeIn className="flex justify-center">
         <figure className="home-quote">
           <span className="home-quote__mark" aria-hidden="true">&ldquo;</span>
           <blockquote className="home-quote__text">

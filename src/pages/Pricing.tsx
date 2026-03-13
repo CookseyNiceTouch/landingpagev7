@@ -16,7 +16,7 @@ export default function Pricing(): ReactElement {
   const ultraSavingPerGen = useMemo(() => ultraVsProSavingPerGen(currency), [currency])
 
   return (
-    <div className="flex-1 flex flex-col items-center gap-[clamp(40px,5vw,72px)] p-[clamp(24px,4vw,96px)] px-[clamp(40px,8vw,160px)] pointer-events-none overflow-y-auto">
+    <div className="flex-1 flex flex-col items-center gap-[clamp(40px,5vw,72px)] p-[clamp(24px,4vw,96px)] px-4 sm:px-10 lg:px-[clamp(80px,8vw,160px)] pointer-events-none overflow-y-auto">
       <SEO
         title="Pricing"
         description="Simple, transparent pricing for Nice Touch. Plans for individual creators through to enterprise teams, with monthly and annual options."

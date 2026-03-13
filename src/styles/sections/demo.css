@@ -9,9 +9,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* No SectionTitle precedes this — big padding on both sides */
-    padding-block: 10rem 14rem;
-    gap: 3rem;
+    padding-block: 4rem 6rem;
+    gap: 2rem;
+
+    @media (min-width: 640px) { padding-block: 6rem 10rem; gap: 2.5rem; }
+    @media (min-width: 1024px) { padding-block: 10rem 14rem; gap: 3rem; }
   }
 
   .demo-illustration {

@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect, type ReactElement } from 'react'
-import { NavLink } from 'react-router-dom'
+import { useState, useRef, useEffect, useCallback, type ReactElement } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
 import niceTouchLogo from '@/assets/images/nice-touch-logo.webp'
 import { NAV_ITEMS, isNavGroup } from '@/data/navigation'
 import type { NavGroup, NavLink as NavLinkData } from '@/data/navigation'
@@ -75,15 +75,74 @@ function renderNavItem(item: NavLinkData | NavGroup): ReactElement {
   )
 }
 
+function MobileNav({ isOpen, onClose, onTryNow }: { isOpen: boolean; onClose: () => void; onTryNow: () => void }): ReactElement | null {
+  const location = useLocation()
+
+  useEffect(() => { onClose() }, [location.pathname]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!isOpen) return
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [isOpen, onClose])
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [isOpen])
+
+  return (
+    <div className={`mobile-nav-overlay ${isOpen ? 'is-open' : ''}`} aria-hidden={!isOpen}>
+      <nav className="mobile-nav" aria-label="Mobile navigation">
+        {NAV_ITEMS.map((item) => {
+          if (isNavGroup(item)) {
+            return (
+              <div key={item.label} className="mobile-nav-group">
+                <span className="mobile-nav-group-label">{item.label}</span>
+                {item.children.map((link) => (
+                  <NavLink key={link.href} to={link.href} className="mobile-nav-link" onClick={onClose}>
+                    {link.label}
+                  </NavLink>
+                ))}
+              </div>
+            )
+          }
+          return (
+            <NavLink key={item.href} to={item.href} className="mobile-nav-link" onClick={onClose}>
+              {item.label}
+            </NavLink>
+          )
+        })}
+
+        <div className="mobile-nav-divider" />
+
+        <button
+          className="mobile-nav-try-now"
+          onClick={() => { onClose(); onTryNow() }}
+        >
+          Try Now
+        </button>
+
+        <a href={`mailto:${CONTACT_EMAIL}`} className="mobile-nav-link" onClick={onClose}>
+          Contact Us
+        </a>
+      </nav>
+    </div>
+  )
+}
+
 export default function Header(): ReactElement {
   const [modalOpen, setModalOpen] = useState(false)
+  const [mobileNavOpen, setMobileNavOpen] = useState(false)
 
-  // Allow any component to open the modal via a custom DOM event
   useEffect(() => {
     const handler = () => setModalOpen(true)
     window.addEventListener(OPEN_TRY_NOW, handler)
     return () => window.removeEventListener(OPEN_TRY_NOW, handler)
   }, [])
+
+  const closeMobileNav = useCallback(() => setMobileNavOpen(false), [])
 
   return (
     <>
@@ -128,8 +187,26 @@ export default function Header(): ReactElement {
               </a>
             ))}
           </nav>
+
+          {/* Hamburger — visible below 768px */}
+          <button
+            className="header-hamburger"
+            aria-label={mobileNavOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileNavOpen}
+            onClick={() => setMobileNavOpen((v) => !v)}
+          >
+            <span className={`hamburger-line ${mobileNavOpen ? 'is-open' : ''}`} />
+            <span className={`hamburger-line ${mobileNavOpen ? 'is-open' : ''}`} />
+            <span className={`hamburger-line ${mobileNavOpen ? 'is-open' : ''}`} />
+          </button>
         </div>
       </header>
+
+      <MobileNav
+        isOpen={mobileNavOpen}
+        onClose={closeMobileNav}
+        onTryNow={() => setModalOpen(true)}
+      />
 
       <TryNowModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </>
