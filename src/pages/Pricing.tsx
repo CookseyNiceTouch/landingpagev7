@@ -173,6 +173,10 @@ export default function Pricing(): ReactElement {
         })}
       </div>
 
+      <p className="m-0 -mt-[clamp(20px,2.5vw,40px)] text-[clamp(10px,0.75vw,12px)] text-white/35 text-center w-full max-w-[1360px]">
+        All prices exclude VAT.
+      </p>
+
       {/* Add-On Packs */}
       <div className="flex flex-col items-center gap-[clamp(20px,2.5vw,40px)] w-full max-w-[1360px] pointer-events-auto">
         <div className="text-center">
