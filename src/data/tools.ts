@@ -10,10 +10,10 @@ export interface Tool {
 export const TOOLS: Tool[] = [
   {
     id: 'nt-converter',
-    name: 'NT Converter',
+    name: 'Nice Touch File Converter',
     tagline: 'Free video converter for macOS and Windows.',
     description:
-      'Drop in your footage and convert between formats in a single click. Supports all major codecs including ProRes, H.264, H.265, and DNxHR — no watermarks, no limits, no account required.',
+      'Offline file converter. Drop in your footage and convert between formats in a single click. Supports all major codecs including ProRes, H.264, H.265, and DNxHR — no watermarks, no limits, no account required.',
     features: [
       'Batch convert multiple files at once',
       'ProRes, H.264, H.265, DNxHR & more',
