@@ -29,7 +29,7 @@ export const PRIVACY_SECTIONS: PrivacySection[] = [
       'Account information: name, email address, and password (stored as a secure hash) when you register.',
       'Profile information: organisation name, team membership, and role within your account.',
       'Usage data: records of AI edit generations, asset analysis activity, project usage, and feature interactions.',
-      'Project content: video and audio files you upload for analysis, transcripts generated from those files, project briefs, notes, and timeline data. This content is processed solely to deliver the service to you.',
+      'Project content: names of files you upload for analysis, transcripts generated from those files, project briefs, notes, and timeline data. This content is processed solely to deliver the service to you.',
       'Communications: if you contact us by email or through in-app reporting, we retain those communications.',
       'Technical data: app version, operating system, and diagnostic information collected for error reporting and service reliability.',
     ],
@@ -47,7 +47,7 @@ export const PRIVACY_SECTIONS: PrivacySection[] = [
   {
     heading: 'Where your data is stored',
     body:
-      'All Nice Touch infrastructure and the third-party services we use to deliver the product keep your data within the United Kingdom. We take appropriate steps to ensure this remains the case as our infrastructure evolves.',
+      'All Nice Touch infrastructure is hosted within the United Kingdom. The third-party services we use to deliver the product process data in the European Union, except for Google authentication, which is US only. We take appropriate steps to ensure this remains the case as our infrastructure evolves.',
     items: [
       'Where any third-party processor is located outside the UK, we ensure appropriate safeguards are in place \u2014 such as Standard Contractual Clauses \u2014 and that your data is not retained for any purpose beyond delivering the service.',
     ],
@@ -92,7 +92,7 @@ export const PRIVACY_SECTIONS: PrivacySection[] = [
 export const PRIVACY_CONTACT = {
   heading: 'Exercise your data rights',
   body: 'To request access to, correction of, or deletion of your personal data, use our online data request form.',
-  requestFormUrl: 'HUBSPOT_PRIVACY_REQUEST_URL',
+  requestFormUrl: 'https://eu1.hs-data-privacy.com/request/WFB3NpLcVFGPzMXf9aID6Q',
   requestFormLabel: 'Submit a data request',
   company: 'Nice Touch Group Ltd',
   registration: 'Registered in England and Wales (16674872)',
