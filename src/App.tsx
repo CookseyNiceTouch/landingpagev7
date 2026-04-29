@@ -7,6 +7,7 @@ import Integrations from '@/pages/Integrations'
 import UseCases from '@/pages/UseCases'
 import About from '@/pages/About'
 import Security from '@/pages/Security'
+import Privacy from '@/pages/Privacy'
 import Pricing from '@/pages/Pricing'
 import Download from '@/pages/Download'
 import Tools from '@/pages/Tools'
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="/use-cases" element={<UseCases />} />
           <Route path="/about" element={<About />} />
           <Route path="/security" element={<Security />} />
+          <Route path="/privacy" element={<Privacy />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/download" element={<Download />} />
           <Route path="/tools" element={<Tools />} />
