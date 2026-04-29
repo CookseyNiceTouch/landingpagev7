@@ -44,6 +44,7 @@ export default function Footer(): ReactElement {
                   </Link>
                 ))}
                 <Link to="/newsletter" className="footer-link">Newsletter</Link>
+                <Link to="/privacy" className="footer-link">Privacy Policy</Link>
               </div>
             )}
 
