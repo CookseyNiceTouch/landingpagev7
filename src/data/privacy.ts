@@ -47,7 +47,7 @@ export const PRIVACY_SECTIONS: PrivacySection[] = [
   {
     heading: 'Where your data is stored',
     body:
-      'All Nice Touch infrastructure is hosted within the United Kingdom. The third-party services we use to deliver the product process data in the European Union, except for Google authentication, which is US only. We take appropriate steps to ensure this remains the case as our infrastructure evolves.',
+      'All Nice Touch infrastructure is hosted within the United Kingdom. The third-party services we use to deliver the product predominantly process data in the European Union. Some AI services and Google authentication perform processing in the US. We take appropriate steps to ensure this remains the case as our infrastructure evolves.',
     items: [
       'Where any third-party processor is located outside the UK, we ensure appropriate safeguards are in place \u2014 such as Standard Contractual Clauses \u2014 and that your data is not retained for any purpose beyond delivering the service.',
     ],
