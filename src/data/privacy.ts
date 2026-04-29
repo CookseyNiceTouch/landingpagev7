@@ -20,7 +20,7 @@ export const PRIVACY_SECTIONS: PrivacySection[] = [
   {
     heading: 'Who we are',
     body:
-      'Nice Touch Group Ltd is a company registered in England and Wales (Companies House number 16674872). We build Nice Touch, an AI-powered workflow and edit assistant for professional video post-production teams. When this policy refers to "Nice Touch", "we", "us", or "our", it means Nice Touch Group Ltd.',
+      'Nice Touch Group Ltd is a company registered in England and Wales (Companies House number 16674872). We build Nice Touch, an AI-powered workflow and edit assistant for professional video post-production teams. When this policy refers to \u201cNice Touch\u201d, \u201cwe\u201d, \u201cus\u201d, or \u201cour\u201d, it means Nice Touch Group Ltd.',
   },
   {
     heading: 'What data we collect',
@@ -49,13 +49,13 @@ export const PRIVACY_SECTIONS: PrivacySection[] = [
     body:
       'All Nice Touch infrastructure and the third-party services we use to deliver the product keep your data within the United Kingdom. We take appropriate steps to ensure this remains the case as our infrastructure evolves.',
     items: [
-      'Where any third-party processor is located outside the UK, we ensure appropriate safeguards are in place — such as Standard Contractual Clauses — and that your data is not retained for any purpose beyond delivering the service.',
+      'Where any third-party processor is located outside the UK, we ensure appropriate safeguards are in place \u2014 such as Standard Contractual Clauses \u2014 and that your data is not retained for any purpose beyond delivering the service.',
     ],
   },
   {
     heading: 'Data retention',
     body:
-      'We retain your account and usage data for as long as your account is active. If you close your account, we will delete or anonymise your personal data within 90 days, except where we are required by law to retain it for longer. Project content — media files, transcripts, briefs — is retained for as long as it exists within your account. You can delete individual assets and projects at any time.',
+      'We retain your account and usage data for as long as your account is active. If you close your account, we will delete or anonymise your personal data within 90 days, except where we are required by law to retain it for longer. Project content \u2014 media files, transcripts, briefs \u2014 is retained for as long as it exists within your account. You can delete individual assets and projects at any time.',
   },
   {
     heading: 'Your rights',
@@ -86,10 +86,14 @@ export const PRIVACY_SECTIONS: PrivacySection[] = [
   },
 ]
 
+// IMPORTANT: Replace HUBSPOT_PRIVACY_REQUEST_URL with the published URL from
+// HubSpot Settings → Privacy & Consent → Privacy tools → data privacy request page.
+// The URL will be on a HubSpot domain (e.g. privacy.hs-sites.com/nice-touch/...)
 export const PRIVACY_CONTACT = {
-  heading: 'Privacy enquiries',
-  body: 'For any privacy-related questions or to exercise your data rights, contact us at',
-  email: 'privacy@nicetouch.app',
+  heading: 'Exercise your data rights',
+  body: 'To request access to, correction of, or deletion of your personal data, use our online data request form.',
+  requestFormUrl: 'HUBSPOT_PRIVACY_REQUEST_URL',
+  requestFormLabel: 'Submit a data request',
   company: 'Nice Touch Group Ltd',
   registration: 'Registered in England and Wales (16674872)',
   ico: 'You also have the right to lodge a complaint with the Information Commissioner\u2019s Office (ICO) at ico.org.uk.',
