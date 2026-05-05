@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Environment files (DEV-392 transcribe + any future env config)
+.env
+.env.*
+!.env.example
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
