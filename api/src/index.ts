@@ -21,13 +21,15 @@ const env = loadEnv()
 const app = new Hono()
 
 app.use('*', logger())
+const allowedOrigins =
+  env.NODE_ENV === 'production'
+    ? env.ALLOWED_ORIGIN
+    : [...env.ALLOWED_ORIGIN, 'http://localhost:5173', 'http://127.0.0.1:5173']
+
 app.use(
   '/api/*',
   cors({
-    origin:
-      env.NODE_ENV === 'production'
-        ? [env.ALLOWED_ORIGIN]
-        : [env.ALLOWED_ORIGIN, 'http://localhost:5173', 'http://127.0.0.1:5173'],
+    origin: allowedOrigins,
     allowMethods: ['GET', 'POST', 'OPTIONS'],
     allowHeaders: ['Content-Type', 'X-Speakers', 'X-Timestamps'],
     maxAge: 600,

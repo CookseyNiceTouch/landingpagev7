@@ -17,10 +17,22 @@ const EnvSchema = z.object({
     .transform((v) => (v && v.length > 0 ? v : undefined))
     .pipe(z.string().url().optional()),
 
+  /**
+   * Comma-separated list of origins permitted by CORS. Each entry must be a
+   * full origin (`https://example.com`, no path). The first entry is treated
+   * as the canonical origin for logs / share previews; the rest are still
+   * accepted so the same deploy serves www and non-www variants.
+   */
   ALLOWED_ORIGIN: z
     .string()
-    .url()
-    .default('https://nicetouch.app'),
+    .default('https://nicetouch.app')
+    .transform((raw) =>
+      raw
+        .split(',')
+        .map((s) => s.trim())
+        .filter((s) => s.length > 0),
+    )
+    .pipe(z.array(z.string().url()).min(1)),
 
   /** Daily spend cap, in USD. Defaults to ~GBP 100 at ~1.27. */
   DAILY_CAP_USD: z.coerce.number().positive().default(127),
