@@ -1,9 +1,11 @@
 import type { ReactElement } from 'react'
+import { Link } from 'react-router-dom'
 import SEO from '@/components/ui/SEO'
 import Container from '@/components/ui/Container'
 import FadeIn from '@/components/ui/FadeIn'
 import Button from '@/components/ui/Button'
-import { TOOLS } from '@/data/tools'
+import { TOOLS, WEB_TOOLS } from '@/data/tools'
+import type { WebTool } from '@/data/tools'
 import { useConverterReleases } from '@/hooks/useConverterReleases'
 import appleIcon from '@/assets/icons/apple.svg'
 import windowsIcon from '@/assets/icons/windows.svg'
@@ -88,12 +90,52 @@ function ConverterCard(): ReactElement {
   )
 }
 
+function WebToolCard({ tool }: { tool: WebTool }): ReactElement {
+  return (
+    <FadeIn>
+      <div className="flex flex-col gap-[clamp(24px,2.5vw,40px)] p-[clamp(28px,3vw,48px)] border-2 border-border rounded-lg bg-black/20 w-full pointer-events-auto">
+        <div className="flex flex-col gap-3">
+          <span className="self-start px-3 py-1 rounded-full text-[clamp(10px,0.8vw,12px)] font-semibold uppercase tracking-wider bg-pink/15 text-pink leading-none">
+            Free &mdash; Web
+          </span>
+          <h2 className="m-0 text-[clamp(24px,2.5vw,40px)] font-bold text-white leading-tight">
+            {tool.name}
+          </h2>
+          <p className="m-0 text-[clamp(14px,1.1vw,18px)] text-white/55 leading-relaxed max-w-[48ch]">
+            {tool.description}
+          </p>
+        </div>
+
+        <ul className="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
+          {tool.features.map((feature) => (
+            <li
+              key={feature}
+              className="flex items-start gap-2.5 text-[clamp(13px,0.95vw,15px)] text-white/70 leading-snug"
+            >
+              <span className="mt-0.5 shrink-0 w-1.5 h-1.5 rounded-full bg-pink" />
+              {feature}
+            </li>
+          ))}
+        </ul>
+
+        <div className="border-t border-border" />
+
+        <Link to={tool.href} className="self-start">
+          <Button variant="primary" size="md">
+            {tool.cta}
+          </Button>
+        </Link>
+      </div>
+    </FadeIn>
+  )
+}
+
 export default function Tools(): ReactElement {
   return (
     <div className="flex-1 flex flex-col items-center gap-[clamp(32px,4vw,64px)] p-[clamp(24px,4vw,96px)] px-4 sm:px-10 pointer-events-none">
       <SEO
         title="Tools"
-        description="Free tools and resources from Nice Touch. Download the NT Converter — a free video converter for macOS and Windows."
+        description="Free tools and resources from Nice Touch. Web-based transcription, plus the NT Converter for macOS and Windows."
         path="/tools"
       />
 
@@ -106,7 +148,10 @@ export default function Tools(): ReactElement {
         </p>
       </FadeIn>
 
-      <Container size="lg" className="flex justify-center">
+      <Container size="lg" className="flex flex-col gap-[clamp(24px,3vw,40px)]">
+        {WEB_TOOLS.map((tool) => (
+          <WebToolCard key={tool.id} tool={tool} />
+        ))}
         <ConverterCard />
       </Container>
     </div>

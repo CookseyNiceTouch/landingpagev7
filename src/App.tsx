@@ -11,6 +11,7 @@ import Privacy from '@/pages/Privacy'
 import Pricing from '@/pages/Pricing'
 import Download from '@/pages/Download'
 import Tools from '@/pages/Tools'
+import Transcribe from '@/pages/Transcribe'
 import Tutorials from '@/pages/Tutorials'
 import Newsletter from '@/pages/Newsletter'
 import NotFound from '@/pages/NotFound'
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/download" element={<Download />} />
           <Route path="/tools" element={<Tools />} />
+          <Route path="/transcribe" element={<Transcribe />} />
           <Route path="/tutorials" element={<Tutorials />} />
           <Route path="/newsletter" element={<Newsletter />} />
           <Route path="*" element={<NotFound />} />

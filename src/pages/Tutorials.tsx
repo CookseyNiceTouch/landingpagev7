@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { ReactElement } from 'react'
 import SEO from '@/components/ui/SEO'
 import Container from '@/components/ui/Container'
@@ -6,17 +7,33 @@ import { VIDEO_SECTIONS } from '@/data/tutorials'
 import type { Video } from '@/data/tutorials'
 
 function VideoCard({ video }: { video: Video }): ReactElement {
+  const [active, setActive] = useState(false)
+  const thumbnail = `https://i.ytimg.com/vi/${video.youtubeId}/maxresdefault.jpg`
+
   return (
     <div className="flex flex-col gap-3 pointer-events-auto">
-      <div className="relative w-full aspect-video rounded-lg overflow-hidden border-2 border-border bg-black/40">
-        <iframe
-          src={`https://www.youtube.com/embed/${video.youtubeId}`}
-          title={video.title}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          className="absolute inset-0 w-full h-full"
-          loading="lazy"
-        />
+      <div className="relative w-full aspect-video rounded-lg overflow-hidden border-2 border-border bg-black">
+        {active ? (
+          <iframe
+            src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`}
+            title={video.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            className="absolute inset-0 w-full h-full"
+          />
+        ) : (
+          <button
+            onClick={() => setActive(true)}
+            className="absolute inset-0 w-full h-full group cursor-pointer bg-transparent border-none p-0"
+            aria-label={`Play: ${video.title}`}
+          >
+            <img
+              src={thumbnail}
+              alt={video.title}
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            />
+          </button>
+        )}
       </div>
       <h3 className="m-0 text-[clamp(14px,1vw,17px)] font-semibold text-white/80 leading-snug">
         {video.title}

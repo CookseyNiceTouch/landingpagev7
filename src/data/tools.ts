@@ -1,3 +1,5 @@
+import { MAX_DURATION_LABEL } from './transcribe'
+
 export interface Tool {
   id: string
   name: string
@@ -21,5 +23,34 @@ export const TOOLS: Tool[] = [
       'Completely free — no account needed',
     ],
     repo: 'CookseyNiceTouch/nt_converter',
+  },
+]
+
+/** Web-based tools that live on this site (not downloadable apps). */
+export interface WebTool {
+  id: string
+  name: string
+  tagline: string
+  description: string
+  features: string[]
+  href: string
+  cta: string
+}
+
+export const WEB_TOOLS: WebTool[] = [
+  {
+    id: 'nt-transcribe',
+    name: 'Free Transcription Tool',
+    tagline: 'Transcribe audio or video in your browser.',
+    description:
+      `Drop in a file up to 100 MB and ${MAX_DURATION_LABEL}. Get a clean transcript with speaker labels, plus SRT and VTT subtitle files for your DaVinci Resolve, Premiere, or Final Cut timeline.`,
+    features: [
+      'Automatic language detection (99+ languages)',
+      'Speaker diarization on by default',
+      'Export to Word (RTF), SRT, and VTT',
+      'Free — one email unlocks all formats',
+    ],
+    href: '/transcribe',
+    cta: 'Open the tool',
   },
 ]
