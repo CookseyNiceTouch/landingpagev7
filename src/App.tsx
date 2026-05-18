@@ -14,6 +14,7 @@ import Tools from '@/pages/Tools'
 import Transcribe from '@/pages/Transcribe'
 import Tutorials from '@/pages/Tutorials'
 import Newsletter from '@/pages/Newsletter'
+import Press from '@/pages/Press'
 import NotFound from '@/pages/NotFound'
 
 export default function App() {
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/transcribe" element={<Transcribe />} />
           <Route path="/tutorials" element={<Tutorials />} />
           <Route path="/newsletter" element={<Newsletter />} />
+          <Route path="/press" element={<Press />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
