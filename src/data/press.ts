@@ -229,11 +229,11 @@ export interface ProductShot {
  */
 export const PRODUCT_SHOTS: ProductShot[] = [
   {
-    id: 'product-pill',
-    label: 'The Nice Touch pill — docked inside the NLE',
+    id: 'hero',
+    label: 'Nice Touch V2 — Footage to first cut.',
     caption:
-      'A compact assistant sidebar that lives inside Adobe Premiere Pro and DaVinci Resolve, giving editors AI without leaving their timeline.',
-    src: '/press/assets/images/product-pill-web.webp',
+      'Hero image for Nice Touch V2. Free to use in editorial coverage.',
+    src: '/press/assets/images/hero-web.webp',
   },
 ]
 
@@ -260,6 +260,15 @@ export interface GalleryItem {
 }
 
 export const GALLERY: GalleryItem[] = [
+  // --- Hero brand image ---
+  {
+    id: 'hero',
+    filename: 'hero-hires.jpg',
+    caption: 'Nice Touch V2 — "Footage to first cut." Brand hero image.',
+    type: 'image',
+    web: '/press/assets/images/hero-web.webp',
+    print: '/press/assets/images/hero-hires.jpg',
+  },
   // --- In-situ shots (laptop/device mockup) ---
   {
     id: 'product-pill',
