@@ -26,21 +26,34 @@ export const HERO = {
 }
 
 // --------------------------------------------------------------------------
-// Demo video
+// Videos
 // --------------------------------------------------------------------------
 
-export interface DemoVideo {
-  /** YouTube video ID (the bit after `v=`). TODO: replace placeholder before launch. */
-  youtubeId: string | null
+export interface VideoEntry {
+  youtubeId: string
   title: string
-  mp4Path: string
+  description: string
+  /** Optional offline MP4 download path. */
+  mp4Path?: string
 }
 
-export const DEMO_VIDEO: DemoVideo = {
-  youtubeId: null, // TODO: provide YouTube ID for demo video
-  title: 'Nice Touch V2 — Demo',
+/** Short promo / trailer — leads the video section. */
+export const PROMO_VIDEO: VideoEntry = {
+  youtubeId: 'u1QT63Oeit8',
+  title: 'Nice Touch V2 — Promo',
+  description: 'One-minute promo for Nice Touch V2.',
+}
+
+/** Hands-on walkthrough — shows the product in action. */
+export const DEMO_VIDEO: VideoEntry = {
+  youtubeId: 'qWaJniV9zDo',
+  title: 'Nice Touch V2 — Walkthrough',
+  description: 'A hands-on demo of Nice Touch V2 working inside Adobe Premiere Pro.',
   mp4Path: '/press/assets/video/nice-touch-v2-demo.mp4',
 }
+
+/** @deprecated Use PROMO_VIDEO / DEMO_VIDEO. Kept for type-compat only. */
+export type DemoVideo = VideoEntry
 
 // --------------------------------------------------------------------------
 // Press release
