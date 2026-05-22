@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import type { ReactElement } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { SOCIAL_LINKS } from '@/data/social'
 import './TryNowModal.css'
 
 const HUBSPOT_PORTAL_ID = '146425863'
@@ -17,10 +17,16 @@ type HubSpot = {
 }
 
 export default function TryNowModal({ isOpen, onClose }: TryNowModalProps): ReactElement | null {
-  const formRef  = useRef<HTMLDivElement>(null)
-  const navigate = useNavigate()
+  const formRef    = useRef<HTMLDivElement>(null)
+  const [submitted, setSubmitted] = useState(false)
 
-  // Inject the form and watch the iframe for the post-submit reload
+  // Reset submitted state whenever the modal is reopened
+  useEffect(() => {
+    if (isOpen) setSubmitted(false)
+  }, [isOpen])
+
+  // Inject the HubSpot form. On submission, switch to the social-link
+  // confirmation view instead of redirecting anywhere.
   useEffect(() => {
     if (!isOpen || !formRef.current) return
 
@@ -30,55 +36,48 @@ export default function TryNowModal({ isOpen, onClose }: TryNowModalProps): Reac
     const win = window as Window & { hbspt?: HubSpot }
 
     if (win.hbspt?.forms?.create) {
-      // Classic JS API — direct callback
       win.hbspt.forms.create({
         region:   'eu1',
         portalId: HUBSPOT_PORTAL_ID,
         formId:   HUBSPOT_FORM_ID,
         target:   '#try-now-hs-form',
-        onFormSubmitted: () => {
-          onClose()
-          navigate('/download')
-        },
+        onFormSubmitted: () => setSubmitted(true),
       })
     } else {
-      // Modern declarative embed — inject hs-form-frame div; HubSpot's
-      // MutationObserver converts it to an iframe automatically.
+      // Modern declarative embed — HubSpot's MutationObserver converts the div
+      // to an iframe automatically. Detect submit via the thank-you screen
+      // causing a significant height drop.
       const frame = document.createElement('div')
       frame.className        = 'hs-form-frame'
       frame.dataset.region   = 'eu1'
       frame.dataset.formId   = HUBSPOT_FORM_ID
       frame.dataset.portalId = HUBSPOT_PORTAL_ID
       container.appendChild(frame)
+
+      let baseline = 0
+      let settled  = false
+      let resizeObserver: ResizeObserver | null = null
+
+      const settleTimer = setTimeout(() => {
+        baseline = container.offsetHeight
+        settled  = true
+
+        resizeObserver = new ResizeObserver(() => {
+          if (!settled || baseline === 0) return
+          if (container.offsetHeight < baseline * 0.6) {
+            resizeObserver?.disconnect()
+            setSubmitted(true)
+          }
+        })
+        resizeObserver.observe(container)
+      }, 1500)
+
+      return () => {
+        clearTimeout(settleTimer)
+        resizeObserver?.disconnect()
+      }
     }
-
-    // When HubSpot replaces the form with the thank-you screen the container
-    // shrinks noticeably. Wait for the form to fully render, record its height,
-    // then redirect whenever the height drops below 60% of that baseline.
-    let baseline = 0
-    let settled  = false
-    let resizeObserver: ResizeObserver | null = null
-
-    const settleTimer = setTimeout(() => {
-      baseline = container.offsetHeight
-      settled  = true
-
-      resizeObserver = new ResizeObserver(() => {
-        if (!settled || baseline === 0) return
-        if (container.offsetHeight < baseline * 0.6) {
-          resizeObserver?.disconnect()
-          onClose()
-          navigate('/download')
-        }
-      })
-      resizeObserver.observe(container)
-    }, 1500) // give HubSpot time to render the form before recording baseline
-
-    return () => {
-      clearTimeout(settleTimer)
-      resizeObserver?.disconnect()
-    }
-  }, [isOpen, navigate, onClose])
+  }, [isOpen])
 
   // Escape key
   useEffect(() => {
@@ -101,7 +100,7 @@ export default function TryNowModal({ isOpen, onClose }: TryNowModalProps): Reac
       className="try-now-overlay"
       role="dialog"
       aria-modal="true"
-      aria-label="Get early access"
+      aria-label={submitted ? 'You\'re on the list' : 'Join the waitlist'}
       onClick={onClose}
     >
       <div className="try-now-panel" onClick={(e) => e.stopPropagation()}>
@@ -109,14 +108,38 @@ export default function TryNowModal({ isOpen, onClose }: TryNowModalProps): Reac
           ×
         </button>
 
-        <div className="try-now-header">
-          <h2 className="try-now-title">Get early access</h2>
-          <p className="try-now-subtitle">
-            Tell us a bit about yourself and we'll get you set up.
-          </p>
-        </div>
-
-        <div id="try-now-hs-form" ref={formRef} className="try-now-form" />
+        {submitted ? (
+          <div className="try-now-header">
+            <h2 className="try-now-title">You're on the list!</h2>
+            <p className="try-now-subtitle">
+              We'll reach out as soon as the new version is ready. In the meantime, follow along for updates and behind-the-scenes progress.
+            </p>
+            <div className="try-now-socials">
+              {SOCIAL_LINKS.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="try-now-social-link"
+                >
+                  <img src={social.icon} alt="" className="try-now-social-icon" />
+                  {social.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="try-now-header">
+              <h2 className="try-now-title">Join the waitlist</h2>
+              <p className="try-now-subtitle">
+                We're putting the finishing touches on a new version. Drop your details and we'll let you know the moment it's ready.
+              </p>
+            </div>
+            <div id="try-now-hs-form" ref={formRef} className="try-now-form" />
+          </>
+        )}
       </div>
     </div>,
     document.body,

@@ -31,7 +31,7 @@ export default function Footer(): ReactElement {
                   </Link>
                 ))}
                 <Link to="/pricing" className="footer-link">Pricing</Link>
-                <Link to="/download" className="footer-link">Download</Link>
+                <Link to="/download" className="footer-link">Coming Soon</Link>
               </div>
             )}
 
