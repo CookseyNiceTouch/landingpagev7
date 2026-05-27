@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Generated at build time by `npm run press:zip`
+public/press/nice-touch-press-kit.zip
+
 # Environment files (DEV-392 transcribe + any future env config)
 .env
 .env.*
