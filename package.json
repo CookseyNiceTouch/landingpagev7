@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/build-press-zip.mjs && tsc -b && vite build",
+    "build": "npm run press:zip && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "og:generate": "node scripts/generate-og-images.mjs",
-    "press:zip": "node scripts/build-press-zip.mjs"
+    "press:pdf": "node --experimental-strip-types scripts/build-press-release-pdf.mjs",
+    "press:zip": "npm run press:pdf && node scripts/build-press-zip.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.1",
@@ -27,6 +28,7 @@
     "@eslint/js": "^9.39.1",
     "@types/archiver": "^7.0.0",
     "@types/node": "^24.10.1",
+    "@types/pdfkit": "^0.17.6",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
@@ -35,6 +37,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+    "pdfkit": "^0.18.0",
     "shadcn": "^3.8.5",
     "sharp": "^0.34.5",
     "typescript": "~5.9.3",
