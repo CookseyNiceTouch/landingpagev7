@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import type { ReactElement } from 'react'
 import SEO from '@/components/ui/SEO'
+import { OPEN_TRY_NOW } from '@/components/layout/Header'
 import { PLANS, ADD_ON_PACKS, detectCurrency, formatPrice, featureValueClass, ultraVsProSavingPerGen } from '@/data/pricing'
 import type { Interval, Currency, AddOnPack } from '@/data/pricing'
 
@@ -8,6 +9,10 @@ function savingsPercent(pack: AddOnPack, currency: Currency): number {
   const pro = pack.pricing.pro[currency]
   const ultra = pack.pricing.ultra[currency]
   return Math.round(((pro - ultra) / pro) * 100)
+}
+
+function openTryNow(): void {
+  window.dispatchEvent(new CustomEvent(OPEN_TRY_NOW))
 }
 
 export default function Pricing(): ReactElement {
@@ -155,14 +160,13 @@ export default function Pricing(): ReactElement {
                   Contact Us
                 </a>
               ) : activeLink ? (
-                <a
-                  href={activeLink}
-                  className="block w-full mt-4 py-[clamp(10px,1.2vh,14px)] font-semibold text-[clamp(13px,1vw,16px)] text-center rounded-lg transition-all hover:-translate-y-0.5 active:translate-y-0 bg-yellow text-black hover:bg-yellow/90"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
+                  onClick={openTryNow}
+                  className="block w-full mt-4 py-[clamp(10px,1.2vh,14px)] font-semibold text-[clamp(13px,1vw,16px)] text-center rounded-lg transition-all hover:-translate-y-0.5 active:translate-y-0 bg-yellow text-black hover:bg-yellow/90 cursor-pointer"
                 >
-                  Subscribe
-                </a>
+                  Try Free Now
+                </button>
               ) : (
                 <span className="block w-full mt-4 py-[clamp(10px,1.2vh,14px)] bg-white/10 text-white/40 font-semibold text-[clamp(13px,1vw,16px)] text-center rounded-lg pointer-events-none">
                   Coming soon
@@ -235,22 +239,13 @@ export default function Pricing(): ReactElement {
                 </div>
 
                 <div className="flex flex-col gap-2 mt-auto">
-                  <a
-                    href={pack.links.pro[currency]}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full py-[clamp(9px,1.1vh,13px)] bg-white/10 text-white font-semibold text-[clamp(12px,0.95vw,15px)] text-center rounded-lg border border-white/15 transition-all hover:bg-white/15 hover:-translate-y-0.5 active:translate-y-0"
+                  <button
+                    type="button"
+                    onClick={openTryNow}
+                    className="block w-full py-[clamp(9px,1.1vh,13px)] bg-yellow text-black font-semibold text-[clamp(12px,0.95vw,15px)] text-center rounded-lg transition-all hover:bg-yellow/90 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
                   >
-                    Buy with Pro
-                  </a>
-                  <a
-                    href={pack.links.ultra[currency]}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full py-[clamp(9px,1.1vh,13px)] bg-yellow text-black font-semibold text-[clamp(12px,0.95vw,15px)] text-center rounded-lg transition-all hover:bg-yellow/90 hover:-translate-y-0.5 active:translate-y-0"
-                  >
-                    Buy with Ultra
-                  </a>
+                    Add to Subscription
+                  </button>
                 </div>
               </div>
             )

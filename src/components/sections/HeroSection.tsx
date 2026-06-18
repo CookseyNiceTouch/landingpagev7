@@ -25,7 +25,7 @@ export default function HeroSection(): ReactElement {
           size="lg"
           onClick={() => window.dispatchEvent(new CustomEvent(OPEN_TRY_NOW))}
         >
-          Try Now
+          Try Free Now
         </Button>
         <Button as="a" href="/pricing" variant="secondary" size="lg">
           View Pricing

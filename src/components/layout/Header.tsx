@@ -121,7 +121,7 @@ function MobileNav({ isOpen, onClose, onTryNow }: { isOpen: boolean; onClose: ()
           className="mobile-nav-try-now"
           onClick={() => { onClose(); onTryNow() }}
         >
-          Try Now
+          Try Free Now
         </button>
 
         <a href={`mailto:${CONTACT_EMAIL}`} className="mobile-nav-link" onClick={onClose}>
@@ -162,7 +162,7 @@ export default function Header(): ReactElement {
             className="header-try-now-btn"
             onClick={() => setModalOpen(true)}
           >
-            Try Now
+            Try Free Now
           </button>
 
           <span className="header-divider" aria-hidden="true">|</span>
