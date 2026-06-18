@@ -81,7 +81,7 @@ export default function About(): ReactElement {
               size="lg"
               onClick={() => window.dispatchEvent(new CustomEvent(OPEN_TRY_NOW))}
             >
-              Try Now
+              Try Free Now
             </Button>
             <Button as="a" href="/features" variant="secondary" size="lg">
               Explore Features
