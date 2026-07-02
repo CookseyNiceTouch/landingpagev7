@@ -46,7 +46,10 @@ export default function SEO({
   breadcrumb = true,
 }: SEOProps): ReactElement {
   const fullTitle = path === '/' ? `${SITE_NAME} — Your AI Edit Assistant` : `${title} | ${SITE_NAME}`
-  const url = `${BASE_URL}${path}`
+  // Sevalla pretty URLs serve every non-root route with a trailing slash
+  // (e.g. /pricing 301s to /pricing/). Canonical + og:url must match the
+  // actually-served URL, otherwise the canonical points at a redirect.
+  const url = path === '/' ? `${BASE_URL}/` : `${BASE_URL}${path}/`
   const imageUrl = absoluteUrl(image)
   const resolvedImageAlt = imageAlt ?? (image === DEFAULT_OG_IMAGE ? DEFAULT_OG_IMAGE_ALT : undefined)
 

@@ -32,7 +32,7 @@ export default function Pricing(): ReactElement {
           name: 'Nice Touch',
           applicationCategory: 'MultimediaApplication',
           operatingSystem: 'Windows, macOS',
-          url: 'https://nicetouch.app/pricing',
+          url: 'https://nicetouch.app/pricing/',
           description:
             'AI-powered workflow and edit assistant for professional video teams, working inside DaVinci Resolve and Adobe Premiere Pro.',
           offers: PLANS.filter((plan) => plan.pricing).map((plan) => ({
@@ -41,7 +41,7 @@ export default function Pricing(): ReactElement {
             price: String(plan.pricing!.gbp.monthly),
             priceCurrency: 'GBP',
             category: 'subscription',
-            url: 'https://nicetouch.app/pricing',
+            url: 'https://nicetouch.app/pricing/',
           })),
         }}
       />

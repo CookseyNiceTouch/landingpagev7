@@ -76,7 +76,8 @@ async function writeSitemap(routePaths) {
   const urls = routePaths
     .filter(({ sitemapPriority }) => typeof sitemapPriority === 'number')
     .map(({ path, sitemapPriority }) => {
-      const loc = path === '/' ? `${BASE_URL}/` : `${BASE_URL}${path}`
+      // Trailing slash to match Sevalla pretty-URL canonical form.
+      const loc = path === '/' ? `${BASE_URL}/` : `${BASE_URL}${path}/`
       return `  <url><loc>${loc}</loc><lastmod>${today}</lastmod><priority>${sitemapPriority.toFixed(1)}</priority></url>`
     })
     .join('\n')

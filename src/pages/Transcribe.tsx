@@ -15,7 +15,7 @@ import SeoContent from '@/components/transcribe/SeoContent'
 import { useTranscribe } from '@/hooks/useTranscribe'
 import { SEO as SEO_COPY, MAX_DURATION_LABEL, FAQ, STEPS } from '@/data/transcribe'
 
-const PAGE_URL = 'https://nicetouch.app/transcribe'
+const PAGE_URL = 'https://nicetouch.app/transcribe/'
 
 const STRUCTURED_DATA = [
   {
@@ -84,7 +84,7 @@ const STRUCTURED_DATA = [
         '@type': 'ListItem',
         position: 2,
         name: 'Tools',
-        item: 'https://nicetouch.app/tools',
+        item: 'https://nicetouch.app/tools/',
       },
       {
         '@type': 'ListItem',
