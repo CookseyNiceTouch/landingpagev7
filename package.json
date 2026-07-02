@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run press:zip && tsc -b && vite build",
+    "build": "npm run press:zip && tsc -b && vite build && npm run prerender",
+    "prerender": "vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/prerender.mjs && node scripts/verify-prerender.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "og:generate": "node scripts/generate-og-images.mjs",

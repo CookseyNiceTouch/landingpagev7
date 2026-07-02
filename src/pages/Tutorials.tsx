@@ -30,6 +30,7 @@ function VideoCard({ video }: { video: Video }): ReactElement {
             <img
               src={thumbnail}
               alt={video.title}
+              loading="lazy"
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
             />
           </button>

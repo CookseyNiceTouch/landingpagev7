@@ -34,6 +34,7 @@ function VideoEmbed({ video }: { video: VideoEntry }): ReactElement {
             <img
               src={thumbnail}
               alt={video.title}
+              loading="lazy"
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
             />
             <span className="absolute inset-0 flex items-center justify-center">

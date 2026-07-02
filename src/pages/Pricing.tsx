@@ -21,6 +21,24 @@ export default function Pricing(): ReactElement {
         title="Pricing"
         description="Simple, transparent pricing for Nice Touch. Plans for individual creators through to enterprise teams, with monthly and annual options."
         path="/pricing"
+        structuredData={{
+          '@context': 'https://schema.org',
+          '@type': 'SoftwareApplication',
+          name: 'Nice Touch',
+          applicationCategory: 'MultimediaApplication',
+          operatingSystem: 'Windows, macOS',
+          url: 'https://nicetouch.app/pricing',
+          description:
+            'AI-powered workflow and edit assistant for professional video teams, working inside DaVinci Resolve and Adobe Premiere Pro.',
+          offers: PLANS.filter((plan) => plan.pricing).map((plan) => ({
+            '@type': 'Offer',
+            name: `${plan.name} (monthly)`,
+            price: String(plan.pricing!.gbp.monthly),
+            priceCurrency: 'GBP',
+            category: 'subscription',
+            url: 'https://nicetouch.app/pricing',
+          })),
+        }}
       />
       <div className="flex flex-col items-center gap-3 text-center">
         <h1 className="m-0 text-[clamp(28px,3.5vw,52px)] font-bold text-white leading-tight tracking-tight max-w-[36rem]">

@@ -29,10 +29,10 @@ const SUBTLE = '#888888'
 const BG = '#000000'
 
 /**
- * @param {{ wordmark: string, title: string, subtitle: string }} args
+ * @param {{ wordmark: string, title: string, subtitle: string, footer: string }} args
  * @returns {string}
  */
-function buildSvg({ wordmark, title, subtitle }) {
+function buildSvg({ wordmark, title, subtitle, footer }) {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}">
   <defs>
@@ -54,17 +54,25 @@ function buildSvg({ wordmark, title, subtitle }) {
   <text x="80" y="430" font-family="Helvetica, Arial, sans-serif" font-size="36" font-weight="400" fill="${SUBTLE}">${subtitle}</text>
 
   <rect x="80" y="540" width="60" height="2" fill="${PINK}" rx="1" />
-  <text x="160" y="552" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="${SUBTLE}">nicetouch.app/transcribe</text>
+  <text x="160" y="552" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="${SUBTLE}">${footer}</text>
 </svg>`
 }
 
-/** @type {{ slug: string, wordmark: string, title: string, subtitle: string }[]} */
+/** @type {{ slug: string, wordmark: string, title: string, subtitle: string, footer: string }[]} */
 const IMAGES = [
   {
     slug: 'transcribe',
     wordmark: 'NICE TOUCH',
     title: 'Free Transcription Tool',
     subtitle: 'Export to Word, SRT, or VTT \u00b7 No sign-up',
+    footer: 'nicetouch.app/transcribe',
+  },
+  {
+    slug: 'default',
+    wordmark: 'NICE TOUCH',
+    title: 'Your AI Edit Assistant',
+    subtitle: 'For DaVinci Resolve and Adobe Premiere Pro',
+    footer: 'nicetouch.app',
   },
 ]
 
