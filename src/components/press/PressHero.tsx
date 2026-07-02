@@ -16,7 +16,7 @@ export default function PressHero(): ReactElement {
         {HERO.subhead}
       </p>
       <div className="mt-3 flex flex-wrap items-center justify-center gap-3 pointer-events-auto">
-        <Button as="a" href={HERO.primaryCta.href} variant="primary" size="md" download>
+        <Button as="a" href={HERO.primaryCta.href} variant="primary" size="md" download rel="nofollow">
           {HERO.primaryCta.label}
         </Button>
         <Button as="a" href={HERO.secondaryCta.href} variant="secondary" size="md">

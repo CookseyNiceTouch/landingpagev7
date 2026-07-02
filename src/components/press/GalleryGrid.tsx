@@ -213,7 +213,7 @@ export default function GalleryGrid(): ReactElement | null {
               </p>
             </div>
             <div className="pointer-events-auto">
-              <Button as="a" href={PRESS_KIT_ZIP_PATH} variant="secondary" size="sm" download>
+              <Button as="a" href={PRESS_KIT_ZIP_PATH} variant="secondary" size="sm" download rel="nofollow">
                 Download press kit (.zip)
               </Button>
             </div>

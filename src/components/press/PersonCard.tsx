@@ -25,6 +25,7 @@ export default function PersonCard({ person, variant = 'founder' }: PersonCardPr
         <img
           src={person.headshot}
           alt={`${person.name} headshot`}
+          loading="lazy"
           className="w-full object-cover object-top"
           style={{ aspectRatio: '4 / 3' }}
         />

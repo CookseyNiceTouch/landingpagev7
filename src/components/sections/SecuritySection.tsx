@@ -12,6 +12,7 @@ export default function SecuritySection(): ReactElement {
           <img
             src={securityIllustration}
             alt="Security and privacy"
+            loading="lazy"
             className="section-illustration"
           />
         </FadeIn>

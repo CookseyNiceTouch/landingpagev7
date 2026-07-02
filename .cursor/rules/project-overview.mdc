@@ -56,7 +56,26 @@ src/
 
 ## Routing
 
-All routes are children of the `<Layout />` route in `App.tsx`. To add a new page:
-1. Create `src/pages/MyPage.tsx`
-2. Add `<Route path="/my-page" element={<MyPage />} />` inside the Layout route
+All routes are children of the `<Layout />` route. The route table lives in
+`src/routes.tsx` (the single source of truth consumed by `App.tsx`, the
+prerenderer, and the sitemap generator). To add a new page:
+1. Create `src/pages/MyPage.tsx` (include an `<SEO title=… description=… path=…/>` and exactly one `<h1>`)
+2. Add an entry to `ROUTES` in `src/routes.tsx` (with a `sitemapPriority` so it lands in the sitemap)
 3. Add a nav entry to `src/data/navigation.ts` if it should appear in the header/footer
+
+## SEO / prerendering (do not break)
+
+- The site is prerendered at build time: `npm run build` runs `vite build`,
+  then `vite build --ssr src/entry-server.tsx`, then `scripts/prerender.mjs`
+  which writes one static `dist/<route>/index.html` per route plus
+  `dist/404.html` and `dist/sitemap.xml`, and finally
+  `scripts/verify-prerender.mjs` which fails the build on missing/duplicate
+  titles, descriptions, canonicals, H1s, or invalid JSON-LD.
+- Components must stay SSR-safe: never touch `window`/`document` at module
+  level or during render — only inside `useEffect` or event handlers, or
+  behind a `typeof window !== 'undefined'` guard.
+- Per-page meta is owned by `src/components/ui/SEO.tsx` (react-helmet-async).
+  `index.html` must NOT contain page-specific title/meta — only the
+  `<!--app-head-->` / `<!--app-html-->` placeholders.
+- Site-wide Organization/WebSite JSON-LD lives in `src/components/ui/SiteSchema.tsx`.
+- `_headers` (repo root) sets security + caching headers on Sevalla; `public/robots.txt` excludes `/press/assets/`.

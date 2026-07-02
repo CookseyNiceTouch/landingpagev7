@@ -13,6 +13,7 @@ export default function WorkflowsSection(): ReactElement {
           <img
             src={tapesIllustration}
             alt="Stacked memory cards representing large media volumes"
+            loading="lazy"
             className="section-illustration workflows-illustration"
           />
         </FadeIn>

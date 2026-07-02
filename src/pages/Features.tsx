@@ -76,7 +76,8 @@ export default function Features(): ReactElement {
                   <div className="feature-step-image">
                     <img
                       src={shot}
-                      alt={step.heading}
+                      alt={`Nice Touch — ${step.heading}`}
+                      loading="lazy"
                       className="feature-screenshot"
                     />
                   </div>

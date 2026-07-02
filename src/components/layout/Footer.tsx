@@ -8,6 +8,7 @@ export default function Footer(): ReactElement {
 
   const productLinks = NAV_ITEMS.find((item) => isNavGroup(item) && item.label === 'Product')
   const companyLinks = NAV_ITEMS.find((item) => isNavGroup(item) && item.label === 'Company')
+  const resourceLinks = NAV_ITEMS.find((item) => isNavGroup(item) && item.label === 'Resources')
 
   return (
     <footer className="site-footer">
@@ -32,6 +33,17 @@ export default function Footer(): ReactElement {
                 ))}
                 <Link to="/pricing" className="footer-link">Pricing</Link>
                 <Link to="/download" className="footer-link">Coming Soon</Link>
+              </div>
+            )}
+
+            {resourceLinks && isNavGroup(resourceLinks) && (
+              <div className="footer-link-column">
+                <span className="footer-column-heading">Resources</span>
+                {resourceLinks.children.map((link) => (
+                  <Link key={link.href} to={link.href} className="footer-link">
+                    {link.label}
+                  </Link>
+                ))}
               </div>
             )}
 

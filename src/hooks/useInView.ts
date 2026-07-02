@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 
 export function useInView(options?: IntersectionObserverInit) {
   const ref = useRef<HTMLDivElement>(null)
-  const [inView, setInView] = useState(false)
+  // Default to visible during build-time prerendering so crawlers never see
+  // content stuck at opacity 0; browsers start hidden and animate in.
+  const [inView, setInView] = useState(typeof window === 'undefined')
 
   useEffect(() => {
     const el = ref.current

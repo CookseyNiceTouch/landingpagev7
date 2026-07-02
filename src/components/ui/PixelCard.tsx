@@ -189,7 +189,10 @@ export default function PixelCard({
   const pixelsRef = useRef<Pixel[]>([])
   const animationRef = useRef<ReturnType<typeof requestAnimationFrame> | null>(null)
   const timePreviousRef = useRef(performance.now())
-  const reducedMotion = useRef(window.matchMedia('(prefers-reduced-motion: reduce)').matches).current
+  // window is absent during build-time prerendering; animation only runs client-side anyway.
+  const reducedMotion = useRef(
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  ).current
 
   const variantCfg: VariantConfig = VARIANTS[variant] || VARIANTS.default
   const finalGap = gap ?? variantCfg.gap

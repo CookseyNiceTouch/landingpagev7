@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import type { ReactElement } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import CrtOverlay from '@/components/ui/CrtOverlay'
+import SiteSchema from '@/components/ui/SiteSchema'
 import Header from './Header'
 import Footer from './Footer'
 
@@ -24,6 +25,7 @@ export default function Layout(): ReactElement {
 
   return (
     <div className="relative min-h-screen bg-bg flex flex-col">
+      <SiteSchema />
       {/* Preload newsletter form iframe in background so it's ready when user navigates to /newsletter */}
       <div
         className="hs-form-frame"

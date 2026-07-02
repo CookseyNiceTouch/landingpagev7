@@ -37,6 +37,7 @@ export const NAV_ITEMS: NavItem[] = [
     label: 'Resources',
     children: [
       { label: 'Tools', href: '/tools' },
+      { label: 'Free Transcription', href: '/transcribe' },
       { label: 'Tutorials & Media', href: '/tutorials' },
     ],
   },

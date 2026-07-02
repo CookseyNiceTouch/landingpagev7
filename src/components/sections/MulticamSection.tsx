@@ -21,6 +21,7 @@ export default function MulticamSection(): ReactElement {
           <img
             src={multicamIllustration}
             alt="Multicam editing workflow"
+            loading="lazy"
             className="section-illustration"
           />
         </FadeIn>

@@ -1,0 +1,36 @@
+# Sevalla static-site header rules — https://docs.sevalla.com/static-sites/headers
+# Fixes the SEO audit "Security Grade D" finding (no security headers at all).
+
+# Security headers on every response
+/*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://assets.apollo.io https://*.apollo.io https://js-eu1.hs-scripts.com https://js-eu1.hsforms.net https://js.hsforms.net https://*.hs-analytics.net https://*.hs-banner.com https://*.hscollectedforms.net https://*.hubspot.com https://*.usemessages.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; media-src 'self' blob:; frame-src https://*.hsforms.com https://*.hsforms.net https://*.hubspot.com https://www.youtube.com; connect-src 'self' https://api.nicetouch.app https://raw.githubusercontent.com https://api.github.com https://*.github.com https://objects.githubusercontent.com https://*.apollo.io https://*.hubspot.com https://*.hsforms.com https://*.hs-analytics.net https://*.hscollectedforms.net; form-action 'self' https://*.hsforms.com; frame-ancestors 'self'; base-uri 'self'
+
+# Hashed build assets are immutable — cache for a year
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Prerendered HTML must always revalidate so deploys show up immediately,
+# but the CDN edge may keep a copy for a day (purged on deploy).
+# Also fixes the homepage being served `no-store` (uncacheable -> slow TTFB).
+/
+  Cache-Control: public, max-age=0, s-maxage=86400, must-revalidate
+
+/*.html
+  Cache-Control: public, max-age=0, s-maxage=86400, must-revalidate
+
+# Press kit binaries — long cache, keep out of search/AI indexes
+# (the 69 MB zip was crawled as a "page" and timed out in the SEO audit)
+/press/assets/*
+  Cache-Control: public, max-age=604800
+  X-Robots-Tag: noindex
+
+/press/nice-touch-press-kit.zip
+  X-Robots-Tag: noindex
+
+/og/*
+  Cache-Control: public, max-age=86400

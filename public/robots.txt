@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+# Binary press assets (zip/pdf/mp4/docx/images) are downloads, not pages.
+Disallow: /press/assets/
+Disallow: /press/nice-touch-press-kit.zip
 
 Sitemap: https://nicetouch.app/sitemap.xml
