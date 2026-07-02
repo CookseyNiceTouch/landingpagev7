@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react'
 import SEO from '@/components/ui/SEO'
-import { SECTION_TITLES, FAQ_ITEMS } from '@/data/home'
+import { SECTION_TITLES, FAQ_ITEMS, faqPageSchema } from '@/data/home'
 import { TESTIMONIALS } from '@/data/features'
 import SectionTitle from '@/components/ui/SectionTitle'
 import FadeIn from '@/components/ui/FadeIn'
@@ -29,18 +29,7 @@ export default function Home(): ReactElement {
             description:
               'AI-powered workflow and edit assistant for professional video teams.',
           },
-          {
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: FAQ_ITEMS.map((item) => ({
-              '@type': 'Question',
-              name: item.question,
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: item.answer,
-              },
-            })),
-          },
+          faqPageSchema(FAQ_ITEMS),
         ]}
       />
       <HeroSection />

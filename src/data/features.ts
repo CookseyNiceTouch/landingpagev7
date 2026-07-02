@@ -1,3 +1,5 @@
+import type { FaqItem } from '@/data/home'
+
 export interface FeatureStep {
   number: string
   heading: string
@@ -112,5 +114,33 @@ export const CORE_FEATURES: FeatureItem[] = [
   {
     heading: 'Asset management',
     body: 'Manage video, audio, and multicam assets with a structured library. Assets are linked to projects and analysed on demand.',
+  },
+]
+
+export const FEATURES_FAQ: FaqItem[] = [
+  {
+    question: 'Where does Nice Touch run?',
+    answer:
+      'Nice Touch runs alongside DaVinci Resolve and Adobe Premiere Pro on macOS and Windows. It reads your open project and writes edit-ready timelines back into the same NLE — there is nothing to export, and no round-tripping between tools.',
+  },
+  {
+    question: 'How does the AI assistant build a rough cut?',
+    answer:
+      'The assistant works from your project context, not a blank template. It draws on the briefs, notes, and reference links you upload, plus a word-level transcript of your footage, to select and order the moments that matter. It then assembles a timeline directly inside Resolve or Premiere for you to review and refine.',
+  },
+  {
+    question: 'How accurate is the transcription?',
+    answer:
+      'Audio is transcribed with word-level timestamps, so every spoken moment is searchable and the assistant can reference exact ranges when it builds or restructures a sequence.',
+  },
+  {
+    question: 'Does Nice Touch make edits without my approval?',
+    answer:
+      'No. Nice Touch handles the repetitive, time-consuming parts of post — transcription, structure, and rough-cut assembly — while every edit stays reviewable and adjustable. The editor keeps creative control from start to finish.',
+  },
+  {
+    question: 'Does it work on multicam projects?',
+    answer:
+      'Yes. Multicam is a first-class capability, available on Pro plans and above. Nice Touch imports synced multicam footage, scores the available audio sources, maps video coverage, and builds the rough cut in place.',
   },
 ]

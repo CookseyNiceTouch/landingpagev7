@@ -1,8 +1,14 @@
 import { useState, useCallback } from 'react'
 import type { ReactElement } from 'react'
 import { FAQ_ITEMS } from '@/data/home'
+import type { FaqItem } from '@/data/home'
 
-export default function FaqSection(): ReactElement {
+interface FaqSectionProps {
+  /** FAQ entries to render. Defaults to the homepage set. */
+  items?: FaqItem[]
+}
+
+export default function FaqSection({ items = FAQ_ITEMS }: FaqSectionProps): ReactElement {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   const toggle = useCallback((i: number) => {
@@ -12,7 +18,7 @@ export default function FaqSection(): ReactElement {
   return (
     <section className="faq-section">
       <dl className="faq-list">
-        {FAQ_ITEMS.map((item, i) => {
+        {items.map((item, i) => {
           const isOpen = openIndex === i
           return (
             <div key={i} className={`faq-item ${isOpen ? 'is-open' : ''}`}>

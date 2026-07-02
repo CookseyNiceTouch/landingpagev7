@@ -3,8 +3,10 @@ import SEO from '@/components/ui/SEO'
 import FadeIn from '@/components/ui/FadeIn'
 import PixelCard from '@/components/ui/PixelCard'
 import Button from '@/components/ui/Button'
+import FaqSection from '@/components/sections/FaqSection'
 import { OPEN_TRY_NOW } from '@/components/layout/Header'
-import { FEATURES_HERO, HOW_IT_WORKS, CORE_FEATURES, TESTIMONIALS } from '@/data/features'
+import { FEATURES_HERO, HOW_IT_WORKS, CORE_FEATURES, TESTIMONIALS, FEATURES_FAQ } from '@/data/features'
+import { faqPageSchema } from '@/data/home'
 import laptopIllustration from '@/assets/images/illustrations/laptop.webp'
 import projectShot from '@/assets/images/productshots/project.webp'
 import analysisShot from '@/assets/images/productshots/analysis.webp'
@@ -29,14 +31,17 @@ export default function Features(): ReactElement {
         title="Features"
         description="Explore Nice Touch capabilities: context-aware AI chat, rough cut generation, transcript analysis, timeline actions, project memory, and multicam support — all inside Premiere and Resolve."
         path="/features"
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'SoftwareApplication',
-          name: 'Nice Touch',
-          applicationCategory: 'MultimediaApplication',
-          operatingSystem: 'Windows, macOS',
-          description: FEATURES_HERO.subtitle,
-        }}
+        structuredData={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'SoftwareApplication',
+            name: 'Nice Touch',
+            applicationCategory: 'MultimediaApplication',
+            operatingSystem: 'Windows, macOS',
+            description: FEATURES_HERO.subtitle,
+          },
+          faqPageSchema(FEATURES_FAQ),
+        ]}
       />
 
       <section className="content-hero">
@@ -138,6 +143,14 @@ export default function Features(): ReactElement {
             </FadeIn>
           ))}
         </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="content-block">
+        <FadeIn>
+          <h2 className="content-block-heading">Frequently asked questions</h2>
+        </FadeIn>
+        <FaqSection items={FEATURES_FAQ} />
       </section>
 
       <FadeIn>

@@ -1,9 +1,11 @@
 import { useState, useMemo } from 'react'
 import type { ReactElement } from 'react'
 import SEO from '@/components/ui/SEO'
+import FaqSection from '@/components/sections/FaqSection'
 import { OPEN_TRY_NOW } from '@/components/layout/Header'
-import { PLANS, ADD_ON_PACKS, detectCurrency, formatPrice, featureValueClass, ultraVsProSavingPerGen } from '@/data/pricing'
+import { PLANS, ADD_ON_PACKS, PRICING_FAQ, detectCurrency, formatPrice, featureValueClass, ultraVsProSavingPerGen } from '@/data/pricing'
 import type { Interval, Currency, AddOnPack } from '@/data/pricing'
+import { faqPageSchema } from '@/data/home'
 
 function savingsPercent(pack: AddOnPack, currency: Currency): number {
   const pro = pack.pricing.pro[currency]
@@ -26,24 +28,27 @@ export default function Pricing(): ReactElement {
         title="Pricing"
         description="Simple, transparent pricing for Nice Touch. Plans for individual creators through to enterprise teams, with monthly and annual options."
         path="/pricing"
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'SoftwareApplication',
-          name: 'Nice Touch',
-          applicationCategory: 'MultimediaApplication',
-          operatingSystem: 'Windows, macOS',
-          url: 'https://nicetouch.app/pricing/',
-          description:
-            'AI-powered workflow and edit assistant for professional video teams, working inside DaVinci Resolve and Adobe Premiere Pro.',
-          offers: PLANS.filter((plan) => plan.pricing).map((plan) => ({
-            '@type': 'Offer',
-            name: `${plan.name} (monthly)`,
-            price: String(plan.pricing!.gbp.monthly),
-            priceCurrency: 'GBP',
-            category: 'subscription',
+        structuredData={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'SoftwareApplication',
+            name: 'Nice Touch',
+            applicationCategory: 'MultimediaApplication',
+            operatingSystem: 'Windows, macOS',
             url: 'https://nicetouch.app/pricing/',
-          })),
-        }}
+            description:
+              'AI-powered workflow and edit assistant for professional video teams, working inside DaVinci Resolve and Adobe Premiere Pro.',
+            offers: PLANS.filter((plan) => plan.pricing).map((plan) => ({
+              '@type': 'Offer',
+              name: `${plan.name} (monthly)`,
+              price: String(plan.pricing!.gbp.monthly),
+              priceCurrency: 'GBP',
+              category: 'subscription',
+              url: 'https://nicetouch.app/pricing/',
+            })),
+          },
+          faqPageSchema(PRICING_FAQ),
+        ]}
       />
       <div className="flex flex-col items-center gap-3 text-center">
         <h1 className="m-0 text-[clamp(28px,3.5vw,52px)] font-bold text-white leading-tight tracking-tight max-w-[36rem]">
@@ -269,6 +274,16 @@ export default function Pricing(): ReactElement {
             )
           })}
         </div>
+      </div>
+
+      {/* FAQ */}
+      <div className="flex flex-col items-center gap-[clamp(20px,2.5vw,40px)] w-full max-w-[1360px] pointer-events-auto">
+        <div className="text-center">
+          <h2 className="m-0 text-[clamp(22px,2vw,32px)] font-semibold text-white">
+            Frequently asked questions
+          </h2>
+        </div>
+        <FaqSection items={PRICING_FAQ} />
       </div>
     </div>
   )

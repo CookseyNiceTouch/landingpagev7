@@ -34,6 +34,19 @@ export interface FaqItem {
   answer: string
 }
 
+/** Build schema.org FAQPage JSON-LD from a list of FAQ items. */
+export function faqPageSchema(items: FaqItem[]): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  }
+}
+
 export const SECTION_TITLES = {
   multicam: "Multicam shouldn\u2019t take half your day.",
   workflows: 'Built for real post-production workflows.',
@@ -51,7 +64,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: 'How much footage can I process?',
     answer:
-      'The Basic plan includes 1 hour of footage analysis per month. Pro includes 25 hours, and Enterprise plans offer custom limits. Processing time refers to the length of source material, not wall-clock time.',
+      'Each plan includes a monthly audio-analysis allowance: 2 hours on Hobbyist, 5 hours on Pro, and 25 hours on Ultra, with custom limits on Enterprise. Allowances refer to the length of source material, not wall-clock processing time, and you can top up any plan with add-on packs.',
   },
   {
     question: 'Does Nice Touch replace my editor?',
@@ -66,7 +79,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: 'Can I use Nice Touch for multicam shoots?',
     answer:
-      'Yes. Multicam support is included on Pro and Enterprise plans. Nice Touch analyses synced multicam footage as a single narrative, tracking speakers across all camera angles.',
+      'Yes. Multicam support is included on Pro plans and above. Nice Touch analyses synced multicam footage as a single narrative, scores the available audio sources, and tracks coverage across all camera angles.',
   },
   {
     question: 'How does billing work?',

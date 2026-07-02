@@ -1,5 +1,6 @@
 import premiereProIcon from '@/assets/images/premiere-pro-icon.webp'
 import davinciResolveIcon from '@/assets/images/davinci-resolve-icon.webp'
+import type { FaqItem } from '@/data/home'
 
 export type Currency = 'gbp' | 'usd'
 export type Interval = 'monthly' | 'yearly'
@@ -205,6 +206,39 @@ export const ADD_ON_PACKS: AddOnPack[] = [
       pro:   { gbp: 'https://buy.stripe.com/aFafZh4Z5duP79J4eY7Zu0n', usd: 'https://buy.stripe.com/6oU4gz0IP4Yj8dN9zi7Zu0o' },
       ultra: { gbp: 'https://buy.stripe.com/aFaeVdcrxduPeCb12M7Zu0t', usd: 'https://buy.stripe.com/8x29ATfDJ2Qbdy76n67Zu0u' },
     },
+  },
+]
+
+export const PRICING_FAQ: FaqItem[] = [
+  {
+    question: 'What plans does Nice Touch offer?',
+    answer:
+      'There are four plans. Hobbyist is for getting started, with 10 projects, 2 hours of audio analysis, and 20 edit generations a month. Pro adds unlimited projects, multicam, 5 hours of analysis, and 60 generations. Ultra raises that to 25 hours, 400 generations, and priority processing. Enterprise offers custom limits and onboarding.',
+  },
+  {
+    question: 'What is the difference between monthly and annual billing?',
+    answer:
+      'Every paid plan can be billed monthly or annually. Choosing annual saves roughly 20% — about two months free compared with paying month to month. You can switch billing intervals or cancel at any time.',
+  },
+  {
+    question: 'What are edit generations and audio hours?',
+    answer:
+      'An edit generation is one AI-built rough cut or edit action, and audio hours are the length of source material Nice Touch transcribes and analyses. Each plan includes a monthly allowance of both, and cost per generation drops on higher plans.',
+  },
+  {
+    question: 'What if I run out mid-month?',
+    answer:
+      'Add-on packs let you top up generations and audio hours without upgrading your plan. Packs come in three sizes (S, M, and L), and they are cheaper on Ultra than on Pro.',
+  },
+  {
+    question: 'Which currencies and taxes apply?',
+    answer:
+      'Prices are shown in GBP or USD based on your region, and all listed prices exclude VAT. Payments are handled securely through Stripe.',
+  },
+  {
+    question: 'Is multicam included in the price?',
+    answer:
+      'Multicam is included from the Pro plan upwards at no extra cost. It is not part of the Hobbyist plan.',
   },
 ]
 

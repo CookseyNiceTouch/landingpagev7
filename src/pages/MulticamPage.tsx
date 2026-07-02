@@ -3,13 +3,16 @@ import SEO from '@/components/ui/SEO'
 import FadeIn from '@/components/ui/FadeIn'
 import PixelCard from '@/components/ui/PixelCard'
 import Button from '@/components/ui/Button'
+import FaqSection from '@/components/sections/FaqSection'
 import { OPEN_TRY_NOW } from '@/components/layout/Header'
 import multicam2Illustration from '@/assets/images/illustrations/multicam2.webp'
 import {
   MULTICAM_HERO,
   MULTICAM_CAPABILITIES,
   MULTICAM_PAIN_QUOTES,
+  MULTICAM_FAQ,
 } from '@/data/multicam-page'
+import { faqPageSchema } from '@/data/home'
 
 export default function MulticamPage(): ReactElement {
   return (
@@ -18,6 +21,17 @@ export default function MulticamPage(): ReactElement {
         title="Multicam Editing"
         description="Nice Touch handles the full lifecycle of multicam editing: import from Resolve and Premiere, automatic audio scoring, video coverage mapping, and timelines built directly in your NLE."
         path="/multicam"
+        structuredData={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'SoftwareApplication',
+            name: 'Nice Touch',
+            applicationCategory: 'MultimediaApplication',
+            operatingSystem: 'Windows, macOS',
+            description: MULTICAM_HERO.subtitle,
+          },
+          faqPageSchema(MULTICAM_FAQ),
+        ]}
       />
 
       <section className="content-hero">
@@ -70,6 +84,14 @@ export default function MulticamPage(): ReactElement {
             </FadeIn>
           ))}
         </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="content-block">
+        <FadeIn>
+          <h2 className="content-block-heading">Frequently asked questions</h2>
+        </FadeIn>
+        <FaqSection items={MULTICAM_FAQ} />
       </section>
 
       <FadeIn>
