@@ -26,9 +26,18 @@ export const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
+    label: 'Solutions',
+    children: [
+      { label: 'Podcast editing', href: '/podcast-editing' },
+      { label: 'Interview editing', href: '/interview-editing' },
+      { label: 'Sermon editing', href: '/sermon-editing' },
+      { label: 'Use Cases', href: '/use-cases' },
+      { label: 'For Teams', href: '/for-teams' },
+    ],
+  },
+  {
     label: 'Company',
     children: [
-      { label: 'Use Cases', href: '/use-cases' },
       { label: 'About', href: '/about' },
     ],
   },

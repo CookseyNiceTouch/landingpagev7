@@ -8,17 +8,17 @@ import { OPEN_TRY_NOW } from '@/components/layout/Header'
 import { FEATURES_HERO, HOW_IT_WORKS, CORE_FEATURES, TESTIMONIALS, FEATURES_FAQ } from '@/data/features'
 import { faqPageSchema } from '@/data/home'
 import laptopIllustration from '@/assets/images/illustrations/laptop.webp'
-import projectShot from '@/assets/images/productshots/project.webp'
-import analysisShot from '@/assets/images/productshots/analysis.webp'
-import chatShot from '@/assets/images/productshots/chat.webp'
+import analysisShot from '@/assets/images/productshots/analysis.png'
+import cutQuestionsShot from '@/assets/images/productshots/cut-questions.png'
+import generatingShot from '@/assets/images/productshots/generating.png'
 import timelineShot from '@/assets/images/productshots/timeline.webp'
 
 // Map screenshots to HOW_IT_WORKS steps by index — null = no screenshot
 const STEP_SCREENSHOTS: (string | null)[] = [
-  projectShot,   // 01 Bring in your project context
-  analysisShot,  // 02 Analyse your footage
-  chatShot,      // 03 Work with the AI assistant
-  timelineShot,  // 04 Review and refine
+  analysisShot,      // 01 Analyse your footage
+  cutQuestionsShot,  // 02 Answer a few questions about the cut
+  generatingShot,    // 03 Generate your edit
+  timelineShot,      // 04 Review and refine
 ]
 
 export default function Features(): ReactElement {
@@ -29,7 +29,7 @@ export default function Features(): ReactElement {
     <div className="content-page">
       <SEO
         title="Features"
-        description="Explore Nice Touch capabilities: context-aware AI chat, rough cut generation, transcript analysis, timeline actions, project memory, and multicam support — all inside Premiere and Resolve."
+        description="What Nice Touch does inside Premiere Pro and DaVinci Resolve: rough-cut generation, transcript analysis, timeline actions, project memory, multicam, and a project-aware chat assistant. The AI edit assistant that leaves the creative calls to you."
         path="/features"
         structuredData={[
           {

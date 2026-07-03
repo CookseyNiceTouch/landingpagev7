@@ -14,7 +14,7 @@ const ORGANIZATION = {
   logo: `${BASE_URL}/favicon.png`,
   email: CONTACT_EMAIL,
   description:
-    'Nice Touch builds AI-powered workflow and edit tools for professional video post-production teams, working inside DaVinci Resolve and Adobe Premiere Pro.',
+    'Nice Touch builds an AI edit assistant for dialogue-led video editors and post-production teams — handling the footage trawl, string-out, and first-pass rough cut inside DaVinci Resolve and Adobe Premiere Pro, while the editor keeps the creative calls.',
   sameAs: SOCIAL_LINKS.map((s) => s.href),
 }
 

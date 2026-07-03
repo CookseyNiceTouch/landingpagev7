@@ -15,7 +15,7 @@ export default function About(): ReactElement {
     <div className="content-page">
       <SEO
         title="About"
-        description="Nice Touch is an early-stage, founder-led SaaS company building AI-powered workflow tools for professional video post-production teams."
+        description="Nice Touch is an early-stage, founder-led company building an AI edit assistant for dialogue-led video editors and post teams — removing the repetitive first-pass work inside Premiere Pro and DaVinci Resolve, while the editor keeps the creative calls."
         path="/about"
         structuredData={{
           '@context': 'https://schema.org',

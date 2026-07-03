@@ -5,22 +5,22 @@ export interface InfocardContent {
 }
 
 export const HERO = {
-  headingLines: ['Your AI Edit Assistant'],
+  headingLines: ['Nice Touch does the work', "you didn't sign up for"],
   subtitle:
-    'From footage to first cut, faster.',
+    "The footage trawl, the string-out, the first pass through hours of talking heads — Nice Touch handles the part of the edit that isn't editing, right inside Premiere Pro and DaVinci Resolve. The creative calls stay yours.",
 } as const
 
 export const DEMO_STEPS: InfocardContent[] = [
   {
-    heading: 'Bring in your context',
-    body: 'Upload briefs, transcripts, notes, and reference links. Nice Touch builds a usable project memory that the AI assistant draws on throughout the edit.',
-  },
-  {
     heading: 'Analyse your footage',
-    body: 'Audio is transcribed with word-level accuracy, giving the assistant a detailed map of every spoken moment in your footage.',
+    body: 'Bring in your footage, briefs, notes, and reference links. Nice Touch transcribes your audio with word-level accuracy and builds a usable project memory that the AI assistant draws on throughout the edit.',
   },
   {
-    heading: 'Work with the AI assistant',
+    heading: 'Answer a few questions about the cut',
+    body: "Based on what it finds in your footage, Nice Touch asks you a handful of targeted questions about the project — filling in whatever your brief doesn't already cover.",
+  },
+  {
+    heading: 'Generate your edit',
     body: 'Ask the assistant to find moments, build a rough cut, restructure a sequence, or handle a specific edit task. Actions execute directly inside Resolve or Premiere.',
   },
   {
@@ -110,7 +110,7 @@ export const MULTICAM_CARD: InfocardContent = {
 export const WORKFLOWS_CARD: InfocardContent = {
   heading: 'Every project lands differently.',
   body: [
-    'A documentary shoot comes back with 200 hours of cards. A corporate event fills twelve drives across six cameras. A narrative pilot wraps with six weeks of dailies and a producer\'s note three pages long.',
+    'A weekly podcast comes back as six hours across four cameras. An interview shoot fills three drives with talking heads. A documentary wraps with 200 hours of cards and a brief three pages long.',
     'No two projects look the same, and no two editors work the same way. Nice Touch adapts to your footage, your brief, and your process — not the other way around.',
     'Sift through hours of material in minutes. Find the moments that matter, build structure from raw chaos, and get to a first cut without grinding through every second of every card.',
   ].join('\n\n'),

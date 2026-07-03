@@ -12,22 +12,15 @@ import { dirname, resolve, join } from 'node:path'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DIST = resolve(__dirname, '..', 'dist')
 
+// Derive the page list from the generated sitemap so every prerendered route
+// is verified automatically (no hardcoded list to keep in sync). 404 is
+// noindex, so it's not in the sitemap — add it explicitly.
+const sitemap = await readFile(join(DIST, 'sitemap.xml'), 'utf-8')
 const PAGES = [
-  'index.html',
-  'features/index.html',
-  'multicam/index.html',
-  'integrations/index.html',
-  'use-cases/index.html',
-  'about/index.html',
-  'security/index.html',
-  'privacy/index.html',
-  'pricing/index.html',
-  'download/index.html',
-  'tools/index.html',
-  'transcribe/index.html',
-  'tutorials/index.html',
-  'newsletter/index.html',
-  'press/index.html',
+  ...[...sitemap.matchAll(/<loc>[^<]*?\/\/[^/]+(\/[^<]*)<\/loc>/g)].map((m) => {
+    const path = m[1].replace(/\/$/, '')
+    return path === '' ? 'index.html' : `${path.slice(1)}/index.html`
+  }),
   '404.html',
 ]
 

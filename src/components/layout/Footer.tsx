@@ -7,6 +7,7 @@ export default function Footer(): ReactElement {
   const year = new Date().getFullYear()
 
   const productLinks = NAV_ITEMS.find((item) => isNavGroup(item) && item.label === 'Product')
+  const solutionLinks = NAV_ITEMS.find((item) => isNavGroup(item) && item.label === 'Solutions')
   const companyLinks = NAV_ITEMS.find((item) => isNavGroup(item) && item.label === 'Company')
   const resourceLinks = NAV_ITEMS.find((item) => isNavGroup(item) && item.label === 'Resources')
 
@@ -16,7 +17,7 @@ export default function Footer(): ReactElement {
         <div className="footer-content">
           <div className="footer-brand">
             <span className="footer-brand-name">Nice Touch</span>
-            <span className="footer-brand-tagline">Your AI Video Edit Assistant</span>
+            <span className="footer-brand-tagline">The edit work you didn&rsquo;t sign up for</span>
             <a href={`mailto:${CONTACT_EMAIL}`} className="footer-contact-link">
               {CONTACT_EMAIL}
             </a>
@@ -33,6 +34,17 @@ export default function Footer(): ReactElement {
                 ))}
                 <Link to="/pricing" className="footer-link">Pricing</Link>
                 <Link to="/download" className="footer-link">Coming Soon</Link>
+              </div>
+            )}
+
+            {solutionLinks && isNavGroup(solutionLinks) && (
+              <div className="footer-link-column">
+                <span className="footer-column-heading">Solutions</span>
+                {solutionLinks.children.map((link) => (
+                  <Link key={link.href} to={link.href} className="footer-link">
+                    {link.label}
+                  </Link>
+                ))}
               </div>
             )}
 

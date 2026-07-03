@@ -26,7 +26,7 @@ export default function Pricing(): ReactElement {
     <div className="flex-1 flex flex-col items-center gap-[clamp(40px,5vw,72px)] p-[clamp(24px,4vw,96px)] px-4 sm:px-10 lg:px-[clamp(80px,8vw,160px)] pointer-events-none overflow-y-auto">
       <SEO
         title="Pricing"
-        description="Simple, transparent pricing for Nice Touch. Plans for individual creators through to enterprise teams, with monthly and annual options."
+        description="Simple, usage-based pricing for Nice Touch. Plans for solo editors through to post-production teams — pay for the footage you run through the AI edit assistant, with monthly and annual options."
         path="/pricing"
         structuredData={[
           {
@@ -177,10 +177,10 @@ export default function Pricing(): ReactElement {
               {/* CTA */}
               {plan.contactUs ? (
                 <a
-                  href="mailto:cooksey@nicetouch.app"
+                  href="/for-teams"
                   className="block w-full mt-4 py-[clamp(10px,1.2vh,14px)] bg-yellow text-black font-semibold text-[clamp(13px,1vw,16px)] text-center rounded-lg transition-all hover:bg-yellow/90 hover:-translate-y-0.5 active:translate-y-0"
                 >
-                  Contact Us
+                  Talk to us
                 </a>
               ) : activeLink ? (
                 <button

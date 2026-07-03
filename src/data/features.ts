@@ -12,26 +12,26 @@ export interface FeatureItem {
 }
 
 export const FEATURES_HERO = {
-  heading: 'Everything Nice Touch can do',
+  heading: 'Everything Nice Touch does for you',
   subtitle:
-    'A context-aware AI assistant that sits inside DaVinci Resolve and Adobe Premiere Pro. It reads your briefs, transcribes your footage, and takes real actions inside the edit.',
+    'It sits inside DaVinci Resolve and Adobe Premiere Pro, reads your briefs and footage, and takes the repetitive first-pass work off your plate — transcription, string-outs, rough cuts, multicam. The creative calls stay yours.',
 } as const
 
 export const HOW_IT_WORKS: FeatureStep[] = [
   {
     number: '01',
-    heading: 'Bring in your project context',
-    body: 'Upload briefs, transcripts, notes, and reference links. Nice Touch ingests this material and builds a usable project memory that the AI assistant draws on throughout the edit.',
+    heading: 'Analyse your footage',
+    body: 'Bring in your footage, briefs, notes, and reference links. Nice Touch ingests this material and transcribes your audio with word-level accuracy, building a usable project memory the AI assistant draws on throughout the edit.',
   },
   {
     number: '02',
-    heading: 'Analyse your footage',
-    body: 'Audio is transcribed with word-level accuracy, giving the assistant a detailed map of every spoken moment in your footage.',
+    heading: 'Answer a few questions about the cut',
+    body: "Based on what it finds in your footage, Nice Touch asks you a handful of targeted questions about the project — filling in whatever your brief doesn't already cover before it starts cutting.",
   },
   {
     number: '03',
-    heading: 'Work with the AI assistant',
-    body: 'Ask the assistant to find moments, build a rough cut, restructure a sequence, or handle a specific edit task. Responses stream in real time. Actions execute directly inside Resolve or Premiere.',
+    heading: 'Generate your edit',
+    body: 'Ask the assistant to build a rough cut, restructure a sequence, or handle a specific edit task. Responses stream in real time. Actions execute directly inside Resolve or Premiere.',
   },
   {
     number: '04',
@@ -88,8 +88,8 @@ export const TESTIMONIALS: Testimonial[] = [
 
 export const CORE_FEATURES: FeatureItem[] = [
   {
-    heading: 'Context-aware AI chat',
-    body: 'A project-aware chatbot that understands your brief, transcripts, and timeline. Ask it to find moments, explain decisions, or plan an edit.',
+    heading: 'Chat that knows your project',
+    body: 'A project-aware assistant that understands your brief, transcripts, and timeline. Ask it to find moments, explain decisions, or plan an edit — in plain language.',
   },
   {
     heading: 'Rough cut generation',
@@ -124,7 +124,7 @@ export const FEATURES_FAQ: FaqItem[] = [
       'Nice Touch runs alongside DaVinci Resolve and Adobe Premiere Pro on macOS and Windows. It reads your open project and writes edit-ready timelines back into the same NLE — there is nothing to export, and no round-tripping between tools.',
   },
   {
-    question: 'How does the AI assistant build a rough cut?',
+    question: 'How does Nice Touch build a rough cut?',
     answer:
       'The assistant works from your project context, not a blank template. It draws on the briefs, notes, and reference links you upload, plus a word-level transcript of your footage, to select and order the moments that matter. It then assembles a timeline directly inside Resolve or Premiere for you to review and refine.',
   },

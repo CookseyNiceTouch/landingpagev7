@@ -4,6 +4,10 @@ import Features from '@/pages/Features'
 import MulticamPage from '@/pages/MulticamPage'
 import Integrations from '@/pages/Integrations'
 import UseCases from '@/pages/UseCases'
+import ForTeams from '@/pages/ForTeams'
+import PodcastEditing from '@/pages/PodcastEditing'
+import InterviewEditing from '@/pages/InterviewEditing'
+import SermonEditing from '@/pages/SermonEditing'
 import About from '@/pages/About'
 import Security from '@/pages/Security'
 import Privacy from '@/pages/Privacy'
@@ -32,7 +36,11 @@ export const ROUTES: RouteDef[] = [
   { path: '/features', Component: Features, sitemapPriority: 0.9 },
   { path: '/multicam', Component: MulticamPage, sitemapPriority: 0.8 },
   { path: '/integrations', Component: Integrations, sitemapPriority: 0.8 },
+  { path: '/podcast-editing', Component: PodcastEditing, sitemapPriority: 0.9 },
+  { path: '/interview-editing', Component: InterviewEditing, sitemapPriority: 0.9 },
+  { path: '/sermon-editing', Component: SermonEditing, sitemapPriority: 0.8 },
   { path: '/use-cases', Component: UseCases, sitemapPriority: 0.8 },
+  { path: '/for-teams', Component: ForTeams, sitemapPriority: 0.8 },
   { path: '/about', Component: About, sitemapPriority: 0.6 },
   { path: '/security', Component: Security, sitemapPriority: 0.7 },
   { path: '/privacy', Component: Privacy, sitemapPriority: 0.3 },

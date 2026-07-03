@@ -17,7 +17,7 @@ export default function Home(): ReactElement {
     <>
       <SEO
         title="Nice Touch"
-        description="Nice Touch is an AI-powered workflow and edit assistant for professional video teams, designed to work inside DaVinci Resolve and Adobe Premiere Pro."
+        description="Nice Touch does the work you didn't sign up for — the footage trawl, the string-out, the first-pass rough cut — inside Adobe Premiere Pro and DaVinci Resolve. An AI edit assistant that leaves the creative calls to you, whether you edit solo or run a team."
         path="/"
         structuredData={[
           {
@@ -27,7 +27,7 @@ export default function Home(): ReactElement {
             applicationCategory: 'MultimediaApplication',
             operatingSystem: 'Windows, macOS',
             description:
-              'AI-powered workflow and edit assistant for professional video teams.',
+              'AI edit assistant for dialogue-led video editors. Handles the footage trawl, string-out, and first-pass rough cut inside Adobe Premiere Pro and DaVinci Resolve, leaving the creative decisions to the editor.',
           },
           faqPageSchema(FAQ_ITEMS),
         ]}

@@ -6,7 +6,7 @@ export const INTEGRATIONS_HERO = {
 
 export const INTEGRATIONS_HOW = {
   heading: 'No exporting, no importing, no sync required.',
-  body: 'Nice Touch runs as a desktop app alongside your NLE. It reads your project structure, clips, and timeline directly — and writes edit decisions back in real time. When the AI assistant generates a rough cut or executes a timeline action, the result appears inside your open project immediately.',
+  body: 'Nice Touch runs as a desktop app alongside your NLE. It reads your project structure, clips, and timeline directly — and writes edit decisions back in real time. When Nice Touch generates a rough cut or executes a timeline action, the result appears inside your open project immediately.',
 } as const
 
 export interface IntegrationCapability {
@@ -21,7 +21,7 @@ export const INTEGRATION_CAPABILITIES: IntegrationCapability[] = [
   },
   {
     heading: 'Rough cut generation',
-    body: 'The AI assistant selects and orders moments from your footage, then builds a timeline directly inside your project — ready to review and refine.',
+    body: 'Nice Touch selects and orders moments from your footage, then builds a timeline directly inside your project — ready to review and refine.',
   },
   {
     heading: 'Direct timeline operations',

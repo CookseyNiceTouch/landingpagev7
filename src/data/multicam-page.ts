@@ -3,7 +3,7 @@ import type { FaqItem } from '@/data/home'
 export const MULTICAM_HERO = {
   heading: 'Multicam, without the chaos',
   subtitle:
-    'Multicam is a first-class capability in Nice Touch, available on Pro plans and above. It handles the full lifecycle of multicam editing: import, audio selection, transcription, and rough cut generation — inside DaVinci Resolve and Adobe Premiere Pro.',
+    "Eight angles, four recorders, one conversation — and a first day gone just working out what you've got. Nice Touch handles the full lifecycle of multicam: import, audio selection, transcription, and rough cut, inside DaVinci Resolve and Adobe Premiere Pro. Available on Pro plans and above.",
 } as const
 
 export interface MulticamCapability {

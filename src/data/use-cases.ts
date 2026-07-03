@@ -1,7 +1,7 @@
 export const USE_CASES_HERO = {
-  heading: 'Built for professional post-production teams',
+  heading: 'Whether you edit solo or run the team',
   subtitle:
-    'Nice Touch delivers the strongest return where there is meaningful footage volume and enough workflow repetition for automation to create clear value.',
+    "Nice Touch earns its place wherever there's more footage than time — dialogue-led work like podcasts, interviews, talking heads, and documentary, where the first pass eats the hours you'd rather spend on the cut.",
 } as const
 
 export interface UseCase {
@@ -11,34 +11,34 @@ export interface UseCase {
 
 export const USE_CASES: UseCase[] = [
   {
-    audience: 'Dedicated freelance editors',
+    audience: 'Freelance & solo editors',
     description:
-      'Speed up rough cuts and reduce repetitive edit administration across multiple client projects. Spend more time on the creative work that keeps clients coming back.',
+      'You shoot it, you cut it, you deliver it — and the first pass through the footage is your evening gone. Nice Touch does the trawl and the string-out so you get to the real edit faster, on every client project.',
+  },
+  {
+    audience: 'Podcast & interview teams',
+    description:
+      'Long-form talking heads, multi-angle setups, and cut-downs: the most repeatable work there is, and the most time-intensive. Nice Touch handles the first listen and the rough assembly so the edit starts sooner.',
+  },
+  {
+    audience: 'Documentary & factual',
+    description:
+      'Hundreds of hours of cards, one usable line at a time. Nice Touch sifts the material, tracks who said what, and builds structure out of the chaos before you touch the timeline.',
   },
   {
     audience: 'SME video agencies',
     description:
-      'Client delivery pressure and margin sensitivity make throughput improvements commercially meaningful. Nice Touch helps teams deliver more with the same headcount.',
+      'Delivery pressure and thin margins make throughput commercial. Nice Touch helps the team ship more without adding headcount — and keeps the first pass consistent from editor to editor.',
   },
   {
-    audience: 'In-house brand teams',
+    audience: 'In-house brand & content teams',
     description:
-      'Regular output cycles and multi-stakeholder approval workflows create overhead that Nice Touch reduces, freeing creative resource for higher-value work.',
+      'Regular output cycles and multi-stakeholder approvals pile on overhead. Nice Touch clears the repetitive first pass so the team spends its time on the work that actually gets noticed.',
   },
   {
-    audience: 'Podcast and multicam teams',
+    audience: 'Post houses & enterprise',
     description:
-      'Long-form, multi-angle, and cut-down workflows are time-intensive and highly repeatable. Nice Touch accelerates the first-pass listen and rough assembly significantly.',
-  },
-  {
-    audience: 'High-volume creator teams',
-    description:
-      'Publishing and repurposing at scale creates repeated edit patterns that benefit from automation. Nice Touch handles the repetitive parts so teams can focus on storytelling.',
-  },
-  {
-    audience: 'Enterprise post teams',
-    description:
-      'Larger accounts with organisational complexity, pooled usage needs, and higher throughput requirements. Custom plans, dedicated support, and admin controls included.',
+      'Higher volume, pooled usage, and one standard workflow across a room of editors. Custom plans, admin controls, and dedicated support — talk to us about team licensing.',
   },
 ]
 

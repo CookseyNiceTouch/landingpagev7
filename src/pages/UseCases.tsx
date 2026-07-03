@@ -11,7 +11,7 @@ export default function UseCases(): ReactElement {
     <div className="content-page">
       <SEO
         title="Use Cases"
-        description="Nice Touch is designed for professional post-production teams — from dedicated freelance editors to enterprise teams — wherever footage volume and workflow repetition create clear value."
+        description="Who Nice Touch is for — solo freelance editors through to post houses cutting dialogue-led work: podcasts, interviews, talking heads, and documentary. Wherever footage volume and a repetitive first pass eat the time you'd rather spend on the edit."
         path="/use-cases"
       />
 
@@ -43,7 +43,7 @@ export default function UseCases(): ReactElement {
       <FadeIn>
         <div className="content-cta">
           <p className="content-cta-text">
-            Find the plan that fits your team.
+            Try it on your own footage tonight, or talk to us about your team.
           </p>
           <div className="flex gap-4 flex-wrap justify-center">
             <Button
@@ -53,8 +53,8 @@ export default function UseCases(): ReactElement {
             >
               Try Free Now
             </Button>
-            <Button as="a" href="/pricing" variant="secondary" size="lg">
-              View Pricing
+            <Button as="a" href="/for-teams" variant="secondary" size="lg">
+              For teams
             </Button>
           </div>
         </div>

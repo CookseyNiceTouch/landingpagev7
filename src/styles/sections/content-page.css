@@ -260,6 +260,26 @@
     color: rgba(255, 255, 255, 0.55);
   }
 
+  /* ── Prose block (centred readable paragraphs) ──────────────────────────── */
+
+  .content-prose {
+    max-width: 46rem;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    pointer-events: auto;
+  }
+
+  .content-prose-text {
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    line-height: 1.8;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+  }
+
   /* ── Callout block ───────────────────────────────────────────────────────── */
 
   .content-callout {
