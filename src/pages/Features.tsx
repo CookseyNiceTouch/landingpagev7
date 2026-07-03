@@ -4,9 +4,11 @@ import FadeIn from '@/components/ui/FadeIn'
 import PixelCard from '@/components/ui/PixelCard'
 import Button from '@/components/ui/Button'
 import FaqSection from '@/components/sections/FaqSection'
+import PromoVideoSection from '@/components/sections/PromoVideoSection'
 import { OPEN_TRY_NOW } from '@/components/layout/Header'
 import { FEATURES_HERO, HOW_IT_WORKS, CORE_FEATURES, TESTIMONIALS, FEATURES_FAQ } from '@/data/features'
 import { faqPageSchema } from '@/data/home'
+import { PROMO_VIDEO, videoObjectSchema } from '@/data/press'
 import laptopIllustration from '@/assets/images/illustrations/laptop.webp'
 import analysisShot from '@/assets/images/productshots/analysis.png'
 import cutQuestionsShot from '@/assets/images/productshots/cut-questions.png'
@@ -41,6 +43,7 @@ export default function Features(): ReactElement {
             description: FEATURES_HERO.subtitle,
           },
           faqPageSchema(FEATURES_FAQ),
+          videoObjectSchema(PROMO_VIDEO),
         ]}
       />
 
@@ -59,6 +62,8 @@ export default function Features(): ReactElement {
           <p className="content-hero-subtitle">{FEATURES_HERO.subtitle}</p>
         </FadeIn>
       </section>
+
+      <PromoVideoSection video={PROMO_VIDEO} />
 
       {/* ── How it works — alternating screenshot rows ── */}
       <section className="content-block">

@@ -35,13 +35,24 @@ export interface VideoEntry {
   description: string
   /** Optional offline MP4 download path. */
   mp4Path?: string
+  /** ISO 8601 date (YouTube publish date) — required for VideoObject rich results. */
+  uploadDate?: string
+  /** ISO 8601 duration (e.g. 'PT56S') — required for VideoObject rich results. */
+  duration?: string
+  /** Plain-text transcript — helps both accessibility and AI answer engines. */
+  transcript?: string
 }
 
 /** Short promo / trailer — leads the video section. */
 export const PROMO_VIDEO: VideoEntry = {
   youtubeId: 'u1QT63Oeit8',
-  title: 'Nice Touch V2 — Promo',
-  description: 'One-minute promo for Nice Touch V2.',
+  title: 'Nice Touch — AI Video Editing',
+  description:
+    "A one-minute look at Nice Touch: the AI edit assistant that connects to your existing Premiere Pro or DaVinci Resolve project, analyses your footage, asks targeted questions, and generates a first cut on your timeline — ready for you to refine.",
+  uploadDate: '2026-05-20T11:41:47-07:00',
+  duration: 'PT56S',
+  transcript:
+    "Every edit starts the same way. Hours of footage, a blank timeline, and the clock already running. Nice Touch is the AI edit assistant built directly inside your NLE. It connects to your existing project — your clips are already there. Import your footage, any format, any workflow, including native multicam clips. Nice Touch will analyze your assets and use that context to ask you targeted questions, building its own internal brief so it understands exactly what your cut needs to be. When you're ready, hit generate. A first cut lands directly in your timeline, ready to review and ready to work with. From there, the edit is yours. Refine it yourself or ask Nice Touch to go another round, tightening, adjusting, building on the first pass. From footage to first cut. Nice Touch.",
 }
 
 /** Hands-on walkthrough — shows the product in action. */
@@ -54,6 +65,28 @@ export const DEMO_VIDEO: VideoEntry = {
 
 /** @deprecated Use PROMO_VIDEO / DEMO_VIDEO. Kept for type-compat only. */
 export type DemoVideo = VideoEntry
+
+/**
+ * Build schema.org VideoObject JSON-LD from a VideoEntry. `uploadDate` and
+ * `duration` are omitted from the schema when not known, rather than guessed
+ * — an inaccurate VideoObject is worse for rich results than a partial one.
+ */
+export function videoObjectSchema(video: VideoEntry): Record<string, unknown> {
+  const thumbnailUrl = `https://i.ytimg.com/vi/${video.youtubeId}/maxresdefault.jpg`
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: video.title,
+    description: video.description,
+    thumbnailUrl: [thumbnailUrl],
+    ...(video.uploadDate ? { uploadDate: video.uploadDate } : {}),
+    ...(video.duration ? { duration: video.duration } : {}),
+    ...(video.transcript ? { transcript: video.transcript } : {}),
+    embedUrl: `https://www.youtube.com/embed/${video.youtubeId}`,
+    contentUrl: `https://www.youtube.com/watch?v=${video.youtubeId}`,
+    publisher: { '@id': 'https://nicetouch.app/#organization' },
+  }
+}
 
 // --------------------------------------------------------------------------
 // Press release

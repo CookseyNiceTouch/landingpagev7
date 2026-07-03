@@ -2,9 +2,11 @@ import type { ReactElement } from 'react'
 import SEO from '@/components/ui/SEO'
 import { SECTION_TITLES, FAQ_ITEMS, faqPageSchema } from '@/data/home'
 import { TESTIMONIALS } from '@/data/features'
+import { PROMO_VIDEO, videoObjectSchema } from '@/data/press'
 import SectionTitle from '@/components/ui/SectionTitle'
 import FadeIn from '@/components/ui/FadeIn'
 import HeroSection from '@/components/sections/HeroSection'
+import PromoVideoSection from '@/components/sections/PromoVideoSection'
 import DemoSection from '@/components/sections/DemoSection'
 import MulticamSection from '@/components/sections/MulticamSection'
 import WorkflowsSection from '@/components/sections/WorkflowsSection'
@@ -30,9 +32,15 @@ export default function Home(): ReactElement {
               'AI edit assistant for dialogue-led video editors. Handles the footage trawl, string-out, and first-pass rough cut inside Adobe Premiere Pro and DaVinci Resolve, leaving the creative decisions to the editor.',
           },
           faqPageSchema(FAQ_ITEMS),
+          videoObjectSchema(PROMO_VIDEO),
         ]}
       />
       <HeroSection />
+      <PromoVideoSection
+        video={PROMO_VIDEO}
+        heading="See it in action"
+        subtitle="From footage to first cut in under a minute — here's Nice Touch running inside Premiere Pro."
+      />
       <DemoSection />
 
       {/* Quote: first port of call / project knowledge */}

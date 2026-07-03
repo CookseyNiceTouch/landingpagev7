@@ -13,7 +13,7 @@ import AboutBlock from '@/components/press/AboutBlock'
 import CoverageGrid from '@/components/press/CoverageGrid'
 import PressContact from '@/components/press/PressContact'
 import TodoPlaceholder from '@/components/press/TodoPlaceholder'
-import { PULL_QUOTES } from '@/data/press'
+import { PULL_QUOTES, PROMO_VIDEO, DEMO_VIDEO, videoObjectSchema } from '@/data/press'
 
 export default function Press(): ReactElement {
   return (
@@ -22,6 +22,7 @@ export default function Press(): ReactElement {
         title="Press Kit"
         description="Press kit for Nice Touch V2 — press release, factsheet, hi-res imagery, founder bios and B-roll. The AI edit assistant for professional video post-production teams."
         path="/press"
+        structuredData={[videoObjectSchema(PROMO_VIDEO), videoObjectSchema(DEMO_VIDEO)]}
       />
 
       <PressHero />
