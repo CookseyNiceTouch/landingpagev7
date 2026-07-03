@@ -61,17 +61,29 @@ export const DEMO_VIDEO: VideoEntry = {
   title: 'Nice Touch V2 — Walkthrough',
   description: 'A hands-on demo of Nice Touch V2 working inside Adobe Premiere Pro.',
   mp4Path: '/press/assets/video/nice-touch-v2-demo.mp4',
+  uploadDate: '2026-05-18T02:07:58-07:00',
+  duration: 'PT4M36S',
 }
 
 /** @deprecated Use PROMO_VIDEO / DEMO_VIDEO. Kept for type-compat only. */
 export type DemoVideo = VideoEntry
 
+/** Minimal shape any video needs to produce a VideoObject. */
+export interface VideoSchemaInput {
+  youtubeId: string
+  title: string
+  description: string
+  uploadDate?: string
+  duration?: string
+  transcript?: string
+}
+
 /**
- * Build schema.org VideoObject JSON-LD from a VideoEntry. `uploadDate` and
+ * Build schema.org VideoObject JSON-LD from a video. `uploadDate` and
  * `duration` are omitted from the schema when not known, rather than guessed
  * — an inaccurate VideoObject is worse for rich results than a partial one.
  */
-export function videoObjectSchema(video: VideoEntry): Record<string, unknown> {
+export function videoObjectSchema(video: VideoSchemaInput): Record<string, unknown> {
   const thumbnailUrl = `https://i.ytimg.com/vi/${video.youtubeId}/maxresdefault.jpg`
   return {
     '@context': 'https://schema.org',

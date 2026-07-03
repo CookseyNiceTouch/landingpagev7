@@ -7,8 +7,8 @@ export default function Download(): ReactElement {
   return (
     <div className="flex-1 flex items-center justify-center p-[clamp(24px,4vw,96px)] pointer-events-none">
       <SEO
-        title="Coming Soon"
-        description="A new version of Nice Touch is on the way. Join the waitlist to be first in line for early access."
+        title="Download — New Version Coming Soon"
+        description="Nice Touch for Adobe Premiere Pro and DaVinci Resolve. We're rebuilding for V2 and have paused downloads of the current version — join the waitlist and we'll email you the moment the new release is ready."
         path="/download"
       />
 

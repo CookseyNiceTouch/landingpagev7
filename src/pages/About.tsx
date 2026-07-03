@@ -19,10 +19,11 @@ export default function About(): ReactElement {
         path="/about"
         structuredData={{
           '@context': 'https://schema.org',
-          '@type': 'Organization',
-          name: 'Nice Touch',
-          url: 'https://nicetouch.app',
+          '@type': 'AboutPage',
+          url: 'https://nicetouch.app/about/',
+          name: 'About Nice Touch',
           description: ABOUT_HERO.subtitle,
+          mainEntity: { '@id': 'https://nicetouch.app/#organization' },
         }}
       />
 

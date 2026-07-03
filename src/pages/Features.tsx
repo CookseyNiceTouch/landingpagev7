@@ -30,7 +30,7 @@ export default function Features(): ReactElement {
   return (
     <div className="content-page">
       <SEO
-        title="Features"
+        title="Features — Rough Cuts, Transcription & Multicam"
         description="What Nice Touch does inside Premiere Pro and DaVinci Resolve: rough-cut generation, transcript analysis, timeline actions, project memory, multicam, and a project-aware chat assistant. The AI edit assistant that leaves the creative calls to you."
         path="/features"
         structuredData={[
@@ -51,7 +51,7 @@ export default function Features(): ReactElement {
         <FadeIn>
           <img
             src={laptopIllustration}
-            alt="Nice Touch running on a laptop"
+            alt="Nice Touch AI edit assistant running inside an NLE on a laptop"
             className="section-illustration features-hero-laptop"
           />
         </FadeIn>
@@ -86,7 +86,7 @@ export default function Features(): ReactElement {
                   <div className="feature-step-image">
                     <img
                       src={shot}
-                      alt={`Nice Touch — ${step.heading}`}
+                      alt={`${step.heading} — Nice Touch inside Premiere Pro and DaVinci Resolve`}
                       loading="lazy"
                       className="feature-screenshot"
                     />

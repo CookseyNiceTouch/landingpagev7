@@ -10,7 +10,7 @@ export default function UseCases(): ReactElement {
   return (
     <div className="content-page">
       <SEO
-        title="Use Cases"
+        title="Use Cases — Who Nice Touch Is For"
         description="Who Nice Touch is for — solo freelance editors through to post houses cutting dialogue-led work: podcasts, interviews, talking heads, and documentary. Wherever footage volume and a repetitive first pass eat the time you'd rather spend on the edit."
         path="/use-cases"
       />

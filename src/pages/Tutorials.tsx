@@ -5,6 +5,7 @@ import Container from '@/components/ui/Container'
 import FadeIn from '@/components/ui/FadeIn'
 import { VIDEO_SECTIONS } from '@/data/tutorials'
 import type { Video } from '@/data/tutorials'
+import { videoObjectSchema } from '@/data/press'
 
 function VideoCard({ video }: { video: Video }): ReactElement {
   const [active, setActive] = useState(false)
@@ -50,6 +51,9 @@ export default function Tutorials(): ReactElement {
         title="Tutorials & Media"
         description="Video tutorials, walkthroughs, and creator stories from the Nice Touch team. Learn multicam editing in DaVinci Resolve and Premiere Pro."
         path="/tutorials"
+        structuredData={VIDEO_SECTIONS.flatMap((section) =>
+          section.videos.map((video) => videoObjectSchema(video)),
+        )}
       />
 
       <FadeIn className="flex flex-col items-center gap-3 text-center">

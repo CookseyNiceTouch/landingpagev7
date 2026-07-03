@@ -20,7 +20,7 @@ export default function MulticamSection(): ReactElement {
         <FadeIn className="multicam-image-col">
           <img
             src={multicamIllustration}
-            alt="Multicam editing workflow"
+            alt="Nice Touch multicam editing workflow inside DaVinci Resolve and Adobe Premiere Pro"
             loading="lazy"
             className="section-illustration"
           />

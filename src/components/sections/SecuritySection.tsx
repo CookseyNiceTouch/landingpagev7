@@ -11,7 +11,7 @@ export default function SecuritySection(): ReactElement {
         <FadeIn className="security-image-col">
           <img
             src={securityIllustration}
-            alt="Security and privacy"
+            alt="Nice Touch keeps your footage private and secure during AI edit processing"
             loading="lazy"
             className="section-illustration"
           />

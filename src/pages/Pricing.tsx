@@ -25,7 +25,7 @@ export default function Pricing(): ReactElement {
   return (
     <div className="flex-1 flex flex-col items-center gap-[clamp(40px,5vw,72px)] p-[clamp(24px,4vw,96px)] px-4 sm:px-10 lg:px-[clamp(80px,8vw,160px)] pointer-events-none overflow-y-auto">
       <SEO
-        title="Pricing"
+        title="Pricing — Plans for Editors & Teams"
         description="Simple, usage-based pricing for Nice Touch. Plans for solo editors through to post-production teams — pay for the footage you run through the AI edit assistant, with monthly and annual options."
         path="/pricing"
         structuredData={[
