@@ -189,12 +189,6 @@
     display: block;
     width: 100%;
     height: auto;
-    border-radius: 0.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow:
-      0 2px 0 rgba(255, 255, 255, 0.06) inset,
-      0 12px 48px rgba(0, 0, 0, 0.6),
-      0 2px 8px rgba(0, 0, 0, 0.4);
   }
 
   /* Closing step — full-width, centred, no screenshot */
