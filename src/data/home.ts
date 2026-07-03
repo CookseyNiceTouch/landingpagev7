@@ -5,9 +5,9 @@ export interface InfocardContent {
 }
 
 export const HERO = {
-  headingLines: ['Nice Touch does the work', "you didn't sign up for"],
+  headingLines: ['Not every part of the edit', 'needs an editor.'],
   subtitle:
-    "The footage trawl, the string-out, the first pass through hours of talking heads — Nice Touch handles the part of the edit that isn't editing, right inside Premiere Pro and DaVinci Resolve. The creative calls stay yours.",
+    'Nice Touch knows which parts do. It handles the rest, right inside Premiere Pro and DaVinci Resolve.',
 } as const
 
 export const DEMO_STEPS: InfocardContent[] = [

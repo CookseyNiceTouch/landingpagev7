@@ -17,7 +17,7 @@ export default function Footer(): ReactElement {
         <div className="footer-content">
           <div className="footer-brand">
             <span className="footer-brand-name">Nice Touch</span>
-            <span className="footer-brand-tagline">The edit work you didn&rsquo;t sign up for</span>
+            <span className="footer-brand-tagline">Not every part of the edit needs an editor</span>
             <a href={`mailto:${CONTACT_EMAIL}`} className="footer-contact-link">
               {CONTACT_EMAIL}
             </a>

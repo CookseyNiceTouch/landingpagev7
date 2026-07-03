@@ -17,7 +17,7 @@ export default function Home(): ReactElement {
     <>
       <SEO
         title="Nice Touch"
-        description="Nice Touch does the work you didn't sign up for — the footage trawl, the string-out, the first-pass rough cut — inside Adobe Premiere Pro and DaVinci Resolve. An AI edit assistant that leaves the creative calls to you, whether you edit solo or run a team."
+        description="Not every part of the edit needs an editor. Nice Touch knows which parts do — handling the footage trawl, string-out, and first-pass rough cut inside Adobe Premiere Pro and DaVinci Resolve, so you spend your time on the creative decisions."
         path="/"
         structuredData={[
           {
