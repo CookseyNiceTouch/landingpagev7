@@ -53,7 +53,7 @@ export default function UseCases(): ReactElement {
             >
               Try Free Now
             </Button>
-            <Button as="a" href="/for-teams" variant="secondary" size="lg">
+            <Button as="a" href="/for-teams/" variant="secondary" size="lg">
               For teams
             </Button>
           </div>

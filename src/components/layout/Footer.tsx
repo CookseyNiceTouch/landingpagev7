@@ -32,8 +32,8 @@ export default function Footer(): ReactElement {
                     {link.label}
                   </Link>
                 ))}
-                <Link to="/pricing" className="footer-link">Pricing</Link>
-                <Link to="/download" className="footer-link">Coming Soon</Link>
+                <Link to="/pricing/" className="footer-link">Pricing</Link>
+                <Link to="/download/" className="footer-link">Coming Soon</Link>
               </div>
             )}
 
@@ -67,9 +67,9 @@ export default function Footer(): ReactElement {
                     {link.label}
                   </Link>
                 ))}
-                <Link to="/newsletter" className="footer-link">Newsletter</Link>
-                <Link to="/press" className="footer-link">Press</Link>
-                <Link to="/privacy" className="footer-link">Privacy Policy</Link>
+                <Link to="/newsletter/" className="footer-link">Newsletter</Link>
+                <Link to="/press/" className="footer-link">Press</Link>
+                <Link to="/privacy/" className="footer-link">Privacy Policy</Link>
               </div>
             )}
 

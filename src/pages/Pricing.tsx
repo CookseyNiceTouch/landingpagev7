@@ -177,7 +177,7 @@ export default function Pricing(): ReactElement {
               {/* CTA */}
               {plan.contactUs ? (
                 <a
-                  href="/for-teams"
+                  href="/for-teams/"
                   className="block w-full mt-4 py-[clamp(10px,1.2vh,14px)] bg-yellow text-black font-semibold text-[clamp(13px,1vw,16px)] text-center rounded-lg transition-all hover:bg-yellow/90 hover:-translate-y-0.5 active:translate-y-0"
                 >
                   Talk to us

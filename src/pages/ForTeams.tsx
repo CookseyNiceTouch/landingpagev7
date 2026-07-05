@@ -93,7 +93,7 @@ export default function ForTeams(): ReactElement {
             >
               Try Free Now
             </Button>
-            <Button as="a" href="/pricing" variant="secondary" size="lg">
+            <Button as="a" href="/pricing/" variant="secondary" size="lg">
               View Pricing
             </Button>
           </div>

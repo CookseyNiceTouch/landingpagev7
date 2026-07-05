@@ -20,7 +20,7 @@ export default function WorkflowsSection(): ReactElement {
         <div className="workflows-copy">
           <Infocard content={WORKFLOWS_CARD} />
           <div className="workflows-cta">
-            <Button as="a" href="/features" variant="secondary" size="md">
+            <Button as="a" href="/features/" variant="secondary" size="md">
               Explore all features
             </Button>
           </div>

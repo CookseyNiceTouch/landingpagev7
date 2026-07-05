@@ -45,7 +45,7 @@ for (const page of PAGES) {
   const h1s = [...html.matchAll(/<h1[\s>]/g)].length
   const jsonLd = [...html.matchAll(/<script[^>]*application\/ld\+json[^>]*>([\s\S]*?)<\/script>/g)]
   const internalLinks = new Set(
-    [...html.matchAll(/href="(\/[a-z0-9-]*)"/g)].map((m) => m[1]),
+    [...html.matchAll(/href="(\/[a-z0-9/-]*)"/g)].map((m) => m[1]),
   )
 
   if (!title) fail(page, 'missing <title>')

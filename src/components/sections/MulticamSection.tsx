@@ -12,7 +12,7 @@ export default function MulticamSection(): ReactElement {
         <div className="multicam-copy">
           <Infocard content={MULTICAM_CARD} />
           <div className="multicam-cta">
-            <Button as="a" href="/multicam" variant="secondary" size="md">
+            <Button as="a" href="/multicam/" variant="secondary" size="md">
               Learn more about multicam
             </Button>
           </div>

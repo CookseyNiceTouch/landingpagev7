@@ -50,7 +50,7 @@ export const WEB_TOOLS: WebTool[] = [
       'Export to Word (RTF), SRT, and VTT',
       'Free — one email unlocks all formats',
     ],
-    href: '/transcribe',
+    href: '/transcribe/',
     cta: 'Open the tool',
   },
 ]

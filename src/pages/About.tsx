@@ -84,7 +84,7 @@ export default function About(): ReactElement {
             >
               Try Free Now
             </Button>
-            <Button as="a" href="/features" variant="secondary" size="lg">
+            <Button as="a" href="/features/" variant="secondary" size="lg">
               Explore Features
             </Button>
           </div>
