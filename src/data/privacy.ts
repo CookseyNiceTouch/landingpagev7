@@ -1,12 +1,12 @@
 // Privacy Policy content
 // UK GDPR compliant. Nice Touch Group Ltd (Companies House: 16674872)
-// Updated: April 2026
+// Updated: July 2026
 
 export const PRIVACY_HERO = {
   heading: 'Privacy Policy',
   subtitle:
     'Nice Touch Group Ltd is committed to protecting your personal data. This policy explains what we collect, why we collect it, and how we keep it safe.',
-  updated: 'Last updated: April 2026',
+  updated: 'Last updated: July 2026',
 }
 
 export interface PrivacySection {
@@ -31,7 +31,7 @@ export const PRIVACY_SECTIONS: PrivacySection[] = [
       'Usage data: records of AI edit generations, asset analysis activity, project usage, and feature interactions.',
       'Project content: names of files you upload for analysis, transcripts generated from those files, project briefs, notes, and timeline data. This content is processed solely to deliver the service to you.',
       'Communications: if you contact us by email or through in-app reporting, we retain those communications.',
-      'Technical data: app version, operating system, and diagnostic information collected for error reporting and service reliability.',
+      'Technical data: app version, operating system, and diagnostic information collected for error reporting and service reliability. This includes application logs transmitted automatically from the desktop app to our monitoring infrastructure, containing session identifiers, error details, and performance data.',
     ],
   },
   {
