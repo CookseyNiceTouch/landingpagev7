@@ -60,18 +60,10 @@
     text-wrap: pretty;
   }
 
-  /* Panel behind the shot so a portrait screenshot doesn't float in an
-     otherwise empty column. */
   .hiw-row__media {
     min-width: 0;
     display: flex;
     justify-content: center;
-    padding: 1.5rem;
-    border-radius: 1rem;
-    border: 1px solid var(--color-border-light);
-    background:
-      radial-gradient(ellipse 80% 70% at 50% 0%, rgba(255, 0, 140, 0.06), transparent 70%),
-      var(--color-surface);
   }
 
   /* The app screenshots are portrait, so an uncapped width makes rows

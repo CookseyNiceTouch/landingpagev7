@@ -28,10 +28,11 @@
     @media (min-width: 640px) { padding: 2rem; }
   }
 
-  /* The "after" column is the one we want the eye to land on. */
+  /* The "after" column is the one we want the eye to land on. Differentiated
+     with a flat lift and a yellow accent rather than a tinted glow. */
   .problem-col--after {
-    border-color: rgba(255, 0, 140, 0.28);
-    background: rgba(255, 0, 140, 0.04);
+    border-color: var(--color-border);
+    background: rgba(255, 255, 255, 0.045);
   }
 
   .problem-col__heading {
@@ -44,7 +45,7 @@
   }
 
   .problem-col--after .problem-col__heading {
-    color: var(--color-pink);
+    color: var(--color-yellow);
   }
 
   .problem-list {
@@ -80,8 +81,8 @@
   }
 
   .problem-col--after .problem-list__item::before {
-    border-color: rgba(255, 0, 140, 0.5);
-    color: var(--color-pink);
+    border-color: rgba(250, 255, 0, 0.45);
+    color: var(--color-yellow);
   }
 
   .problem-closing {

@@ -6,10 +6,11 @@ interface PullQuoteProps {
   accent?: 'pink' | 'yellow' | 'cyan'
 }
 
+/** Accent is carried by the border only — no tinted fill. */
 const accentClasses: Record<NonNullable<PullQuoteProps['accent']>, string> = {
-  pink: 'border-pink/40 from-pink/10',
-  yellow: 'border-yellow/40 from-yellow/10',
-  cyan: 'border-cyan/40 from-cyan/10',
+  pink: 'border-pink/40',
+  yellow: 'border-yellow/40',
+  cyan: 'border-cyan/40',
 }
 
 /**
@@ -18,7 +19,7 @@ const accentClasses: Record<NonNullable<PullQuoteProps['accent']>, string> = {
 export default function PullQuote({ quote, accent = 'pink' }: PullQuoteProps): ReactElement {
   return (
     <figure
-      className={`m-0 flex h-full flex-col justify-between gap-6 rounded-lg border-2 bg-gradient-to-br to-transparent p-[clamp(24px,2.8vw,44px)] pointer-events-auto ${accentClasses[accent]}`}
+      className={`m-0 flex h-full flex-col justify-between gap-6 rounded-lg border-2 bg-surface p-[clamp(24px,2.8vw,44px)] pointer-events-auto ${accentClasses[accent]}`}
     >
       <blockquote className="m-0">
         <p className="m-0 font-heading text-[clamp(20px,2vw,32px)] font-semibold leading-[1.25] text-white">

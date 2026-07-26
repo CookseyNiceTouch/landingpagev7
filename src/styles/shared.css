@@ -12,8 +12,6 @@
     height: auto;
     display: block;
     mix-blend-mode: screen;
-    /* Softer glow than the old neon bloom */
-    filter: drop-shadow(0 0 24px rgba(255, 0, 140, 0.15));
   }
 
   /* Unified card surface */

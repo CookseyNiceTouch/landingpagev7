@@ -10,9 +10,7 @@
     position: relative;
     overflow: hidden;
     border-block: 1px solid var(--color-border-light);
-    background:
-      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 0, 140, 0.07), transparent 70%),
-      var(--color-bg-darker);
+    background: var(--color-bg-darker);
   }
 
   .payoff-lead {
