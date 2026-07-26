@@ -5,26 +5,7 @@
 
 @layer components {
 
-  /* Text card column used in Multicam and Workflows sections */
-  .content-column {
-    width: 100%;
-
-    @media (min-width: 1024px) {
-      width: min(100%, 44rem);
-    }
-  }
-
-  /* Section Title — tighter rhythm for a cleaner SaaS feel */
-  .section-title-wrapper {
-    pointer-events: none;
-    padding-block: var(--spacing-section-sm) 1.5rem;
-    max-width: 48rem;
-
-    @media (min-width: 640px) { padding-block: var(--spacing-section-md) 2rem; }
-    @media (min-width: 1024px) { padding-block: var(--spacing-section-lg) 2.5rem; }
-  }
-
-  /* Shared illustration image — used in multicam, security, etc. */
+  /* Shared illustration image — used on the Features and Multicam heroes. */
   .section-illustration {
     width: 100%;
     max-width: 36rem;
@@ -46,84 +27,6 @@
   .nt-card:hover {
     border-color: var(--color-border);
     background: rgba(255, 255, 255, 0.045);
-  }
-
-  /* Infocard — heading + body (single paragraph or bullet list) */
-  .infocard {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .infocard-body {
-    white-space: pre-line;
-  }
-
-  .infocard-list {
-    display: flex;
-    flex-direction: column;
-    list-style: disc;
-    padding-left: 1.25rem;
-  }
-
-  .infocard-list-item {
-    margin-bottom: 1.5rem;
-  }
-
-  .infocard-list-item:last-child {
-    margin-bottom: 0;
-  }
-
-  /* Single pull-quote used between home page sections */
-  .home-quote {
-    width: 100%;
-    max-width: 48rem;
-    margin: 0 auto;
-    padding: 1.5rem;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border-light);
-    border-radius: 0.75rem;
-    pointer-events: none;
-
-    @media (min-width: 640px) { padding: 2rem 2.5rem; }
-    @media (min-width: 1024px) { padding: 2.5rem 3rem; }
-  }
-
-  .home-quote__mark {
-    display: block;
-    font-family: var(--font-heading);
-    font-size: 2.5rem;
-    line-height: 1;
-    color: var(--color-pink);
-    margin-bottom: 0.75rem;
-  }
-
-  .home-quote__text {
-    margin: 0 0 1.5rem;
-    font-size: 1.125rem;
-    line-height: 1.75;
-    color: var(--color-white-70);
-    font-style: italic;
-  }
-
-  .home-quote__footer {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--color-border-light);
-  }
-
-  .home-quote__role {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  .home-quote__company {
-    font-size: 0.8125rem;
-    color: var(--color-white-60);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
   }
 
 }

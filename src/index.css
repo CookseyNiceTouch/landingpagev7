@@ -12,15 +12,20 @@
 @import "./styles/layout/footer.css";
 @import "./styles/layout/page-content.css";
 @import "./styles/sections/hero.css";
+@import "./styles/sections/proof-strip.css";
+@import "./styles/sections/problem.css";
 @import "./styles/sections/promo-video.css";
-@import "./styles/sections/demo.css";
-@import "./styles/sections/multicam.css";
-@import "./styles/sections/workflows.css";
+@import "./styles/sections/how-it-works.css";
+@import "./styles/sections/payoff.css";
+@import "./styles/sections/capabilities.css";
+@import "./styles/sections/audiences.css";
+@import "./styles/sections/testimonials.css";
 @import "./styles/sections/pricing.css";
-@import "./styles/sections/home-pricing.css";
+@import "./styles/sections/pricing-teaser.css";
 @import "./styles/sections/faq.css";
-@import "./styles/sections/security.css";
+@import "./styles/sections/closing.css";
 @import "./styles/ui/fade-in.css";
+@import "./styles/ui/section.css";
 @import "./styles/sections/content-page.css";
 
 
@@ -64,6 +69,13 @@
   --spacing-section-sm: 4rem;
   --spacing-section-md: 5rem;
   --spacing-section-lg: 7rem;
+
+  /* Content width scale — collapses the ad-hoc 48rem/72rem/860px/1360px
+     widths that had accumulated across pages. Registered in the --container-*
+     namespace so they also expose max-w-narrow / max-w-content / max-w-wide. */
+  --container-narrow:  48rem;
+  --container-content: 72rem;
+  --container-wide:    85rem;
 }
 
 

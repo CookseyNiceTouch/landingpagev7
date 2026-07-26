@@ -1,0 +1,92 @@
+/* ==========================================================================
+   Section shell
+   One vertical rhythm and one width scale for every page. Replaces the
+   per-section padding-block values and the ad-hoc heading markup that had
+   drifted apart across Home, the content pages, and the utility pages.
+   ========================================================================== */
+
+@layer components {
+
+  .nt-section {
+    position: relative;
+    width: 100%;
+  }
+
+  /* ── Vertical rhythm ───────────────────────────────────────────────── */
+
+  .nt-section--sp-none {
+    padding-block: 0;
+  }
+
+  .nt-section--sp-sm {
+    padding-block: 2.5rem;
+
+    @media (min-width: 640px)  { padding-block: 3rem; }
+    @media (min-width: 1024px) { padding-block: 3.5rem; }
+  }
+
+  .nt-section--sp-md {
+    padding-block: var(--spacing-section-sm);
+
+    @media (min-width: 1024px) { padding-block: var(--spacing-section-md); }
+  }
+
+  .nt-section--sp-lg {
+    padding-block: var(--spacing-section-md);
+
+    @media (min-width: 1024px) { padding-block: var(--spacing-section-lg); }
+  }
+
+  /* ── Width + gutters ───────────────────────────────────────────────── */
+
+  .nt-section__inner {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+
+    @media (min-width: 640px)  { padding-inline: 2rem; }
+    @media (min-width: 1024px) { padding-inline: 2.5rem; }
+  }
+
+  .nt-section__inner--narrow  { max-width: var(--container-narrow); }
+  .nt-section__inner--content { max-width: var(--container-content); }
+  .nt-section__inner--wide    { max-width: var(--container-wide); }
+
+  /* Edge-to-edge: keep the gutters, drop the width cap. */
+  .nt-section__inner--full { max-width: none; }
+
+  /* ── Heading block ─────────────────────────────────────────────────── */
+
+  .nt-section__head {
+    max-width: var(--container-narrow);
+    margin-bottom: 2rem;
+
+    @media (min-width: 1024px) { margin-bottom: 2.5rem; }
+  }
+
+  .nt-section__head--center {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  /* type-eyebrow carries its own margin-bottom, so the title needs none. */
+  .nt-section__subtitle {
+    margin: 1rem 0 0;
+  }
+
+  /* ── Grid helper ───────────────────────────────────────────────────── */
+
+  /**
+   * <FadeIn> renders a wrapper div, which becomes the grid item and leaves
+   * the real card sitting at its natural height. Apply to any grid whose
+   * children are wrapped in <FadeIn> to make cards fill their track.
+   */
+  .nt-grid-fade > .fade-in {
+    display: flex;
+  }
+
+  .nt-grid-fade > .fade-in > * {
+    flex: 1;
+  }
+
+}

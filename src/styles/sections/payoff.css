@@ -1,0 +1,63 @@
+/* ==========================================================================
+   Payoff
+   The one section framed around what the editor gains. Given a distinct
+   background so it reads as a beat in the page rather than another card row.
+   ========================================================================== */
+
+@layer components {
+
+  .payoff-section {
+    position: relative;
+    overflow: hidden;
+    border-block: 1px solid var(--color-border-light);
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 0, 140, 0.07), transparent 70%),
+      var(--color-bg-darker);
+  }
+
+  .payoff-lead {
+    max-width: var(--container-narrow);
+    margin: 0 0 2.5rem;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--color-white-70);
+    text-wrap: pretty;
+  }
+
+  .payoff-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+
+    @media (min-width: 880px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2rem;
+    }
+  }
+
+  .payoff-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 1.25rem;
+    border-top: 2px solid var(--color-pink);
+  }
+
+  .payoff-item__heading {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: white;
+    text-wrap: balance;
+  }
+
+  .payoff-item__body {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-white-70);
+    text-wrap: pretty;
+  }
+
+}
