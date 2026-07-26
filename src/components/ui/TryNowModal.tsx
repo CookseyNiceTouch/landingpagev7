@@ -100,7 +100,7 @@ export default function TryNowModal({ isOpen, onClose }: TryNowModalProps): Reac
       className="try-now-overlay"
       role="dialog"
       aria-modal="true"
-      aria-label={submitted ? 'You\'re on the list' : 'Join the waitlist'}
+      aria-label={submitted ? 'You\'re on the list' : 'Get Nice Touch'}
       onClick={onClose}
     >
       <div className="try-now-panel" onClick={(e) => e.stopPropagation()}>
@@ -132,7 +132,7 @@ export default function TryNowModal({ isOpen, onClose }: TryNowModalProps): Reac
         ) : (
           <>
             <div className="try-now-header">
-              <h2 className="try-now-title">Join the waitlist</h2>
+              <h2 className="try-now-title">Get Nice Touch</h2>
               <p className="try-now-subtitle">
                 We're putting the finishing touches on a new version. Drop your details and we'll let you know the moment it's ready.
               </p>
