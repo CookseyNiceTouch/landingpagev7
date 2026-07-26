@@ -2,22 +2,43 @@
 
 ## Status
 
-- Re-enabled on: 2026-07-26
-- `/download` now renders `DownloadCard` again and pulls live URLs from `useReleases()`, so visitors can grab the macOS or Windows build directly — no modal/waitlist step required.
-- The footer's `Product` column link is back to `Download` (was `Coming Soon`).
-- `src/components/DownloadCard.tsx`'s heading was changed from `<h2>` to `<h1>` (the page needs exactly one `<h1>` for the prerender/SEO checks — see `scripts/verify-prerender.mjs`).
+- **Live.** Re-enabled on 2026-07-26.
+- `/download` renders `DownloadCard` again and pulls live URLs from `useReleases()`, so visitors can grab the macOS or Windows build directly — no modal or waitlist step.
+- The footer's `Product` column link reads `Download` again (was `Coming Soon`).
+- `Download.tsx` owns the page's single `<h1>` ("Download Nice Touch"). `DownloadCard` renders no heading of its own, so do not add one — `scripts/verify-prerender.mjs` fails the build unless each route has exactly one `<h1>`.
 
 ## Intentionally left as-is
 
-The "Try Now" button (header + hero) still opens `TryNowModal`, which behaves as a pure waitlist signup ("Join the waitlist" → "You're on the list!") and does **not** redirect to `/download` after submit. This was a deliberate choice when downloads were reinstated — the two flows (direct download vs. Try Now waitlist) are being kept independent for now.
+The "Try Now" button (header + hero) still opens `TryNowModal`, which behaves as a pure waitlist signup ("Join the waitlist" → "You're on the list!") and does **not** redirect to `/download` after submit. Direct download and the Try Now waitlist are deliberately independent flows for now.
 
-If that should change later, `TryNowModal.tsx`'s pre-waitlist version (with the `useNavigate`-based redirect to `/download` and the `ResizeObserver` thank-you-screen fallback) is preserved in git history:
+Note the consequence: downloads are live, but the primary header/hero CTA still funnels to a waitlist rather than the download page.
+
+If that should change, the pre-waitlist version of the modal — with the `useNavigate` redirect to `/download` and the `ResizeObserver` thank-you-screen fallback — is preserved in git history:
 
 ```
 git log -- src/components/ui/TryNowModal.tsx
 ```
 
+To restore that behaviour:
+
+1. Re-add `import { useNavigate } from 'react-router-dom'` and `const navigate = useNavigate()`.
+2. Re-add `onFormSubmitted: () => { onClose(); navigate('/download') }` to the `hbspt.forms.create` call.
+3. Re-add the `ResizeObserver` fallback (the version with `baseline`, `settled`, `settleTimer`, and the 60%-of-baseline trigger).
+4. Update the title/subtitle copy away from waitlist wording.
+
+HubSpot form ID in use: `e7b7312c-1884-4467-a616-42a27512a402`.
+
+## Known limitation
+
+`useReleases()` fetches the release manifest client-side, so the prerendered HTML ships `href="#"` and the real installer URLs are filled in on hydration. With JavaScript disabled the buttons do nothing. Fixing that would mean fetching the manifest at build time in `scripts/prerender.mjs`.
+
+Manifest source:
+
+```
+https://raw.githubusercontent.com/CookseyNiceTouch/nice-touch-app-releases/main/nice-touch-releases.json
+```
+
 ## History
 
-- 2026-05-22: downloads paused, `/download` replaced with a "new version coming soon" + waitlist panel while a new app version was being prepared (see git commit `a8b0339`).
-- 2026-07-26: `/download` and the footer link restored to the direct-download flow; `TryNowModal` waitlist behavior kept as-is (see question above).
+- **2026-05-22** — Downloads paused. `/download` was replaced with an "A new version is on the way" panel plus a "Join the Waitlist" button dispatching `OPEN_TRY_NOW`; the footer link became `Coming Soon`; `TryNowModal` lost its post-submit redirect. See commit `a8b0339`.
+- **2026-07-26** — Downloads restored on `main` and deployed. `/download` and the footer link are back on the direct-download flow; `TryNowModal` waitlist behaviour kept as-is.
