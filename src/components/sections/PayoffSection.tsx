@@ -19,6 +19,9 @@ export default function PayoffSection(): ReactElement {
         {PAYOFF.items.map((item, i) => (
           <FadeIn key={item.heading} delay={i * 90}>
             <div className="payoff-item">
+              <span className="payoff-item__index" aria-hidden="true">
+                {String(i + 1).padStart(2, '0')}
+              </span>
               <h3 className="payoff-item__heading">{item.heading}</h3>
               <p className="payoff-item__body">{item.body}</p>
             </div>
