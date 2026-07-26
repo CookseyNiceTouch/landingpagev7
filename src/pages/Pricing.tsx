@@ -1,6 +1,7 @@
 import type { ReactElement } from 'react'
 import SEO from '@/components/ui/SEO'
 import FaqSection from '@/components/sections/FaqSection'
+import ClosingCta from '@/components/sections/ClosingCta'
 import PricingPlanCards from '@/components/ui/PricingPlanCards'
 import { PLANS, PRICING_FAQ } from '@/data/pricing'
 import { faqPageSchema } from '@/data/home'
@@ -52,6 +53,12 @@ export default function Pricing(): ReactElement {
         </h2>
         <FaqSection items={PRICING_FAQ} />
       </div>
+
+      <ClosingCta
+        heading="Still deciding?"
+        body="Try Nice Touch on a real project first. You can pick a plan once you have seen what it does with your own footage."
+        secondary={{ label: 'See Features', href: '/features/' }}
+      />
     </div>
   )
 }

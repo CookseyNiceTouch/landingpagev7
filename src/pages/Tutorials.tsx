@@ -3,6 +3,7 @@ import type { ReactElement } from 'react'
 import SEO from '@/components/ui/SEO'
 import Container from '@/components/ui/Container'
 import FadeIn from '@/components/ui/FadeIn'
+import ClosingCta from '@/components/sections/ClosingCta'
 import { VIDEO_SECTIONS } from '@/data/tutorials'
 import type { Video } from '@/data/tutorials'
 import { videoObjectSchema } from '@/data/press'
@@ -89,6 +90,11 @@ export default function Tutorials(): ReactElement {
           </div>
         </Container>
       ))}
+
+      <ClosingCta
+        heading="Ready to try it on your own footage?"
+        body="These walkthroughs use the same workflow Nice Touch runs inside Premiere Pro and DaVinci Resolve. Point it at a real project and see what it builds."
+      />
     </div>
   )
 }
