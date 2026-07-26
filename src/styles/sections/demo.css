@@ -9,11 +9,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-block: 4rem 6rem;
+    padding-block: var(--spacing-section-sm);
     gap: 2rem;
 
-    @media (min-width: 640px) { padding-block: 6rem 10rem; gap: 2.5rem; }
-    @media (min-width: 1024px) { padding-block: 10rem 14rem; gap: 3rem; }
+    @media (min-width: 640px) { padding-block: var(--spacing-section-md); gap: 2.5rem; }
+    @media (min-width: 1024px) { padding-block: var(--spacing-section-lg); gap: 3rem; }
   }
 
   .demo-illustration {
@@ -22,11 +22,12 @@
     height: auto;
     display: block;
     mix-blend-mode: screen;
+    filter: drop-shadow(0 0 24px rgba(255, 0, 140, 0.12));
   }
 
   .demo-section-heading {
     text-align: center;
-    color: var(--color-yellow);
+    color: white;
   }
 
   .demo-grid {
@@ -53,8 +54,8 @@
     font-size: 2.5rem;
     font-weight: 700;
     line-height: 1;
-    color: var(--color-yellow);
-    opacity: 0.25;
+    color: var(--color-pink);
+    opacity: 0.35;
   }
 
 }

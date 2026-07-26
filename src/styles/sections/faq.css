@@ -10,10 +10,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-block: 0 6rem;
+    padding-block: 0 var(--spacing-section-sm);
 
-    @media (min-width: 640px) { padding-block: 0 10rem; }
-    @media (min-width: 1024px) { padding-block: 0 14rem; }
+    @media (min-width: 640px) { padding-block: 0 var(--spacing-section-md); }
+    @media (min-width: 1024px) { padding-block: 0 var(--spacing-section-lg); }
   }
 
   .faq-list {
@@ -44,7 +44,7 @@
     transition: color 0.15s ease;
 
     &:hover {
-      color: var(--color-yellow);
+      color: var(--color-pink);
     }
   }
 
@@ -56,7 +56,7 @@
     flex-shrink: 0;
     font-size: 1.5rem;
     line-height: 1;
-    color: var(--color-yellow);
+    color: var(--color-pink);
     transition: transform 0.2s ease;
   }
 

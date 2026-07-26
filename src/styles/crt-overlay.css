@@ -1,50 +1,11 @@
 /* ==========================================================================
-   CRT Overlay — phosphor glow, scanlines, and vignette
-   All overlay layers are pointer-events: none — nothing interactive is blocked.
+   Atmosphere — soft vignette only (CRT scanlines / flicker removed)
    ========================================================================== */
 
-/* ── Phosphor glow ─────────────────────────────────────────────────────── */
-/*
- * Self-contained SVG filter applied to page content:
- *   threshold → blur → screen blend back onto SourceGraphic
- * Screen blend can only lighten — output >= input at every pixel.
- * When #crt-glow doesn't exist in the DOM (glowBlur=0), browsers treat this as none.
- */
-
 .page-content {
-  filter: url(#crt-glow);
+  /* No bloom filter — clean dark SaaS look */
+  filter: none;
 }
-
-/* ── Scanlines ─────────────────────────────────────────────────────────── */
-/*
- * mix-blend-mode: multiply — dark bands dim bright content (text, images).
- * On the pure-black background they stay invisible, just like a real CRT.
- */
-
-.crt-scanlines {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  user-select: none;
-
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 1)    0px,
-    rgba(255, 255, 255, 1)    2px,
-    rgba(20,  20,  20,  0.1)  2px,
-    rgba(20,  20,  20,  0.1)  4px
-  );
-
-  mix-blend-mode: multiply;
-  animation: crt-flicker 10s step-end infinite;
-}
-
-/* ── Vignette / CRT screen frame ───────────────────────────────────────── */
-/*
- * Inset box-shadow darkens edges like a CRT bezel casting shadow on the glass.
- * The radial-gradient masks corners to black, giving the rounded CRT screen shape.
- */
 
 .crt-vignette {
   position: fixed;
@@ -54,26 +15,15 @@
   user-select: none;
 
   background: radial-gradient(
-    ellipse 97% 93% at 50% 50%,
-    transparent          88%,
-    rgba(0, 0, 0, 0.55)  94%,
-    rgba(0, 0, 0, 0.90)  98%,
-    black               100%
+    ellipse 100% 100% at 50% 50%,
+    transparent          70%,
+    rgba(0, 0, 0, 0.35)  100%
   );
 
-  box-shadow:
-    inset 0 0  60px 10px rgba(0, 0, 0, 0.75),
-    inset 0 0 150px 40px rgba(0, 0, 0, 0.40);
+  box-shadow: inset 0 0 80px 20px rgba(0, 0, 0, 0.25);
 }
 
-/* ── Flicker ───────────────────────────────────────────────────────────── */
-
-@keyframes crt-flicker {
-  0%,  89% { opacity: 1;    }
-  90%       { opacity: 0.88; }
-  91%       { opacity: 1;    }
-  94%       { opacity: 0.94; }
-  95%       { opacity: 1;    }
-  98%       { opacity: 0.91; }
-  99%       { opacity: 1;    }
+/* Scanlines / flicker classes kept empty so any leftover markup is harmless */
+.crt-scanlines {
+  display: none;
 }

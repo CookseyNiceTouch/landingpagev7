@@ -312,7 +312,7 @@ export default function PixelCard({
       onMouseLeave={onMouseLeave}
       onFocus={finalNoFocus ? undefined : onFocus}
       onBlur={finalNoFocus ? undefined : onBlur}
-      tabIndex={finalNoFocus ? -1 : 0}
+      tabIndex={-1}
     >
       <canvas className="pixel-canvas" ref={canvasRef} />
       {children}

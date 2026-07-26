@@ -1,34 +1,51 @@
 import type { ReactElement } from 'react'
+import { Link } from 'react-router-dom'
 import SEO from '@/components/ui/SEO'
+import DownloadCard from '@/components/DownloadCard'
 import Button from '@/components/ui/Button'
-import { OPEN_TRY_NOW } from '@/components/layout/Header'
+import { useReleases } from '@/hooks/useReleases'
 
 export default function Download(): ReactElement {
+  const { macDownloadUrl, winDownloadUrl, macVersion, winVersion } = useReleases()
+
   return (
-    <div className="flex-1 flex items-center justify-center p-[clamp(24px,4vw,96px)] pointer-events-none">
+    <div className="flex-1 flex flex-col items-center gap-10 py-16 px-4 sm:px-10 lg:px-16 pointer-events-none">
       <SEO
-        title="Download — New Version Coming Soon"
-        description="Nice Touch for Adobe Premiere Pro and DaVinci Resolve. We're rebuilding for V2 and have paused downloads of the current version — join the waitlist and we'll email you the moment the new release is ready."
+        title="Download"
+        description="Download Nice Touch for macOS or Windows. Get the AI-powered edit assistant running inside DaVinci Resolve or Adobe Premiere Pro."
         path="/download"
       />
 
-      <div className="flex flex-col items-center gap-6 p-[clamp(24px,2vw,40px)] border-2 border-border rounded-lg w-[min(640px,92%)] pointer-events-auto bg-black/20 text-center">
-        <h1 className="m-0 text-[clamp(28px,2.5vw,42px)] font-semibold text-white max-[768px]:text-[clamp(24px,4vw,36px)] max-[480px]:text-[clamp(22px,5vw,30px)]">
-          A new version is on the way
-        </h1>
-
-        <p className="m-0 text-[clamp(15px,1.2vw,18px)] text-white/70 max-w-[480px] max-[768px]:text-[clamp(14px,1.5vw,16px)]">
-          We're working on a major update to Nice Touch and have paused downloads of the current version. Join the waitlist and we'll let you know the moment it's ready.
+      <div className="flex flex-col items-center gap-3 text-center max-w-xl">
+        <span className="type-eyebrow">Get the app</span>
+        <h1 className="type-title text-center">Download Nice Touch</h1>
+        <p className="m-0 type-body text-center">
+          Available for macOS and Windows. Runs alongside Adobe Premiere Pro and DaVinci Resolve.
         </p>
-
-        <Button
-          variant="primary"
-          size="lg"
-          onClick={() => window.dispatchEvent(new CustomEvent(OPEN_TRY_NOW))}
-        >
-          Join the Waitlist
-        </Button>
       </div>
+
+      <DownloadCard
+        macUrl={macDownloadUrl}
+        winUrl={winDownloadUrl}
+        macVersion={macVersion}
+        winVersion={winVersion}
+      />
+
+      <div className="flex flex-wrap items-center justify-center gap-3 pointer-events-auto">
+        <Button as="a" href="/tutorials/" variant="secondary" size="md">
+          Tutorials &amp; Media
+        </Button>
+        <Button as="a" href="/pricing/" variant="ghost" size="md">
+          View Pricing
+        </Button>
+        <Link to="/features/" className="text-sm text-white-60 hover:text-white transition-colors">
+          Explore Features
+        </Link>
+      </div>
+
+      <p className="m-0 text-sm text-white-60 text-center max-w-md">
+        Requires macOS 12+ or Windows 10+. An active internet connection is needed for AI features.
+      </p>
     </div>
   )
 }

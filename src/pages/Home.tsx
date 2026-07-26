@@ -57,9 +57,9 @@ export default function Home(): ReactElement {
         </figure>
       </FadeIn>
 
-      <SectionTitle>{SECTION_TITLES.multicam}</SectionTitle>
+      <SectionTitle eyebrow="Multicam">{SECTION_TITLES.multicam}</SectionTitle>
       <MulticamSection />
-      <SectionTitle>{SECTION_TITLES.workflows}</SectionTitle>
+      <SectionTitle eyebrow="Workflows">{SECTION_TITLES.workflows}</SectionTitle>
       <WorkflowsSection />
 
       {/* Quote: hours of footage / manual review */}
@@ -75,11 +75,11 @@ export default function Home(): ReactElement {
           </figcaption>
         </figure>
       </FadeIn>
-      <SectionTitle>{SECTION_TITLES.pricing}</SectionTitle>
+      <SectionTitle eyebrow="Pricing">{SECTION_TITLES.pricing}</SectionTitle>
       <HomePricingSection />
-      <SectionTitle>{SECTION_TITLES.faq}</SectionTitle>
+      <SectionTitle eyebrow="FAQ">{SECTION_TITLES.faq}</SectionTitle>
       <FaqSection />
-      <SectionTitle>{SECTION_TITLES.security}</SectionTitle>
+      <SectionTitle eyebrow="Security">{SECTION_TITLES.security}</SectionTitle>
       <SecuritySection />
     </>
   )

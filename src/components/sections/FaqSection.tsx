@@ -20,13 +20,17 @@ export default function FaqSection({ items = FAQ_ITEMS }: FaqSectionProps): Reac
       <dl className="faq-list">
         {items.map((item, i) => {
           const isOpen = openIndex === i
+          const panelId = `faq-panel-${i}`
+          const buttonId = `faq-button-${i}`
           return (
             <div key={i} className={`faq-item ${isOpen ? 'is-open' : ''}`}>
               <dt>
                 <button
+                  id={buttonId}
                   className="faq-question"
                   onClick={() => toggle(i)}
                   aria-expanded={isOpen}
+                  aria-controls={panelId}
                 >
                   <span className="faq-question-text">{item.question}</span>
                   <span className="faq-chevron" aria-hidden="true">
@@ -34,7 +38,7 @@ export default function FaqSection({ items = FAQ_ITEMS }: FaqSectionProps): Reac
                   </span>
                 </button>
               </dt>
-              <dd className="faq-answer">
+              <dd className="faq-answer" id={panelId} role="region" aria-labelledby={buttonId}>
                 <p className="faq-answer-text">{item.answer}</p>
               </dd>
             </div>
