@@ -21,9 +21,9 @@ export default function DownloadCard({
   return (
     <div className="flex flex-col items-center w-[min(520px,100%)]">
       <div className="flex flex-col items-center gap-3 p-[clamp(16px,1.5vw,25px)] border-2 border-border rounded-lg w-full pointer-events-auto max-[768px]:p-[clamp(12px,2vw,20px)] max-[768px]:gap-2">
-        <h2 className="m-0 text-[clamp(24px,2vw,40px)] font-semibold text-white text-center max-[768px]:text-[clamp(20px,5vw,28px)] max-[480px]:text-[clamp(18px,5vw,22px)]">
-          Download The App
-        </h2>
+        <h1 className="m-0 text-[clamp(24px,2vw,40px)] font-semibold text-white text-center max-[768px]:text-[clamp(20px,5vw,28px)] max-[480px]:text-[clamp(18px,5vw,22px)]">
+          Download Nice Touch
+        </h1>
         <div className="flex gap-3.5 items-center w-full max-w-[360px] h-[clamp(48px,3.5vh,61px)] max-[768px]:max-w-[280px] max-[768px]:h-[clamp(44px,6vh,52px)] max-[480px]:max-w-[240px] max-[480px]:h-[clamp(40px,5.5vh,48px)]">
           <a
             href={macUrl}

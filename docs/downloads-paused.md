@@ -1,94 +1,32 @@
-# Downloads paused — waitlist mode
-
-App downloads are temporarily disabled while a new version of Nice Touch is being prepared. The HubSpot "Try Now" form now acts as a waitlist signup. This document captures everything that was changed so the download flow can be restored cleanly when the new build ships.
+# Downloads — status log
 
 ## Status
 
-- Disabled on: 2026-05-22
-- Re-enable when: the next app version is ready for public download
-- HubSpot form ID still in use (`e7b7312c-1884-4467-a616-42a27512a402`) — leads now treated as waitlist entries
+- **Live.** Re-enabled on 2026-07-26.
+- `/download` renders `DownloadCard` again and pulls live URLs from `useReleases()`, so visitors can grab the macOS or Windows build directly — no modal or waitlist step.
+- The footer's `Product` column link reads `Download` again (was `Coming Soon`).
+- `DownloadCard.tsx`'s heading is an `<h1>` (was `<h2>`) because `Download.tsx` no longer renders a heading of its own, and `scripts/verify-prerender.mjs` fails the build unless each route has exactly one `<h1>`.
 
-## Files that were changed
+## Intentionally left as-is
 
-### 1. `src/components/ui/TryNowModal.tsx`
+The "Try Now" button (header + hero) still opens `TryNowModal`, which behaves as a pure waitlist signup ("Join the waitlist" → "You're on the list!") and does **not** redirect to `/download` after submit. Direct download and the Try Now waitlist are deliberately independent flows for now.
 
-What changed:
+If that should change, the pre-waitlist version of the modal — with the `useNavigate` redirect to `/download` and the `ResizeObserver` thank-you-screen fallback — is preserved in git history:
 
-- Removed `useNavigate` import and the `navigate` constant.
-- Removed the post-submit redirect inside the `onFormSubmitted` callback (was `navigate('/download')`).
-- Removed the `ResizeObserver` fallback block that detected the HubSpot thank-you screen and called `navigate('/download')`. That observer was the only reason we needed to measure form height after a 1.5s settle timer — none of it is needed for a pure waitlist signup.
-- Updated `aria-label` from `"Get early access"` to `"Join the waitlist"`.
-- Updated the visible `<h2>` title from `Get early access` to `Join the waitlist`.
-- Updated the subtitle copy to mention the new version and waitlist.
+```
+git log -- src/components/ui/TryNowModal.tsx
+```
 
-To re-enable downloads:
+To restore that behaviour:
 
 1. Re-add `import { useNavigate } from 'react-router-dom'` and `const navigate = useNavigate()`.
 2. Re-add `onFormSubmitted: () => { onClose(); navigate('/download') }` to the `hbspt.forms.create` call.
-3. Re-add the `ResizeObserver` fallback block (the version with `baseline`, `settled`, `settleTimer`, and the 60%-of-baseline trigger that calls `navigate('/download')`).
-4. Restore the original title/subtitle copy if desired.
+3. Re-add the `ResizeObserver` fallback (the version with `baseline`, `settled`, `settleTimer`, and the 60%-of-baseline trigger).
+4. Update the title/subtitle copy away from waitlist wording.
 
-The pre-change implementation is preserved in git history — `git log -- src/components/ui/TryNowModal.tsx` will show the previous version.
+HubSpot form ID in use: `e7b7312c-1884-4467-a616-42a27512a402`.
 
-### 2. `src/pages/Download.tsx`
+## History
 
-What changed:
-
-The entire page was replaced. It no longer renders `DownloadCard` or calls `useReleases()`. It now shows a "A new version is on the way" panel with a "Join the Waitlist" button that dispatches the `OPEN_TRY_NOW` event to open the HubSpot modal.
-
-To re-enable downloads, restore this content:
-
-```tsx
-import type { ReactElement } from 'react'
-import SEO from '@/components/ui/SEO'
-import DownloadCard from '@/components/DownloadCard'
-import { useReleases } from '@/hooks/useReleases'
-
-export default function Download(): ReactElement {
-  const { macDownloadUrl, winDownloadUrl, macVersion, winVersion } = useReleases()
-
-  return (
-    <div className="flex-1 flex items-center justify-center p-[clamp(24px,4vw,96px)] pointer-events-none">
-      <SEO
-        title="Download"
-        description="Download Nice Touch for macOS or Windows. Get the AI-powered edit assistant running inside DaVinci Resolve or Adobe Premiere Pro."
-        path="/download"
-      />
-      <DownloadCard
-        macUrl={macDownloadUrl}
-        winUrl={winDownloadUrl}
-        macVersion={macVersion}
-        winVersion={winVersion}
-      />
-    </div>
-  )
-}
-```
-
-### 3. `src/components/layout/Footer.tsx`
-
-What changed:
-
-The hardcoded footer link's label was changed from `Download` to `Coming Soon`. The `to="/download"` target is unchanged.
-
-To re-enable downloads, change `Coming Soon` back to `Download` on the same line.
-
-## Files intentionally NOT changed
-
-These are still in the tree and continue to work — they just have no active consumers while downloads are paused. Leaving them in place makes restoration a small, low-risk change.
-
-- `src/components/DownloadCard.tsx` — unused; no edits needed to re-enable.
-- `src/hooks/useReleases.ts` — unused; no edits needed to re-enable.
-- `src/App.tsx` — `/download` route is still registered (now serving the waitlist page).
-- `src/data/navigation.ts` — never had a Download entry, so nothing to change.
-- `src/components/layout/Header.tsx` — the "Try Now" button text is unchanged per the brief; the modal it opens now acts as the waitlist signup.
-- `src/components/sections/HeroSection.tsx` — hero "Try Now" CTA unchanged for the same reason.
-
-## Quick re-enable checklist
-
-When the new app version is ready:
-
-1. Revert the three files above (use git history or follow the snippets in this doc).
-2. Verify the `/download` route renders `DownloadCard` again and pulls live URLs from `useReleases()`.
-3. Verify the HubSpot modal redirects to `/download` after submit.
-4. Update or remove this document.
+- **2026-05-22** — Downloads paused. `/download` was replaced with an "A new version is on the way" panel plus a "Join the Waitlist" button dispatching `OPEN_TRY_NOW`; the footer link became `Coming Soon`; `TryNowModal` lost its post-submit redirect. See commit `a8b0339`.
+- **2026-07-26** — Downloads restored. `/download` and the footer link are back on the direct-download flow; `TryNowModal` waitlist behaviour kept as-is (see above).
