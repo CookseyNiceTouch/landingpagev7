@@ -18,12 +18,12 @@
 import { mkdir, readFile, writeFile, rm } from 'node:fs/promises'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { dirname, resolve, join } from 'node:path'
+import { IS_INDEXABLE, SITE_URL as BASE_URL } from './site-env.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const REPO_ROOT = resolve(__dirname, '..')
 const DIST = resolve(REPO_ROOT, 'dist')
 const SERVER_DIST = resolve(REPO_ROOT, 'dist-server')
-const BASE_URL = 'https://nicetouch.app'
 
 async function main() {
   // Prefer the pristine template copy so the step is safe to re-run after
@@ -58,11 +58,15 @@ async function main() {
   }
 
   await writeSitemap(ROUTE_PATHS)
+  await writeRobots()
 
   // Build intermediates — keep them out of the deploy.
   await rm(SERVER_DIST, { recursive: true, force: true })
   await rm(templatePath, { force: true })
-  console.log(`[prerender] done: ${targets.length} pages + sitemap.xml`)
+  console.log(
+    `[prerender] done: ${targets.length} pages + sitemap.xml for ${BASE_URL}` +
+      (IS_INDEXABLE ? '' : ' (noindex — non-production origin)'),
+  )
 }
 
 function outFileFor(routePath) {
@@ -85,6 +89,19 @@ async function writeSitemap(routePaths) {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
   await writeFile(join(DIST, 'sitemap.xml'), xml, 'utf-8')
   console.log('[prerender] wrote dist/sitemap.xml')
+}
+
+/**
+ * Production ships `public/robots.txt` as-is. Non-production origins replace it
+ * with a blanket disallow so the staging copy can't be crawled — belt and
+ * braces alongside the noindex meta and the Cloudflare Access gate.
+ */
+async function writeRobots() {
+  if (IS_INDEXABLE) return
+
+  const txt = `# Non-production deploy of ${BASE_URL} - not for indexing.\nUser-agent: *\nDisallow: /\n`
+  await writeFile(join(DIST, 'robots.txt'), txt, 'utf-8')
+  console.log('[prerender] wrote dist/robots.txt (disallow all)')
 }
 
 main().catch((err) => {

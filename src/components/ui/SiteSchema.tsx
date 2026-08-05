@@ -1,8 +1,11 @@
 import { Helmet } from 'react-helmet-async'
 import type { ReactElement } from 'react'
 import { SOCIAL_LINKS, CONTACT_EMAIL } from '@/data/social'
+import { PRODUCTION_URL } from '@/lib/site'
 
-const BASE_URL = 'https://nicetouch.app'
+// The Organization/WebSite `@id` is a stable entity identifier, not a page
+// URL, so it stays pinned to production even on a staging build.
+const BASE_URL = PRODUCTION_URL
 
 const ORGANIZATION = {
   '@context': 'https://schema.org',

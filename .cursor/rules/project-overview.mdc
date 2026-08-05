@@ -79,3 +79,12 @@ prerenderer, and the sitemap generator). To add a new page:
   `<!--app-head-->` / `<!--app-html-->` placeholders.
 - Site-wide Organization/WebSite JSON-LD lives in `src/components/ui/SiteSchema.tsx`.
 - `_headers` (repo root) sets security + caching headers on Sevalla; `public/robots.txt` excludes `/press/assets/`.
+
+## Environments
+
+- `main` -> https://nicetouch.app (production), `staging` -> https://preview.nicetouch.app.
+  Each Sevalla static site is pinned to one branch and rebuilds on push. Work flows
+  feature -> `staging` -> `main`. See `docs/deployment.md`.
+- The origin comes from `VITE_SITE_URL` via `src/lib/site.ts` / `scripts/site-env.mjs` —
+  never hardcode `https://nicetouch.app` for a canonical, `og:url`, or sitemap entry.
+  Any origin other than production is forced `noindex`, and the build fails if it isn't.

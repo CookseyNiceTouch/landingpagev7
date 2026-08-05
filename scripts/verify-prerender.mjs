@@ -8,6 +8,7 @@
 import { readFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { dirname, resolve, join } from 'node:path'
+import { IS_INDEXABLE, SITE_URL } from './site-env.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DIST = resolve(__dirname, '..', 'dist')
@@ -40,6 +41,7 @@ for (const page of PAGES) {
   const title = /<title[^>]*>([^<]*)<\/title>/.exec(head)?.[1]
   const desc = /name="description"\s+content="([^"]*)"/.exec(head)?.[1]
   const canonical = /rel="canonical"\s+href="([^"]*)"/.exec(head)?.[1]
+  const robots = /name="robots"\s+content="([^"]*)"/.exec(head)?.[1] ?? ''
   const ogImage = /property="og:image"\s+content="([^"]*)"/.exec(head)?.[1]
   const twitterCard = /name="twitter:card"\s+content="([^"]*)"/.exec(head)?.[1]
   const h1s = [...html.matchAll(/<h1[\s>]/g)].length
@@ -56,11 +58,21 @@ for (const page of PAGES) {
   else if (descriptions.has(desc) && page !== '404.html') fail(page, `duplicate description (also on ${descriptions.get(desc)})`)
   else descriptions.set(desc, page)
 
-  const isNoindexPage = page === '404.html'
-  if (isNoindexPage) {
-    if (!/name="robots"\s+content="noindex"/.test(head)) fail(page, 'missing noindex robots meta')
+  const isNoindex = /(^|[\s,])noindex([\s,]|$)/.test(robots)
+  if (page === '404.html') {
+    if (!isNoindex) fail(page, 'missing noindex robots meta')
     if (canonical) fail(page, '404 should not have a canonical')
-  } else if (!canonical) fail(page, 'missing canonical')
+  } else if (!canonical) {
+    fail(page, 'missing canonical')
+  } else if (!canonical.startsWith(`${SITE_URL}/`)) {
+    fail(page, `canonical points outside the build origin ${SITE_URL}: ${canonical}`)
+  }
+
+  // Both directions fail silently in the wild: a staging page that stays
+  // indexable competes with production in search, and a production page that
+  // ships noindex quietly drops out of it.
+  if (!IS_INDEXABLE && !isNoindex) fail(page, `${SITE_URL} is not the production origin but the page is indexable`)
+  if (IS_INDEXABLE && isNoindex && page !== '404.html') fail(page, 'production page is marked noindex')
   if (!ogImage) fail(page, 'missing og:image')
   if (!twitterCard) fail(page, 'missing twitter:card')
   if (h1s !== 1) fail(page, `expected exactly 1 <h1>, found ${h1s}`)
@@ -82,8 +94,15 @@ for (const page of PAGES) {
   )
 }
 
+const robotsTxt = await readFile(join(DIST, 'robots.txt'), 'utf-8')
+if (IS_INDEXABLE) {
+  if (!/^Allow: \/$/m.test(robotsTxt)) fail('robots.txt', 'production robots.txt should allow crawling')
+} else if (!/^Disallow: \/$/m.test(robotsTxt)) {
+  fail('robots.txt', `${SITE_URL} is not the production origin but robots.txt does not disallow crawling`)
+}
+
 if (failures > 0) {
   console.error(`\n[verify-prerender] ${failures} failure(s)`)
   process.exit(1)
 }
-console.log('\n[verify-prerender] all checks passed')
+console.log(`\n[verify-prerender] all checks passed for ${SITE_URL}${IS_INDEXABLE ? '' : ' (noindex)'}`)
