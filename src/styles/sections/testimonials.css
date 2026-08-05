@@ -1,0 +1,62 @@
+/* ==========================================================================
+   Testimonial wall
+   Replaces the two orphan pull-quotes that used to float between Home
+   sections with a single block of named, attributed proof.
+   ========================================================================== */
+
+@layer components {
+
+  .tw-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+
+    @media (min-width: 768px)  { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  }
+
+  .tw-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem;
+  }
+
+  .tw-card__mark {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.25rem;
+    line-height: 1;
+    color: var(--color-pink);
+    margin-bottom: 0.5rem;
+  }
+
+  .tw-card__quote {
+    margin: 0 0 1.5rem;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-white-70);
+    text-wrap: pretty;
+  }
+
+  /* Push attribution to the bottom so cards line up across the row. */
+  .tw-card__footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  .tw-card__name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  .tw-card__role {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: var(--color-white-60);
+  }
+
+}

@@ -35,7 +35,7 @@ export default function Layout(): ReactElement {
         style={{ position: 'fixed', visibility: 'hidden', left: '-9999px', width: '1px', height: '1px' }}
       />
       <div className="fixed inset-0 bg-black -z-10" />
-      {showCrt && <CrtOverlay glowBlur={24} glowOpacity={0.3} glowThreshold={0.5} />}
+      {showCrt && <CrtOverlay />}
       {/* Header and footer sit above all CRT effects via z-index in their CSS */}
       <Header />
       <main className="page-content">

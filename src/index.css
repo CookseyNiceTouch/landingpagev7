@@ -12,16 +12,20 @@
 @import "./styles/layout/footer.css";
 @import "./styles/layout/page-content.css";
 @import "./styles/sections/hero.css";
+@import "./styles/sections/proof-strip.css";
+@import "./styles/sections/problem.css";
 @import "./styles/sections/promo-video.css";
-@import "./styles/sections/demo.css";
-@import "./styles/sections/multicam.css";
-@import "./styles/sections/workflows.css";
+@import "./styles/sections/how-it-works.css";
+@import "./styles/sections/payoff.css";
+@import "./styles/sections/capabilities.css";
+@import "./styles/sections/audiences.css";
+@import "./styles/sections/testimonials.css";
 @import "./styles/sections/pricing.css";
-@import "./styles/sections/home-pricing.css";
+@import "./styles/sections/pricing-teaser.css";
 @import "./styles/sections/faq.css";
-@import "./styles/sections/security.css";
-@import "./styles/ui/text-type.css";
+@import "./styles/sections/closing.css";
 @import "./styles/ui/fade-in.css";
+@import "./styles/ui/section.css";
 @import "./styles/sections/content-page.css";
 
 
@@ -32,30 +36,25 @@
    ========================================================================== */
 
 @theme {
-  /* Fonts */
+  /* Fonts — Inter for everything */
   --font-sans:    'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: 'Hind', sans-serif;
-  --font-body:    'Poppins', sans-serif;
+  --font-heading: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body:    'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Brand colours */
   --color-yellow:     #faff00;
   --color-pink:       #ff008c;
   --color-pink-hover: #e6007d;
   --color-cyan:       #2bffed;
-  --color-purple:     #9b84ff;
-  --color-magenta:    #ff00bf;
-
-  /* Rarity colours (pricing tiers) */
-  --color-rarity-grey:  #8892a4;
-  --color-rarity-green: #4cde6e;
-  --color-rarity-gold:  #f5c442;
 
   /* Backgrounds */
   --color-bg:        #000000;
   --color-bg-darker: #0a0a0a;
+  --color-surface:   rgba(255, 255, 255, 0.03);
 
-  /* White alpha scale */
+  /* White alpha scale (min ~60% for readable body/secondary text) */
   --color-white-70: rgba(255, 255, 255, 0.70);
+  --color-white-60: rgba(255, 255, 255, 0.60);
   --color-white-55: rgba(255, 255, 255, 0.55);
   --color-white-45: rgba(255, 255, 255, 0.45);
   --color-white-30: rgba(255, 255, 255, 0.30);
@@ -65,6 +64,18 @@
   /* Borders */
   --color-border:       rgba(255, 255, 255, 0.18);
   --color-border-light: rgba(255, 255, 255, 0.08);
+
+  /* Section spacing scale */
+  --spacing-section-sm: 4rem;
+  --spacing-section-md: 5rem;
+  --spacing-section-lg: 7rem;
+
+  /* Content width scale — collapses the ad-hoc 48rem/72rem/860px/1360px
+     widths that had accumulated across pages. Registered in the --container-*
+     namespace so they also expose max-w-narrow / max-w-content / max-w-wide. */
+  --container-narrow:  48rem;
+  --container-content: 72rem;
+  --container-wide:    85rem;
 }
 
 

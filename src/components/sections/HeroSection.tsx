@@ -5,6 +5,8 @@ import HeroImage from '@/components/ui/HeroImage'
 import { OPEN_TRY_NOW } from '@/components/layout/Header'
 import heroVideo from '@/assets/video/wl_480_15fps_crf28.mp4'
 import directorPoster from '@/assets/images/illustrations/director.webp'
+import premiereIcon from '@/assets/images/premiere-pro-icon.webp'
+import resolveIcon from '@/assets/images/davinci-resolve-icon.webp'
 
 export default function HeroSection(): ReactElement {
   return (
@@ -31,6 +33,19 @@ export default function HeroSection(): ReactElement {
           View Pricing
         </Button>
       </div>
+
+      <p className="hero-trust">
+        <span className="hero-trust__nle">
+          <img src={premiereIcon} alt="" className="hero-trust__icon" aria-hidden="true" />
+          Adobe Premiere Pro
+        </span>
+        <span className="hero-trust__nle">
+          <img src={resolveIcon} alt="" className="hero-trust__icon" aria-hidden="true" />
+          DaVinci Resolve
+        </span>
+        <span className="hero-trust__divider" aria-hidden="true" />
+        <span>macOS &amp; Windows</span>
+      </p>
     </section>
   )
 }

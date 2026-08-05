@@ -14,17 +14,18 @@ Styles are split across co-located CSS files under `src/styles/`. `src/index.css
 src/
   index.css                    ← imports, tokens, base resets
   styles/
-    typography.css             ← @utility type scale (type-display, type-title, etc.)
-    shared.css                 ← reusable component classes (content-column, text-card, section-title)
+    typography.css             ← type scale (type-display, type-title, type-eyebrow, etc.)
+    shared.css                 ← reusable classes (content-column, nt-card, section-title, home-quote)
+    crt-overlay.css            ← soft vignette only
     layout/
-      header.css               ← .site-header, .header-* classes
-      footer.css               ← .site-footer, .footer-* classes
+      header.css
+      footer.css
+      page-content.css
     sections/
-      hero.css                 ← .hero-section, .hero-subtitle, .hero-device
-      demo.css                 ← .demo-section, .demo-* classes
-      multicam.css             ← .multicam-section, .multicam-device
-      workflows.css            ← .workflows-section, .workflows-device
-      pricing.css              ← .pricing-section, .pricing-device
+      hero.css, demo.css, multicam.css, workflows.css, …
+      content-page.css         ← SEO/content page shared styles
+    ui/
+      fade-in.css
 ```
 
 ## Adding New Styles
@@ -35,44 +36,22 @@ When adding a new section or component:
 3. Add an `@import` for it in `src/index.css`
 4. Use semantic class names that describe **what the element is**, not how it looks
 
-```css
-/* ✅ GOOD — src/styles/sections/testimonials.css */
-@layer components {
-  .testimonials-section { ... }
-  .testimonial-card { ... }
-  .testimonial-quote { ... }
-}
-
-/* ❌ BAD — inline utility soup in JSX */
-<section className="flex flex-col gap-8 px-6 md:px-10 py-20 pointer-events-none">
-```
-
 ## When to Use Inline Tailwind Utilities
 
-Tailwind utility classes on JSX are fine for **simple one-off modifiers** that don't warrant a named class:
-
-```tsx
-// ✅ OK — single-purpose modifiers
-<h1 className="type-display text-center">
-<span className="block">
-
-// ❌ BAD — multi-property layout belongs in a CSS file
-<div className="flex flex-col lg:flex-row items-center justify-center gap-8 px-6 md:px-10">
-```
-
-Rule of thumb: if you're combining 3+ layout/spacing utilities, create a named class in CSS instead.
+Tailwind utility classes on JSX are fine for **simple one-off modifiers**. Rule of thumb: if you're combining 3+ layout/spacing utilities, create a named class in CSS instead.
 
 ## Typography Scale
 
-Defined as `@utility` blocks in `src/styles/typography.css`. Apply as single classes — they include family, size, weight, line-height, tracking, and colour:
+Defined in `src/styles/typography.css`. Inter throughout. White headings; pink for eyebrows/accents; yellow reserved for small badges (e.g. "Save 20%").
 
 | Class | Usage | Element |
 |---|---|---|
 | `type-display` | Hero heading | `<h1>` |
-| `type-title` | Between-section title | `<h2>` |
+| `type-title` | Section / page title | `<h2>`, page `<h1>` |
+| `type-eyebrow` | Small accent label above a title | `<span>` |
 | `type-subtitle` | Hero descriptor | `<p>` |
-| `type-body` | Body copy, bullets | `<p>`, `<li>` |
-| `type-card-heading` | Card/section sub-heading | `<h3>` |
+| `type-body` | Body copy | `<p>`, `<li>` |
+| `type-card-heading` | Card sub-heading | `<h3>` |
 | `para-gap` | Paragraph bottom spacing | Any text element |
 
 ## Design Tokens
@@ -81,21 +60,20 @@ Defined in `src/index.css` under `@theme`. Always use tokens rather than raw val
 
 | Token | Utility class | Value |
 |---|---|---|
-| `--color-yellow` | `text-yellow`, `bg-yellow` | `#faff00` |
-| `--color-pink` | `text-pink`, `bg-pink` | `#ff008c` |
-| `--color-cyan` | `text-cyan` | `#2bffed` |
-| `--color-purple` | `text-purple` | `#9b84ff` |
-| `--color-magenta` | `text-magenta` | `#ff00bf` |
+| `--color-yellow` | `text-yellow`, `bg-yellow` | `#faff00` (accent only) |
+| `--color-pink` | `text-pink`, `bg-pink` | `#ff008c` (primary CTA) |
+| `--color-pink-hover` | `bg-pink-hover` | `#e6007d` |
+| `--color-cyan` | `text-cyan` | `#2bffed` (focus rings) |
 | `--color-bg` | `bg-bg` | `#000000` |
 | `--color-border` | `border-border` | `rgba(255,255,255,0.18)` |
-| `--font-heading` | `font-heading` | Hind |
-| `--font-body` | `font-body` | Poppins |
+| `--color-white-60` | `text-white-60` | secondary text |
+| `--font-sans` / `--font-heading` / `--font-body` | Inter |
+
+Primary CTA colour is **pink**. Use the shared `Button` component for all CTAs. Use `.nt-card` for card surfaces.
 
 ## Pointer Events
 
-The LiquidEther background sits at `z-index: 0`. Page content is at `z-index: 10`. Section containers use `pointer-events: none` so mouse events pass through to the background. Interactive elements (images, buttons, links) use `pointer-events: auto`.
-
-This is handled in the CSS class definitions — you should not need to add these as inline Tailwind utilities.
+Section containers often use `pointer-events: none` so overlays don't block the page. Interactive elements (images, buttons, links) use `pointer-events: auto`.
 
 ## No Inline Style Objects
 

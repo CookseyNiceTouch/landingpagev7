@@ -4,6 +4,7 @@ import SEO from '@/components/ui/SEO'
 import Container from '@/components/ui/Container'
 import FadeIn from '@/components/ui/FadeIn'
 import Button from '@/components/ui/Button'
+import ClosingCta from '@/components/sections/ClosingCta'
 import { TOOLS, WEB_TOOLS } from '@/data/tools'
 import type { WebTool } from '@/data/tools'
 import { useConverterReleases } from '@/hooks/useConverterReleases'
@@ -154,6 +155,12 @@ export default function Tools(): ReactElement {
         ))}
         <ConverterCard />
       </Container>
+
+      <ClosingCta
+        heading="These are the free ones."
+        body="The full Nice Touch assistant runs inside Premiere Pro and DaVinci Resolve, taking the transcription, string-out, and first-pass rough cut off your plate."
+        secondary={{ label: 'See Features', href: '/features/' }}
+      />
     </div>
   )
 }

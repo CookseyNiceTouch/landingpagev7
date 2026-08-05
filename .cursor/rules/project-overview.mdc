@@ -9,12 +9,12 @@ alwaysApply: true
 
 - **React 19** with TypeScript (strict mode), functional components only
 - **Vite 7** for bundling; `@vitejs/plugin-react` + `@tailwindcss/vite`
-- **Tailwind CSS v4** for all styling — no separate CSS files except `index.css` (global resets/tokens) and `LiquidEther.css` (scoped to the WebGL background)
+- **Tailwind CSS v4** for all styling — tokens and base resets in `index.css`; section/component styles in `src/styles/`
 - **React Router v7** (`BrowserRouter` + nested routes via `<Outlet />`)
-- **Three.js** powers the `LiquidEther` fluid background
 - **HubSpot** embedded forms (loaded via `<script>` tag injection)
 - **Stripe** for checkout (direct links in `src/data/pricing.ts`)
 - Package manager: **npm**; path alias `@/` maps to `src/`
+- Visual identity: dark SaaS (black canvas, Inter, pink primary CTAs, yellow reserved for small accents)
 
 ## Folder Structure
 
@@ -22,27 +22,27 @@ alwaysApply: true
 src/
   App.tsx                     # Route tree only — no logic
   main.tsx                    # Entry point
-  index.css                   # Tailwind directives + CSS custom properties
+  index.css                   # Tailwind directives + design tokens
+  styles/                     # Section and layout CSS
   assets/
     icons/                    # SVG icons (apple, windows, discord, linkedin, youtube)
-    images/                   # PNG images (logos, app badges)
-  backgrounds/
-    LiquidEther.tsx            # WebGL fluid — do not modify without care
-    LiquidEther.css
+    images/                   # PNG/WebP images (logos, illustrations)
   components/
     layout/
-      Layout.tsx               # Shell: LiquidEther + Header + <Outlet /> + Footer
-      Header.tsx               # Nav links from data/navigation.ts, social from data/social.ts
+      Layout.tsx               # Shell: vignette + Header + <Outlet /> + Footer
+      Header.tsx               # Nav from data/navigation.ts, social from data/social.ts
       Footer.tsx               # Footer links, social, copyright
     ui/
       Button.tsx               # Reusable button (variant: primary/secondary/ghost, size: sm/md/lg)
       Container.tsx            # Max-width content wrapper
-    GetAppModal.tsx            # HubSpot modal form
-    DownloadCard.tsx           # macOS / Windows download buttons
+      PricingPlanCards.tsx     # Shared pricing grid (Home + /pricing)
+      SectionTitle.tsx         # Clean section headings with optional eyebrow
+      TryNowModal.tsx          # HubSpot waitlist modal
+    DownloadCard.tsx           # macOS / Windows download cards
     NewsletterForm.tsx         # HubSpot newsletter embed
   data/
-    navigation.ts              # NAV_LINKS array — single source of truth for nav
-    pricing.ts                 # PLANS, CHECKOUT_LINKS, detectCurrency(), formatPrice()
+    navigation.ts              # NAV_ITEMS — single source of truth for nav
+    pricing.ts                 # PLANS, checkout links, detectCurrency(), formatPrice()
     social.ts                  # SOCIAL_LINKS, CONTACT_EMAIL
   hooks/
     useReleases.ts             # Fetches release data from GitHub JSON
@@ -52,6 +52,7 @@ src/
     Download.tsx
     Newsletter.tsx
     NotFound.tsx
+    …                          # Plus Features, Multicam, verticals, tools, etc.
 ```
 
 ## Routing

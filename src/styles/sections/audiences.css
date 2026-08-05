@@ -1,0 +1,57 @@
+/* ==========================================================================
+   Audiences
+   Lets a visitor recognise their own work and route into the matching
+   vertical page. Also surfaces those pages for internal linking.
+   ========================================================================== */
+
+@layer components {
+
+  .aud-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+
+    @media (min-width: 640px)  { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (min-width: 1024px) { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  }
+
+  .aud-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    text-decoration: none;
+  }
+
+  .aud-card__label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: white;
+  }
+
+  .aud-card__arrow {
+    flex: none;
+    color: var(--color-white-45);
+    transition: transform 0.15s ease, color 0.15s ease;
+  }
+
+  .aud-card:hover .aud-card__arrow {
+    transform: translateX(3px);
+    color: var(--color-pink);
+  }
+
+  .aud-card__body {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--color-white-70);
+    text-wrap: pretty;
+  }
+
+}

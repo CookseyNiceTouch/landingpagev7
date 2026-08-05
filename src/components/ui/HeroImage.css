@@ -42,7 +42,7 @@
   position: absolute;
   inset: 0;
   z-index: 2;
-  opacity: 0.5;                         /* ← fringing brightness */
+  opacity: 0.22;                        /* ← softer fringing for cleaner look */
   transition: translate 200ms ease-out; /* ← cursor chase speed  */
 }
 

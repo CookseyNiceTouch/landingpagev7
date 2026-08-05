@@ -1,0 +1,76 @@
+/* ==========================================================================
+   Capabilities bento
+   Mosaic rather than a uniform card grid, so the page has some density
+   variation. Multicam takes the wide tile — it's the differentiator.
+   ========================================================================== */
+
+@layer components {
+
+  .cap-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+
+    @media (min-width: 700px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+  }
+
+  .cap-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    padding: 1.5rem;
+
+    @media (min-width: 1024px) { padding: 1.75rem; }
+  }
+
+  /* Spans sit on the <FadeIn> wrapper, since that's the grid item.
+     At 2 columns the totals are 8 cells (4 rows); at 3 columns they're
+     9 cells (3 rows) — no orphaned gaps at either breakpoint. */
+  @media (min-width: 700px) {
+    .cap-grid__item--span2,
+    .cap-grid__item--span3 {
+      grid-column: span 2;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .cap-grid__item--span3 {
+      grid-column: span 3;
+    }
+  }
+
+  /* Emphasis comes from size and a flat border, not a tint. */
+  .cap-tile--feature {
+    border-color: var(--color-border);
+  }
+
+  .cap-tile__heading {
+    margin: 0;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: white;
+  }
+
+  .cap-tile--feature .cap-tile__heading {
+    font-size: 1.25rem;
+
+    @media (min-width: 1024px) { font-size: 1.5rem; }
+  }
+
+  .cap-tile__body {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-white-70);
+    text-wrap: pretty;
+  }
+
+}

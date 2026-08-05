@@ -189,6 +189,15 @@ export const PULL_QUOTE_CANDIDATES: Quote[] = [
   },
 ]
 
+/**
+ * Customer quotes cleared for use on the marketing site (Home, Features).
+ *
+ * Same source as `PULL_QUOTE_CANDIDATES` — exported separately because the
+ * press release has its own sign-off track, tracked on
+ * `PRESS_RELEASE.customerQuote`, which is still unset.
+ */
+export const CUSTOMER_QUOTES: Quote[] = PULL_QUOTE_CANDIDATES
+
 export const PULL_QUOTES: { founder: Quote; customer: Quote | null } = {
   founder: PRESS_RELEASE.founderQuote,
   customer: PRESS_RELEASE.customerQuote,

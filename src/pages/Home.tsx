@@ -1,18 +1,21 @@
 import type { ReactElement } from 'react'
 import SEO from '@/components/ui/SEO'
+import Section from '@/components/ui/Section'
 import { SECTION_TITLES, FAQ_ITEMS, faqPageSchema } from '@/data/home'
-import { TESTIMONIALS } from '@/data/features'
 import { PROMO_VIDEO, videoObjectSchema } from '@/data/press'
-import SectionTitle from '@/components/ui/SectionTitle'
-import FadeIn from '@/components/ui/FadeIn'
 import HeroSection from '@/components/sections/HeroSection'
+import ProofStrip from '@/components/sections/ProofStrip'
+import ProblemSection from '@/components/sections/ProblemSection'
 import PromoVideoSection from '@/components/sections/PromoVideoSection'
-import DemoSection from '@/components/sections/DemoSection'
-import MulticamSection from '@/components/sections/MulticamSection'
-import WorkflowsSection from '@/components/sections/WorkflowsSection'
-import HomePricingSection from '@/components/sections/HomePricingSection'
+import HowItWorksSection from '@/components/sections/HowItWorksSection'
+import PayoffSection from '@/components/sections/PayoffSection'
+import CapabilitiesSection from '@/components/sections/CapabilitiesSection'
+import AudienceSection from '@/components/sections/AudienceSection'
+import TestimonialWall from '@/components/sections/TestimonialWall'
+import PricingTeaser from '@/components/sections/PricingTeaser'
 import FaqSection from '@/components/sections/FaqSection'
-import SecuritySection from '@/components/sections/SecuritySection'
+import SecurityBar from '@/components/sections/SecurityBar'
+import ClosingCta from '@/components/sections/ClosingCta'
 
 export default function Home(): ReactElement {
   return (
@@ -35,52 +38,49 @@ export default function Home(): ReactElement {
           videoObjectSchema(PROMO_VIDEO),
         ]}
       />
+
+      {/* 1. Hook */}
       <HeroSection />
+
+      {/* 2. Credibility, before any pitch */}
+      <ProofStrip />
+
+      {/* 3. The cost of the first pass */}
+      <ProblemSection />
+
+      {/* 4. See it move */}
       <PromoVideoSection
         video={PROMO_VIDEO}
         heading="See it in action"
         subtitle="From footage to first cut in under a minute — here's Nice Touch running inside Premiere Pro."
       />
-      <DemoSection />
 
-      {/* Quote: first port of call / project knowledge */}
-      <FadeIn className="flex justify-center">
-        <figure className="home-quote">
-          <span className="home-quote__mark" aria-hidden="true">&ldquo;</span>
-          <blockquote className="home-quote__text">
-            {TESTIMONIALS[1].quote}
-          </blockquote>
-          <figcaption className="home-quote__footer">
-            <span className="home-quote__role">{TESTIMONIALS[1].role}</span>
-            <span className="home-quote__company">{TESTIMONIALS[1].company}</span>
-          </figcaption>
-        </figure>
-      </FadeIn>
+      {/* 5. See it work, with real product screenshots */}
+      <HowItWorksSection />
 
-      <SectionTitle>{SECTION_TITLES.multicam}</SectionTitle>
-      <MulticamSection />
-      <SectionTitle>{SECTION_TITLES.workflows}</SectionTitle>
-      <WorkflowsSection />
+      {/* 6. What the editor gets back */}
+      <PayoffSection />
 
-      {/* Quote: hours of footage / manual review */}
-      <FadeIn className="flex justify-center">
-        <figure className="home-quote">
-          <span className="home-quote__mark" aria-hidden="true">&ldquo;</span>
-          <blockquote className="home-quote__text">
-            {TESTIMONIALS[0].quote}
-          </blockquote>
-          <figcaption className="home-quote__footer">
-            <span className="home-quote__role">{TESTIMONIALS[0].role}</span>
-            <span className="home-quote__company">{TESTIMONIALS[0].company}</span>
-          </figcaption>
-        </figure>
-      </FadeIn>
-      <SectionTitle>{SECTION_TITLES.pricing}</SectionTitle>
-      <HomePricingSection />
-      <SectionTitle>{SECTION_TITLES.faq}</SectionTitle>
-      <FaqSection />
-      <SectionTitle>{SECTION_TITLES.security}</SectionTitle>
-      <SecuritySection />
+      {/* 7. Depth, with multicam leading */}
+      <CapabilitiesSection />
+
+      {/* 8. Self-identification into the vertical pages */}
+      <AudienceSection />
+
+      {/* 9. Named proof */}
+      <TestimonialWall />
+
+      {/* 10. Shape of pricing; the decision happens on /pricing */}
+      <PricingTeaser />
+
+      {/* 11. Remaining objections */}
+      <Section eyebrow="FAQ" title={SECTION_TITLES.faq} width="content">
+        <FaqSection />
+      </Section>
+
+      {/* 12. Trust, then the ask */}
+      <SecurityBar />
+      <ClosingCta />
     </>
   )
 }

@@ -68,7 +68,7 @@ Async/stateful logic belongs in `src/hooks/`. Each hook file exports a single `u
 ## HubSpot Forms
 
 Two forms are embedded via `data-form-id` attributes on a `div.hs-form-frame`:
-- **Get App modal**: form-id `e7b7312c-1884-4467-a616-42a27512a402`
+- **Try Now modal**: form-id `e7b7312c-1884-4467-a616-42a27512a402` (via `TryNowModal`)
 - **Newsletter**: form-id `98567906-bbd8-4dde-99f6-4581261e62cf`
 
 Both use portal `146425863`, region `eu1`. Load the HubSpot script (`https://js-eu1.hsforms.net/forms/embed/146425863.js`) once via a `useEffect` with a guard against duplicate injection.

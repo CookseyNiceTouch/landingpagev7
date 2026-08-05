@@ -78,7 +78,7 @@
   font-family: var(--font-heading);
   font-size: 1.75rem;
   font-weight: 700;
-  color: var(--color-yellow);
+  color: var(--color-pink);
   letter-spacing: -0.02em;
 }
 
@@ -125,7 +125,7 @@
 }
 
 .try-now-form input:focus {
-  border-color: var(--color-yellow);
+  border-color: var(--color-pink);
   background: rgba(255, 255, 255, 0.08);
 }
 
@@ -144,8 +144,8 @@
   width: 100%;
   padding: 0.875rem 1.5rem;
   margin-top: 0.5rem;
-  background: var(--color-yellow);
-  color: #000;
+  background: var(--color-pink);
+  color: #fff;
   border: none;
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -155,7 +155,7 @@
 }
 
 .try-now-form .hs-button:hover {
-  background: color-mix(in srgb, var(--color-yellow) 90%, transparent);
+  background: var(--color-pink-hover);
   transform: translateY(-1px);
 }
 

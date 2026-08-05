@@ -1,47 +1,13 @@
 ---
-description: LiquidEther WebGL background — how it works and what to avoid
-globs: src/backgrounds/**
+description: Soft vignette overlay — atmosphere without CRT effects
+globs: "**/CrtOverlay*,**/crt-overlay*"
 alwaysApply: false
 ---
 
-# LiquidEther Background
+# Atmosphere Overlay
 
-`src/backgrounds/LiquidEther.tsx` is a custom WebGL fluid simulation built on Three.js. It is complex and fragile — treat it as a black box.
+`CrtOverlay` renders a soft vignette only. Scanlines, flicker, and phosphor bloom were removed for a cleaner dark SaaS look.
 
-## How It Is Used
-
-Rendered once in `src/components/layout/Layout.tsx` with `position: absolute; inset: 0`, sitting at `z-index: 0` behind all page content. All pages share the same background instance — it does not re-mount on navigation.
-
-## Mouse Tracking
-
-Mouse and touch event listeners are attached to **`window`** (not the container element), so the background responds to the cursor regardless of which UI element is on top. This is intentional. Do not change the event target back to the container.
-
-```ts
-// LiquidEther.tsx — correct pattern
-window.addEventListener('mousemove', this._onMouseMove)
-window.addEventListener('touchstart', this._onTouchStart, { passive: true })
-```
-
-## Pointer Events Architecture
-
-Because the background must receive mouse position from everywhere, pages and layout containers use a layered approach:
-
-- `.liquid-ether-container` — `z-index: 0`, `position: absolute`, fills viewport
-- Page content — `z-index: 10`, `position: relative`
-- Containers that should not block mouse events: `pointer-events-none`
-- Interactive elements: `pointer-events-auto`
-
-## Colour Palette
-
-The background colours are set in `Layout.tsx`:
-```tsx
-<LiquidEther colors={['#5227FF', '#FF9FFC', '#B19EEF']} ... />
-```
-When updating the brand palette, update these three colours to match.
-
-## What Not To Do
-
-- Do not import or modify `LiquidEther.tsx` for non-background purposes
-- Do not render `LiquidEther` inside individual pages — it lives only in `Layout.tsx`
-- Do not add `overflow: hidden` or `height: 100vh` to the `.landing-page` / root container — this was removed intentionally to allow scrollable pages
-- The ESLint warnings in `LiquidEther.tsx` (inline classes, `any` types) are pre-existing and expected; do not attempt to fix them
+- Mounted from `Layout.tsx` on all routes except `/press`
+- Styles live in `src/styles/crt-overlay.css`
+- Do not reintroduce scanline/flicker animations without an explicit design decision

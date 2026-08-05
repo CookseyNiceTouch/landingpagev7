@@ -1,0 +1,97 @@
+/* ==========================================================================
+   Problem section
+   "How the work starts today" vs "how it starts with Nice Touch" — the one
+   place on the page that states the cost of the first pass directly.
+   ========================================================================== */
+
+@layer components {
+
+  .problem-lead {
+    max-width: var(--container-narrow);
+    margin: 0 0 2.5rem;
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+
+    @media (min-width: 880px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+  }
+
+  .problem-col {
+    padding: 1.5rem;
+
+    @media (min-width: 640px) { padding: 2rem; }
+  }
+
+  /* The "after" column is the one we want the eye to land on. Differentiated
+     with a flat lift and a yellow accent rather than a tinted glow. */
+  .problem-col--after {
+    border-color: var(--color-border);
+    background: rgba(255, 255, 255, 0.045);
+  }
+
+  .problem-col__heading {
+    margin: 0 0 1.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-white-60);
+  }
+
+  .problem-col--after .problem-col__heading {
+    color: var(--color-yellow);
+  }
+
+  .problem-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    counter-reset: problem-step;
+  }
+
+  .problem-list__item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--color-white-70);
+    counter-increment: problem-step;
+  }
+
+  .problem-list__item::before {
+    content: counter(problem-step);
+    flex: none;
+    width: 1.375rem;
+    height: 1.375rem;
+    margin-top: 0.1rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    text-align: center;
+    color: var(--color-white-60);
+  }
+
+  .problem-col--after .problem-list__item::before {
+    border-color: rgba(250, 255, 0, 0.45);
+    color: var(--color-yellow);
+  }
+
+  .problem-closing {
+    max-width: var(--container-narrow);
+    margin: 2.5rem 0 0;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: white;
+    text-wrap: pretty;
+  }
+
+}
